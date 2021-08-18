@@ -1,0 +1,116 @@
+body {
+  background-color: black;
+  color: #ddd;
+  font-family: monospace;
+  font-size: 1.5em;
+}
+
+a, a:visited {
+  color: #9d959d;
+  text-decoration: none;
+}
+
+a:hover {
+  color: white;
+}
+
+a img:hover {
+  filter: brightness(0.7);
+}
+
+header {
+  margin-top: 0.5em;
+  margin-bottom: 1em;
+}
+
+details {
+  margin-bottom: 1em;
+}
+
+#filters {
+  padding: 20px;
+  background-color: #222;
+  margin-bottom: 1em;
+}
+
+#filters #search {
+  width: 100%;
+}
+
+#filters > div > * {
+  display: table-cell;
+}
+
+#filters #types {
+  min-width: max-content;
+}
+
+#filters #tagsContainer {
+  padding-left: 30px;
+}
+
+#filters #tags {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#filters #tags input {
+  display: none;
+}
+
+#filters #tags label {
+  margin: 10px;
+  padding: 0.3em;
+  border: 1px white solid;
+}
+
+#filters #tags input:checked + label {
+  background-color: #ddd;
+  color: black;
+}
+
+#filters ul {
+  list-style-type: none;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+tr, td, th {
+  border: 1px solid #ddd;
+  padding: 0.5em;
+}
+
+thead {
+  background-color: #111;
+}
+
+th[data-sorted-direction="ascending"]::after {
+  content: "\25b2";
+}
+
+th[data-sorted-direction="descending"]::after {
+  content: "\25bc";
+}
+
+table span.token {
+  background-color: #222;
+  margin-right: 0.3em;
+  padding: 0.1em;
+}
+
+th, summary {
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 700px) {
+  #filters > div > * {
+    display: initial;
+  }
+
+  th, td:not(:first-of-type) {
+    display: none;
+  }
+}

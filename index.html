@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Resources list by Anass Soulimani</title>
+  <meta name="author" content="Anass Soulimani">
+  <meta name="description" content="A list of links to various resources and tools Anass Soulimani has found on the Internet">
+  <meta name="keywords" content="urls,url,resources,interestiong,various,topics">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" type="image/png" href="https://cdn.intra.42.fr/users/large_ansoulim.jpg">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.5.0/sql-wasm.js" integrity="sha512-dsyusvfMidFZ0Vttbk7YXRAxaO++5nU1vuFtGMK2MNPr8qDzz0e5IahYWSJkzZcNXn18E1OHP6Oa13nRIwT0zg==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sortable/0.8.0/js/sortable.min.js" integrity="sha512-DEcSaL0BWApJ//v7ZfqAI04nvK+NQcUVwrrx/l1x7OJgU0Cwbq7e459NBMzLPrm8eLPzAwBtiJJS4AvLZDZ8xA==" crossorigin="anonymous"></script>
+  <script src="script.js"></script>
+</head>
+<body onload="init()">
+  <header>
+    <b>A list of <span id='count'></span> links to various tools and resources <a href="https://github.com/Ulring">Anass Soulimani</a> has found on the World Wide Web</b>
+    <a style='float:right' href="https://github.com/Ulring/Resources">
+      <img style='width:1.5em; margin:5px' src="https://github.com/fluidicon.png" alt="View on GitHub">
+    </a>
+  </header>
+  <main>
+    <details>
+      <summary>Filters</summary>
+      <div id="filters">
+        <input id="search" onkeyup="filter()" type="text" placeholder="Search...">
+        <div>
+          <ul id="types"><h3>Types</h3></ul>
+          <ul id="languages"><h3>Languages</h3></ul>
+          <div id="tagsContainer">
+            <h3>Tags</h3>
+            <div id="tags"></div>
+          </div>
+        </div>
+        <sub><sub> <i>Types</i> and <i>Languages</i> work like union, <i>Tags</i> like intersection </sub></sub>
+      </div>
+    </details>
+    <table data-sortable>
+      <thead>
+        <tr>
+          <th data-sorted-direction="ascending"> Link </th>
+          <th> Type </th>
+          <th> Tags </th>
+          <th> Lang </th>
+          <th> Description </th>
+        </tr>
+      </thead>
+      <tbody> </tbody>
+    </table>
+  </main>
+</body>
+</html>
