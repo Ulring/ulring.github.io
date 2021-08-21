@@ -1,4 +1,4 @@
-redits
+# Credits
 
 Credit to [Jorengarenar](https://github.com/Jorengarenar).Make sure to check out his other works!
 
