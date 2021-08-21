@@ -92,7 +92,7 @@ function filter() {
 }
 
 async function init() {
-  const response = await fetch("https://raw.githack.com/Ulring/ulring.github.io/database/links.db?raw=true");
+  const response = await fetch("https://cdn.jsdelivr.net/gh/Ulring/ulring.github.io@database/links.db");
   const data = await response.arrayBuffer();
   const SQL = await initSqlJs({ locateFile: (file) => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.5.0/${file}` });
 
