@@ -1,3 +1,4 @@
+
 var db;
 
 function genTableRow(table, link) {
