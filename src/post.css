@@ -38,3 +38,25 @@
 .case-facts dt { color: var(--ice); font-size: 13px; }
 .case-facts dd { margin: 2px 0 0; font-size: 15.5px; color: var(--ink); }
 @media (max-width: 600px) { .case-facts { grid-template-columns: 1fr; } }
+/* components used by "Watching a one-box server" */
+.post .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); gap: 0 24px; margin: 0 0 40px; border-top: 1px solid var(--line); }
+.post .stat { padding: 14px 0; border-bottom: 1px solid var(--line); }
+.post .stat b { display: block; font: 600 30px/1.1 var(--display); color: var(--ink); font-variant-numeric: tabular-nums; }
+.post .stat span { font-size: 14px; color: var(--dim); }
+.post .rules { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: 20px 28px; margin: 0 0 20px; }
+.post .group { border-top: 1px solid var(--line); padding-top: 10px; }
+.post .group h4 { font: 600 16px var(--display); color: var(--ice); margin: 0 0 8px; }
+.post .group ul { list-style: none; padding: 0; margin: 0; gap: 6px; }
+.post .group li { font-size: 15px; display: flex; gap: 10px; align-items: baseline; }
+.post .sev { flex: none; width: 8px; height: 8px; border-radius: 50%; }
+.post .sev.crit { background: #ff7a7a; } .post .sev.warn { background: #ffd27a; } .post .sev.info { background: var(--mint); }
+.post .legend { display: flex; flex-wrap: wrap; gap: 6px 20px; font-size: 13.5px; color: var(--dim); margin: 0 0 24px; }
+.post .legend > span { display: inline-flex; align-items: center; gap: 8px; }
+.post .timeline { list-style: none; padding: 0; margin: 0 0 22px; display: block; }
+.post .timeline li { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); gap: 14px; padding: 9px 0; border-top: 1px solid var(--line); }
+.post .timeline time { color: var(--ice); font-size: 14px; font-variant-numeric: tabular-nums; padding-top: 2px; }
+.post .checklist { counter-reset: c; list-style: none; padding: 0; gap: 10px; }
+.post .checklist li { counter-increment: c; display: grid; grid-template-columns: 2.2rem minmax(0, 1fr); gap: 8px; }
+.post .checklist li::before { content: counter(c, decimal-leading-zero); font: 500 14px var(--display); color: var(--ice); padding-top: 3px; }
+.post td.was { color: var(--dim); text-decoration: line-through; text-decoration-color: rgba(238, 243, 247, .25); }
+@media (max-width: 600px) { .post .timeline li { grid-template-columns: 1fr; gap: 2px; } }

@@ -1,0 +1,164 @@
+<div class="kicker"><span class="led" aria-hidden="true"></span>Self-hosting · Observability · Alerting</div>
+  <h1>Watching a one-box server</h1>
+  <p class="lede">My home lab runs every service on a single machine. This post covers what I chose to watch on it, the small stack that does the watching, and the outage that showed me which alerts were still missing.</p>
+
+  <section class="stats" aria-label="The stack in numbers">
+    <div class="stat"><b>18</b><span>alert rules, in Git</span></div>
+    <div class="stat"><b>3 + 3</b><span>log streams + metric sources</span></div>
+    <div class="stat"><b>&lt; 800 MB</b><span>RAM for all of it</span></div>
+    <div class="stat"><b>1 + 1</b><span>tool inside, service outside</span></div>
+  </section>
+
+  <h2>Fewer tools, more signal</h2>
+  <p>I started with the usual self-hosting pair: Uptime Kuma for uptime checks and Dozzle for live container logs. Both are good tools, and I removed both. Each tool is another container, another UI, another login and another thing to update. One log and metrics platform plus one external service now cover what they did, plus a lot they couldn't.</p>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Need</th><th>Before</th><th>Now</th></tr></thead>
+      <tbody>
+        <tr><td>Live container logs</td><td class="was">Dozzle</td><td>OpenObserve, live mode on the <code>docker</code> stream</td></tr>
+        <tr><td>Is the site reachable?</td><td class="was">Uptime Kuma</td><td>External HTTPS check every minute from four locations</td></tr>
+        <tr><td>Is the box alive?</td><td class="was">Uptime Kuma, on the same box</td><td>External heartbeat, sent only when the box is healthy</td></tr>
+        <tr><td>Alerts</td><td class="was">Uptime Kuma → Discord</td><td>18 rules defined as code → Discord</td></tr>
+        <tr><td>Host metrics</td><td class="was">none</td><td>node-exporter → Prometheus remote-write</td></tr>
+        <tr><td>Per-container CPU and memory</td><td class="was">none</td><td>A small cron script → node-exporter</td></tr>
+        <tr><td>Every HTTP request</td><td class="was">none</td><td>Traefik's JSON access log, its own stream</td></tr>
+        <tr><td>SSH, kernel, system logs</td><td class="was">none</td><td>Host log files, read-only, their own stream</td></tr>
+        <tr><td>Certificate expiry</td><td class="was">none</td><td>Traefik's own metrics, every certificate it serves</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>A monitor can't report its own death</h2>
+  <p>Uptime Kuma ran on the machine it was watching. If that machine lost power, lost its network or booted into another OS, the monitor went down with it and said nothing. Every check that answers "is it up?" has to live somewhere else, so the design splits in two:</p>
+  <div class="diagram" role="img" aria-label="Inside the server, OpenObserve alerts; outside, an external service runs a heartbeat and an HTTPS check; both send to Discord">inside the server ─ <b>OpenObserve</b>: 18 alert rules ───────────────────┐
+                    disk · memory · temperature · reboots · 5xx       │
+                    certificates · containers · SSH · network          ├──▶ <b>Discord</b>
+                                                                       │
+outside          ─ <b>external monitor</b> (free plan) ────────────────────┘
+                    heartbeat  ◀── server pings every 5 min, only if healthy
+                    HTTPS check of the public URL every minute + TLS expiry</div>
+  <p>The heartbeat is the part I like most. A cron job runs the platform's preflight check (data disk mounted, Docker up, edge proxy healthy) and pings the external service only if everything passes. Silence means "down, offline or unhealthy", and the external side raises the alert. Because the server only ever pings on success, this works with any heartbeat provider.</p>
+  <p>The external HTTPS check covers the rest of the path a visitor uses: DNS, the router, the proxy and TLS. Between them, the two outside checks answer the one question the inside can't.</p>
+
+  <h2>What to watch on a small server</h2>
+  <p>Before writing any rule I made a checklist of what can actually go wrong on one machine that serves websites:</p>
+  <ol class="checklist">
+    <li><span><strong>Reachability from outside.</strong> DNS, router, proxy and TLS together: one external URL check.</span></li>
+    <li><span><strong>Liveness of the box.</strong> A heartbeat gated on a health check.</span></li>
+    <li><span><strong>Capacity.</strong> Disk, memory and load, with thresholds you'd act on.</span></li>
+    <li><span><strong>Hardware health.</strong> Kernel I/O errors, SMART warnings, temperature.</span></li>
+    <li><span><strong>The network itself.</strong> Link drops, a changed public IP, a failing dynamic-DNS job.</span></li>
+    <li><span><strong>Security signals.</strong> SSH logins from places they shouldn't come from.</span></li>
+    <li><span><strong>App health.</strong> The 5xx rate per site, read from the proxy, so it works for every app without touching its code.</span></li>
+    <li><span><strong>Containers.</strong> Unhealthy, crash-looping or stopped.</span></li>
+    <li><span><strong>Certificates.</strong> Renewal failures from the inside, days left from both sides.</span></li>
+    <li><span><strong>The monitoring itself.</strong> An alert when logs stop arriving.</span></li>
+  </ol>
+
+  <h2>The pipeline</h2>
+  <div class="diagram" role="img" aria-label="Collectors on an internal network feed OpenObserve">container logs ── read-only Docker API proxy ─┐
+host log files ── mounted read-only ──────────┼─▶ <b>Vector</b> ─┬─▶ streams  docker · host · traefik_access
+node-exporter ── host + container metrics ────┤             └─▶ metrics  node_* · traefik_* · docker_container_*
+Traefik /metrics ── internal port only ───────┘                     │
+                                                                    ▼
+             internal network, no internet access ────────▶ <b>OpenObserve</b>  logs · metrics · alerts · dashboards</div>
+  <ul>
+    <li><strong>Vector</strong> collects everything. It tags each container's lines with its project and service, parses JSON log lines into fields, and sends the proxy's access log to its own stream, so "which site is returning 5xx right now" is one query.</li>
+    <li>The collector has its <strong>own Docker API proxy</strong> that allows reading logs and nothing else. The edge proxy's own API proxy stays without log access.</li>
+    <li>Everything runs on an <strong>internal network with no internet access</strong>. Telemetry can reach OpenObserve and nothing else.</li>
+  </ul>
+  <h3>Noise first</h3>
+  <p>The first hour of data was mostly about the monitoring itself. OpenObserve logs every ingest request it receives, and Vector shipped those lines straight back in: a loop of about 32,000 lines an hour that said nothing. Every container start and stop also produced around ten kernel lines about virtual network interfaces. Both are filtered at the collector, before they cost storage or attention.</p>
+
+  <h2>Container metrics without cAdvisor</h2>
+  <p>Host metrics are easy. Per-container CPU and memory are the hard part. The usual answer, cAdvisor, wants privileged access to the host and the raw Docker socket, and this platform doesn't give that to anything.</p>
+  <p>Docker's built-in metrics endpoint looked like the clean alternative, but it's a trap. The daemon opens that listener <em>before</em> it creates its own networks. Bind it to an internal network address and Docker refuses to start at boot. The remaining choices are localhost, which containers can't reach, or every interface.</p>
+  <p>So it's a 40-line shell script, run every minute by cron. It reads a handful of fields per container, writes them in Prometheus format to a file, and node-exporter's textfile collector picks the file up:</p>
+  <pre><code>docker_container_running{name="traefik",stack="traefik"}   1
+docker_container_healthy{name="traefik",stack="traefik"}   1
+docker_container_restarts{name="traefik",stack="traefik"}  0
+docker_container_cpu_percent{name="openobserve"}           8.09
+docker_container_memory_bytes{name="openobserve"}          705691852</code></pre>
+  <p>No new container, no extra privileges, and it moves to any other host unchanged. It also skips the container's environment, where secrets can live.</p>
+  <p>Certificates came almost free. Traefik can expose Prometheus metrics on an internal port that is never published, and one of them is the expiry date of every certificate it serves. That covers client domains too, which the external check doesn't watch.</p>
+
+  <h2>Alerts as code</h2>
+  <p>Every rule is a JSON file in the platform's Git repository, applied through OpenObserve's API by an idempotent script. Nothing is created by clicking around the UI, so a fresh install gets every rule back with one command.</p>
+  <div class="rules">
+    <div class="group"><h4>Capacity</h4><ul>
+      <li><span class="sev crit"></span>Disk ≥ 85 % on any filesystem</li>
+      <li><span class="sev crit"></span>Available memory ≤ 10 %</li>
+      <li><span class="sev warn"></span>Load average stays high</li>
+    </ul></div>
+    <div class="group"><h4>Hardware</h4><ul>
+      <li><span class="sev crit"></span>Kernel I/O or SMART errors</li>
+      <li><span class="sev crit"></span>Out-of-memory kill</li>
+      <li><span class="sev warn"></span>A sensor at 85 °C or more</li>
+    </ul></div>
+    <div class="group"><h4>Host and network</h4><ul>
+      <li><span class="sev warn"></span>A system service failed</li>
+      <li><span class="sev warn"></span>Network adapter dropped</li>
+      <li><span class="sev info"></span>Public IP changed</li>
+      <li><span class="sev info"></span>Server rebooted</li>
+    </ul></div>
+    <div class="group"><h4>Edge</h4><ul>
+      <li><span class="sev crit"></span>A site returns 20+ 5xx in 5 min</li>
+      <li><span class="sev crit"></span>Certificate renewal failed</li>
+      <li><span class="sev warn"></span>A certificate has ≤ 14 days left</li>
+    </ul></div>
+    <div class="group"><h4>Containers</h4><ul>
+      <li><span class="sev crit"></span>Healthcheck failing</li>
+      <li><span class="sev crit"></span>3+ restarts in 15 min</li>
+      <li><span class="sev warn"></span>A managed container stopped</li>
+    </ul></div>
+    <div class="group"><h4>Security and pipeline</h4><ul>
+      <li><span class="sev crit"></span>SSH login from outside the home network</li>
+      <li><span class="sev warn"></span>No logs for 15 minutes</li>
+    </ul></div>
+  </div>
+  <div class="legend" aria-hidden="true"><span><span class="sev crit"></span>act now</span><span><span class="sev warn"></span>look today</span><span><span class="sev info"></span>good to know</span></div>
+  <p>Each rule has a silence period, so a disk that stays full sends one message every six hours instead of one every ten minutes. A rule that fires all the time just trains you to ignore it.</p>
+
+  <div class="lesson">
+    <div class="tag">Lesson learned</div>
+    <p>Two days after the first version of this setup went live, the server's wireless adapter dropped off the USB bus early one morning and never reconnected. The machine kept running with no network for most of a day and a half, until I rebooted it.</p>
+    <ol class="timeline">
+      <li><time>day 1 · 05:49</time><span>Kernel: USB disconnect, re-enumeration fails. The link is gone.</span></li>
+      <li><time>every 35 min</time><span>The dynamic-DNS job fails: <code>Could not resolve host</code>. Dozens of times.</span></li>
+      <li><time>meanwhile</time><span>Every local log line is collected. Not one internal alert can reach Discord, because the box is offline.</span></li>
+      <li><time>day 2 · reboot</time><span>The adapter comes back, DNS updates to a new public IP, everything recovers.</span></li>
+    </ol>
+    <p>The external heartbeat did its job and went quiet, but the logs held the whole story and no rule was reading it. The adapter dropping, the DNS job failing and the public IP changing all went unnoticed. Three rules came out of it: a failed system service, a dropped network adapter, and a changed public IP. The first two can't send anything during the outage, but they arrive the moment the box is back, together with the cause. Checking the logs after an incident is how I found the alerts I was missing.</p>
+  </div>
+
+  <h2>Dashboards, SLOs and retention, also as code</h2>
+  <p>The overview dashboard is generated by a Python file and pushed through the same API, and every panel query was run and checked before it shipped. From top to bottom it shows health tiles, host trends (CPU, memory, disk, I/O, load, temperature), traffic by status class, top sites, error tables, p95 response time and bandwidth per site, SSH activity by source, the paths scanner bots probe, and per-container CPU and memory against each container's limit.</p>
+  <p>One panel was cut on purpose. A host network chart would have needed node-exporter on the host's network, which breaks the platform's isolation rules for one chart. Bandwidth per site, from the proxy's access log, answers the more useful question anyway.</p>
+  <p>There's also one <strong>SLO</strong>: each site answers without a server error 99.5 % of the time over 30 days. It's computed from the proxy's access log and grouped by hostname, so every new site gets its own error budget the day it goes live, with no setup and no change to its code.</p>
+  <p><strong>Retention follows value.</strong> Security and hardware logs stay 90 days, because you only look for them after something went wrong. Request logs stay 30 days. Container logs are the noisiest and least useful later, so they stay 14.</p>
+
+  <h2>Small details that paid off</h2>
+  <ul>
+    <li><strong>Credentials never leave a throwaway container.</strong> The API helper that applies rules and dashboards starts a short-lived container on the internal network, loads the credentials and the Discord webhook from root-owned files inside it, and prints only the HTTP status. No secret ever shows up in a terminal, a log or the repository.</li>
+    <li><strong>OpenObserve refuses private addresses as alert destinations.</strong> That's a guard against server-side request forgery, and it meant the placeholder destination used before Discord was set up had to be a real public URL that goes nowhere.</li>
+    <li><strong>Field names are lowercase.</strong> Traefik writes <code>RequestHost</code>, OpenObserve stores <code>requesthost</code>. Every query and alert was written against the stored names after a few silent zero-result queries.</li>
+    <li><strong>Memory, measured.</strong> OpenObserve is the only real consumer. Vector, node-exporter and the collector's API proxy use 7 to 25 MB each.</li>
+  </ul>
+
+  <h2>What I left out, on purpose</h2>
+  <ul>
+    <li><strong>The external monitor's server agent.</strong> It would duplicate node-exporter, and avoiding duplicate tools is the whole point.</li>
+    <li><strong>OpenObserve's infrastructure view.</strong> It expects OpenTelemetry host data. node-exporter already covers the host.</li>
+    <li><strong>The built-in AI assistant.</strong> It needs an external model API key, for features I don't need yet.</li>
+    <li><strong>Saved log views as code.</strong> OpenObserve stores them as UI state, so they're the one thing created by hand.</li>
+  </ul>
+
+  <h2>What's next</h2>
+  <ul>
+    <li>A dedicated ingest-only account for the collector, instead of an admin login</li>
+    <li>Traces, once an app is instrumented with OpenTelemetry</li>
+    <li>Real-user monitoring on public frontends: page speed and JavaScript errors from actual visitors</li>
+    <li>An external monitor for every new site, added the day it goes live</li>
+  </ul>
+
+  <p class="closing">One platform inside, one service outside, eighteen rules in Git and less memory than a browser tab. The best test so far was a real outage. It showed which alerts were missing, and those rules are in the repository now.</p>

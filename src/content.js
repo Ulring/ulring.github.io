@@ -183,6 +183,7 @@ const experience = {
 // { title, date: 'YYYY-MM-DD', url, minutes }
 // slug = content/posts/<slug>.html; minutes and the page itself come from scripts/gen.mjs
 const postList = [
+  { slug: 'watching-a-one-box-server', title: 'Watching a one-box server', date: '2026-10-16', topics: 'Self-hosting · Observability · Alerting', summary: 'What I watch on a single home server, the small stack that does the watching, and the outage that showed which alerts were still missing.' },
   { slug: 'agents-inside-the-rules', title: 'Letting AI agents operate a server, inside the rules', date: '2026-10-15', topics: 'AI agents · Guardrails · DevOps', summary: 'A rulebook, a tested pre-execution guard and a CI backstop that let coding agents do real work on a server safely.' },
   { slug: 'portable-hosting-platform', title: 'A portable hosting platform, built at home first', date: '2026-10-15', topics: 'Self-hosting · Docker · Traefik', summary: 'One machine run like a small platform: one entry point, isolated tenants, three environments per project and rules checked in CI.' },
 ];
