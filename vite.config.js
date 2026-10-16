@@ -5,7 +5,7 @@ export default defineConfig({
   base: '/',
   build: {
     target: 'es2022',
-    rollupOptions: { input: Object.fromEntries(['index.html', 'fr/index.html', 'cv/index.html', 'cv/fr/index.html'].map(f => [f.replace(/\/?index\.html$/, '') || 'main', resolve(import.meta.dirname, f)])) },
+    rollupOptions: { input: Object.fromEntries(['index.html', 'fr/index.html'].map(f => [f.replace(/\/?index\.html$/, '') || 'main', resolve(import.meta.dirname, f)])) },
   },
   plugins: [{
     // dev only: /__delay?ms=N holds the page's load event, so headless screenshots wait for WebGL/WebGPU

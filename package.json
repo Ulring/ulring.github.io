@@ -8,10 +8,9 @@
     "build": "node scripts/gen.mjs && vite build",
     "preview": "vite preview",
     "bake": "node scripts/bake.mjs public/fig",
-    "cv-pdf": "node scripts/cv-pdf.mjs"
+    "cv": "node scripts/cv.mjs"
   },
   "devDependencies": {
-    "playwright": "^1.49.1",
     "three": "0.186.1",
     "vite": "8.3.1"
   }

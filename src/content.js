@@ -1,5 +1,5 @@
-// Single source of truth for the site and the CV, in English and French.
-// scripts/gen.mjs turns this into /, /fr/, /cv/ and /cv/fr/.
+// Single source of truth for the site, in English and French.
+// scripts/gen.mjs turns this into / and /fr/.
 
 export const person = {
   name: 'Anass Soulimani',
@@ -41,11 +41,10 @@ const projects = {
       lede: 'A coding-game platform in the spirit of CodinGame, used to assess developers before hiring them.',
       points: [
         'Test campaigns per technology, with candidates invited by email',
-        'Timed tests mixing multiple choice, written answers and code in an in-browser editor',
+        'Timed tests mixing multiple choice, written answers and code',
         'Practice runs, automatic scoring and results dashboards',
-        'Question banks imported straight from PDF files',
       ],
-      stack: ['Java', 'Spring Boot', 'Angular', 'PostgreSQL', 'Redis', 'Monaco Editor', 'Jenkins'],
+      stack: ['Java', 'Spring Boot', 'Angular', 'PostgreSQL', 'Redis', 'Jenkins'],
     },
     {
       id: 'timesheet', figure: 'calendar', org: 'CBX Conseil', years: '2023–2025',
@@ -90,11 +89,10 @@ const projects = {
       lede: 'Une plateforme de coding game dans l’esprit de CodinGame, pour évaluer les développeurs avant de les recruter.',
       points: [
         'Campagnes de tests par technologie, candidats invités par email',
-        'Tests chronométrés mêlant QCM, réponses écrites et code dans un éditeur en ligne',
+        'Tests chronométrés mêlant QCM, réponses écrites et code',
         'Entraînements, notation automatique et tableaux de bord des résultats',
-        'Banques de questions importées directement depuis des PDF',
       ],
-      stack: ['Java', 'Spring Boot', 'Angular', 'PostgreSQL', 'Redis', 'Monaco Editor', 'Jenkins'],
+      stack: ['Java', 'Spring Boot', 'Angular', 'PostgreSQL', 'Redis', 'Jenkins'],
     },
     {
       id: 'timesheet', figure: 'calendar', org: 'CBX Conseil', years: '2023–2025',
@@ -111,89 +109,109 @@ const projects = {
   ],
 };
 
+// More work: an index of rows that expand to problem → what I did → result
 const more = {
   en: [
-    { title: 'inventory', tag: 'In progress', when: 'Personal', text: 'Inventory and sales for small shops: the real cost of each product, margins, payments in installments and customer debts. .NET 8, WPF, PostgreSQL.' },
-    { title: 'Consulting and self-hosting for clients', when: 'SplinEdge · 2025–2026', text: 'Wrote specifications (cahiers des charges) and found bottlenecks before building, and replaced paid tools like DocuSign with self-hosted alternatives to cut client costs.' },
-    { title: 'CBX Academy', when: 'CBX Conseil · 2024', text: 'Training website rebuilt with Next.js 15: pages became about 40% faster.' },
-    { title: 'Drone inspection of solar panels', when: 'Green Energy Park · 2022', text: 'Computer vision on drone images to find dirty solar panels that need cleaning. Instance segmentation with Detectron2, trained on AWS, about 95% accuracy.' },
-    { title: 'Hybrid energy system control', when: 'Engineering school · 2022', text: 'Control algorithms that run a solar, wind and diesel system at the lowest cost, using the generator as little as possible. Simulink models, MPPT and fuzzy logic.' },
+    { id: 'inventory', title: 'inventory', what: 'Inventory & sales', year: 'In progress', problem: 'Small shops lose track of what each product really costs and who still owes them money.', did: 'A desktop app for products, sales, installments and customer debts, computing the real cost and margin of every product.', result: 'Core data model and inventory screens built; sales and payment tracking next.', stack: ['.NET 8', 'WPF', 'PostgreSQL'] },
+    { id: 'discovery', title: 'Discovery & hosting for clients', what: 'Client consulting', year: '2025–2026', problem: 'Clients paid for software they barely used and did by hand work that a system could do.', did: 'Mapped how each business actually runs, found what could be automated and where fees were hiding, then set up and hosted the replacements.', result: 'Lower monthly costs, less manual work, and one place to see everything running.', stack: ['Linux', 'Docker', 'Traefik', 'GitHub Actions'] },
+    { id: 'cbxacademy', title: 'CBX Academy', what: 'Front-end support', year: '2024', problem: 'The training website needed its new versions connected to the company’s backend.', did: 'Helped the front-end developer on v1 and v2, mostly wiring the frontend to the backend.', result: 'Both versions shipped.', stack: ['Next.js', 'Spring Boot'] },
+    { id: 'drone', title: 'Drone solar inspection', what: 'Computer vision', year: '2022', problem: 'Dirty solar panels lose output, and checking a solar field by hand is slow.', did: 'Trained an instance-segmentation model on drone images to find the panels that need cleaning.', result: 'About 95% accuracy on panel detection.', stack: ['Python', 'Detectron2', 'AWS'] },
+    { id: 'hybrid', title: 'Hybrid energy control', what: 'Micro-grid simulation', year: '2022', problem: 'Demand changes between day and night, wind can drop or exceed what a turbine can take, and solar gives nothing at night.', did: 'Simulated a solar, wind and diesel micro-grid and the control logic that decides when the generator must start and how the grid absorbs it.', result: 'The generator runs as little as possible while the grid stays stable.', stack: ['Simulink', 'MATLAB'] },
   ],
   fr: [
-    { title: 'inventory', tag: 'En cours', when: 'Personnel', text: 'Stock et ventes pour petits commerces : coût réel de chaque produit, marges, paiements échelonnés et dettes clients. .NET 8, WPF, PostgreSQL.' },
-    { title: 'Conseil et auto-hébergement pour les clients', when: 'SplinEdge · 2025–2026', text: 'Rédigé des cahiers des charges et identifié les goulots d’étranglement avant de développer, et remplacé des outils payants comme DocuSign par des alternatives auto-hébergées pour réduire les coûts.' },
-    { title: 'CBX Academy', when: 'CBX Conseil · 2024', text: 'Site de formation refait en Next.js 15 : des pages environ 40 % plus rapides.' },
-    { title: 'Inspection de panneaux solaires par drone', when: 'Green Energy Park · 2022', text: 'Vision par ordinateur sur des images de drone pour repérer les panneaux sales à nettoyer. Segmentation d’instances avec Detectron2, entraînée sur AWS, environ 95 % de précision.' },
-    { title: 'Pilotage d’un système énergétique hybride', when: 'École d’ingénieurs · 2022', text: 'Algorithmes de contrôle qui font tourner un système solaire, éolien et diesel au coût le plus bas, en sollicitant le moins possible le générateur. Modèles Simulink, MPPT et logique floue.' },
+    { id: 'inventory', title: 'inventory', what: 'Stock & ventes', year: 'En cours', problem: 'Les petits commerces perdent de vue le coût réel de chaque produit et qui leur doit encore de l’argent.', did: 'Une application de bureau pour les produits, les ventes, les paiements échelonnés et les dettes clients, qui calcule le coût réel et la marge de chaque produit.', result: 'Modèle de données et écrans de stock en place ; suivi des ventes et des paiements à venir.', stack: ['.NET 8', 'WPF', 'PostgreSQL'] },
+    { id: 'discovery', title: 'Audit & hébergement pour les clients', what: 'Conseil', year: '2025–2026', problem: 'Les clients payaient des logiciels à peine utilisés et faisaient à la main un travail qu’un système peut faire.', did: 'Analysé le fonctionnement réel de chaque entreprise, repéré ce qui pouvait être automatisé et les frais cachés, puis mis en place et hébergé les remplacements.', result: 'Moins de frais mensuels, moins de travail manuel, et une vue unique sur tout ce qui tourne.', stack: ['Linux', 'Docker', 'Traefik', 'GitHub Actions'] },
+    { id: 'cbxacademy', title: 'CBX Academy', what: 'Appui front-end', year: '2024', problem: 'Les nouvelles versions du site de formation devaient être reliées au backend de l’entreprise.', did: 'Aidé le développeur front-end sur la v1 et la v2, surtout pour relier le frontend au backend.', result: 'Les deux versions ont été livrées.', stack: ['Next.js', 'Spring Boot'] },
+    { id: 'drone', title: 'Inspection de panneaux solaires par drone', what: 'Vision par ordinateur', year: '2022', problem: 'Les panneaux sales produisent moins, et inspecter un champ solaire à la main prend du temps.', did: 'Entraîné un modèle de segmentation d’instances sur des images de drone pour repérer les panneaux à nettoyer.', result: 'Environ 95 % de précision sur la détection des panneaux.', stack: ['Python', 'Detectron2', 'AWS'] },
+    { id: 'hybrid', title: 'Pilotage d’énergie hybride', what: 'Simulation de micro-réseau', year: '2022', problem: 'La demande change entre le jour et la nuit, le vent peut tomber ou dépasser ce qu’une éolienne supporte, et le solaire ne produit rien la nuit.', did: 'Simulé un micro-réseau solaire, éolien et diesel, et la logique de contrôle qui décide quand le générateur doit démarrer et comment le réseau l’absorbe.', result: 'Le générateur tourne le moins possible et le réseau reste stable.', stack: ['Simulink', 'MATLAB'] },
   ],
 };
+
+// Services: numbered engagements. English never says "cahier des charges"; no tool names anywhere.
+const services = {
+  en: {
+    title: 'What I can do for you',
+    lede: 'Three ways to work together. Most clients start with a discovery.',
+    items: [
+      { n: '01', title: 'Discovery', meta: 'Fixed price · 1–2 weeks', quotes: ['We pay for software we barely use.', 'We do the same work by hand every day.', 'We’re not sure what’s even possible.'], text: 'I study how your business runs and where time and money leak: work that can be automated, hidden fees, tools you overpay for, and options you didn’t know you had. You get a written plan with priorities and costs, and it’s yours to keep. If we build it together, the discovery fee is credited.' },
+      { n: '02', title: 'Build', meta: 'Scoped per project', quotes: ['We need a backend for our app.', 'Our current system can’t keep up.'], text: 'APIs, data models and integrations, delivered end to end: deployed on your own server with HTTPS, automatic deployments, backups and monitoring.' },
+      { n: '03', title: 'Run', meta: 'Monthly', quotes: ['It works, but nobody maintains it.', 'It’s slow, or it breaks now and then.'], text: 'Updates, fixes, monitoring and alerts, so your system keeps running and you hear about problems before your users do.' },
+    ],
+  },
+  fr: {
+    title: 'Ce que je peux faire pour vous',
+    lede: 'Trois façons de travailler ensemble. La plupart des clients commencent par un audit.',
+    items: [
+      { n: '01', title: 'Audit & cadrage', meta: 'Prix fixe · 1 à 2 semaines', quotes: ['On paie des logiciels qu’on utilise à peine.', 'On refait le même travail à la main tous les jours.', 'On ne sait pas vraiment ce qui est possible.'], text: 'J’étudie le fonctionnement de votre activité et où partent le temps et l’argent : tâches automatisables, frais cachés, outils trop chers et possibilités que vous ne soupçonniez pas. Vous recevez un cahier des charges et un plan chiffré, qui vous appartiennent. Si nous le réalisons ensemble, le prix de l’audit est déduit.' },
+      { n: '02', title: 'Réalisation', meta: 'Chiffré par projet', quotes: ['Il nous faut un backend pour notre application.', 'Notre système actuel ne suit plus.'], text: 'API, modèles de données et intégrations, livrés de bout en bout : déployés sur votre propre serveur avec HTTPS, déploiements automatiques, sauvegardes et monitoring.' },
+      { n: '03', title: 'Suivi', meta: 'Mensuel', quotes: ['Ça marche, mais personne ne le maintient.', 'C’est lent, ou ça plante de temps en temps.'], text: 'Mises à jour, corrections, monitoring et alertes, pour que votre système tourne et que vous soyez prévenu des problèmes avant vos utilisateurs.' },
+    ],
+  },
+};
+
+// Skills: tiers instead of bars. "match" links a skill to projects whose stack contains it; "extra" adds others by id.
+const skillTiers = [
+  { key: 'core', skills: [{ name: 'Java' }, { name: 'Spring Boot' }, { name: 'PostgreSQL' }, { name: 'Docker', extra: ['discovery'] }] },
+  { key: 'comfortable', skills: [{ name: 'Hibernate', extra: ['fleet', 'galaxytest', 'timesheet'] }, { name: 'JHipster' }, { name: 'REST & OpenAPI', match: 'OpenAPI', extra: ['fleet', 'delivery', 'galaxytest'] }, { name: 'WebSockets' }, { name: 'Redis' }, { name: 'Flyway', extra: ['timesheet'] }, { name: 'Keycloak' }, { name: 'Jenkins' }, { name: 'GitHub Actions' }, { name: 'Traefik' }, { name: 'Linux' }] },
+  { key: 'needed', skills: [{ name: 'TypeScript', extra: ['galaxytest', 'timesheet', 'fleet', 'cbxacademy'] }, { name: 'Angular' }, { name: 'Next.js' }, { name: 'Flutter' }] },
+  { key: 'also', skills: [{ name: 'Python' }, { name: 'C & C++' }, { name: 'AWS' }, { name: 'Detectron2' }, { name: 'Simulink' }] },
+];
 
 const experience = {
   en: [
-    { role: 'Co-founder & backend engineer', org: 'SplinEdge', where: 'Remote', when: 'Mar 2025 – 2026', points: ['Built the backends of the fleet ERP and the food delivery platform', 'Scoped projects with clients and led delivery', 'Ran hosting and CI/CD for client projects; replaced paid SaaS with self-hosted tools'] },
-    { role: 'Full-stack developer', org: 'BMA Conseil IT / CBX Conseil', where: 'Casablanca & remote', when: 'Nov 2022 – Mar 2025', points: ['Built GalaxyTest and Timesheet with Spring Boot and Angular', 'Cut API development time by about 30% with OpenAPI Generator', 'Kept 95% test coverage under SonarQube; pipelines with Docker, Jenkins, Helm and ArgoCD', 'Rebuilt CBX Academy in Next.js 15, about 40% faster'] },
-    { role: 'Software engineer intern', org: 'Green Energy Park', where: 'Ben Guerir', when: 'Jul – Sep 2022', points: ['Detectron2 model that finds dirty solar panels on drone images, trained on AWS'] },
+    { years: '2025–26', org: 'SplinEdge', role: 'Co-founder & backend engineer', text: 'Client backends, discovery, hosting and CI/CD.' },
+    { years: '2022–25', org: 'BMA Conseil IT / CBX Conseil', role: 'Full-stack developer, backend-focused', text: 'GalaxyTest and Timesheet; about 30% faster API work with OpenAPI Generator; 95% test coverage.' },
+    { years: '2022', org: 'Green Energy Park', role: 'Software engineer intern', text: 'Drone solar inspection with computer vision.' },
+    { years: '2020–23', org: 'EHEI Oujda · 1337', role: 'Master’s in Computer Science', text: 'Plus the 1337 coding school bootcamp.' },
   ],
   fr: [
-    { role: 'Cofondateur & ingénieur backend', org: 'SplinEdge', where: 'Remote', when: 'mars 2025 – 2026', points: ['Développé les backends de l’ERP de flotte et de la plateforme de livraison', 'Cadré les projets avec les clients et piloté la livraison', 'Géré l’hébergement et la CI/CD des projets clients ; remplacé des SaaS payants par des outils auto-hébergés'] },
-    { role: 'Développeur full-stack', org: 'BMA Conseil IT / CBX Conseil', where: 'Casablanca & remote', when: 'nov. 2022 – mars 2025', points: ['Développé GalaxyTest et Timesheet avec Spring Boot et Angular', 'Réduit d’environ 30 % le temps de développement des API avec OpenAPI Generator', 'Maintenu 95 % de couverture de tests sous SonarQube ; pipelines Docker, Jenkins, Helm et ArgoCD', 'Refait CBX Academy en Next.js 15, environ 40 % plus rapide'] },
-    { role: 'Stagiaire ingénieur logiciel', org: 'Green Energy Park', where: 'Ben Guerir', when: 'juil. – sept. 2022', points: ['Modèle Detectron2 qui repère les panneaux solaires sales sur des images de drone, entraîné sur AWS'] },
+    { years: '2025–26', org: 'SplinEdge', role: 'Cofondateur & ingénieur backend', text: 'Backends clients, audits, hébergement et CI/CD.' },
+    { years: '2022–25', org: 'BMA Conseil IT / CBX Conseil', role: 'Développeur full-stack, orienté backend', text: 'GalaxyTest et Timesheet ; développement d’API environ 30 % plus rapide avec OpenAPI Generator ; 95 % de couverture de tests.' },
+    { years: '2022', org: 'Green Energy Park', role: 'Stagiaire ingénieur logiciel', text: 'Inspection de panneaux solaires par drone avec la vision par ordinateur.' },
+    { years: '2020–23', org: 'EHEI Oujda · 1337', role: 'Master en informatique', text: 'Et le bootcamp de l’école 1337.' },
   ],
 };
 
-const skills = {
-  en: [['Backend', 'Java, Spring Boot, Hibernate, JHipster, REST, OpenAPI, WebSockets'], ['Frontend', 'TypeScript, Angular, React, Next.js'], ['Data', 'PostgreSQL, Flyway, Redis, MySQL, MongoDB'], ['DevOps', 'Docker, GitHub Actions, Jenkins, Helm, ArgoCD, Traefik, Linux, Keycloak'], ['Also', 'Python, C, C++, AWS, computer vision, Agile/Scrum']],
-  fr: [['Backend', 'Java, Spring Boot, Hibernate, JHipster, REST, OpenAPI, WebSockets'], ['Frontend', 'TypeScript, Angular, React, Next.js'], ['Données', 'PostgreSQL, Flyway, Redis, MySQL, MongoDB'], ['DevOps', 'Docker, GitHub Actions, Jenkins, Helm, ArgoCD, Traefik, Linux, Keycloak'], ['Aussi', 'Python, C, C++, AWS, vision par ordinateur, Agile/Scrum']],
-};
-
-const education = {
-  en: [['Master’s in Computer Science', 'École des Hautes Études d’Ingénierie, Oujda', '2020 – 2023'], ['BTS (Higher National Diploma)', 'Maghreb Arabi Technical High School, Oujda', '2018 – 2020'], ['Coding bootcamp', '1337, Ben Guerir', '2022']],
-  fr: [['Master en informatique', 'École des Hautes Études d’Ingénierie, Oujda', '2020 – 2023'], ['BTS', 'Lycée technique Maghreb Arabi, Oujda', '2018 – 2020'], ['Bootcamp de programmation', '1337, Ben Guerir', '2022']],
-};
+// Blog posts: the Writing section and its nav link only appear once this has an entry.
+// { title, date: 'YYYY-MM-DD', url, minutes }
+const posts = { en: [], fr: [] };
 
 export const content = {
   en: {
-    lang: 'en', other: 'fr', home: '/', otherHome: '/fr/', cv: '/cv/',
+    lang: 'en', other: 'fr', home: '/', otherHome: '/fr/',
     title: 'Anass Soulimani · Backend engineer',
     description: 'Backend engineer: Java and Spring Boot systems, and the infrastructure they run on. Available for full-time roles and freelance projects.',
-    nav: { work: 'Work', services: 'Services', blog: 'Blog', contact: 'Contact', cv: 'CV' },
+    nav: { work: 'Work', services: 'Services', writing: 'Writing', contact: 'Contact' },
     lede: 'Backend engineer. I build <em>Java and Spring</em> systems for real businesses, and run the infrastructure underneath them.',
-    facts: [['Status', '<span class="dot"></span>Available now'], ['Experience', '3+ years, backend-focused'], ['Main stack', 'Java · Spring Boot · PostgreSQL'], ['Location', 'Morocco (GMT+1) · remote or relocation'], ['Open to', 'Full-time roles · freelance projects'], ['Languages', 'English · French · Arabic']],
-    cta: { talk: 'Start a conversation', cv: 'View CV' },
-    ask: 'Ask about this project',
-    askMsg: 'Hi, I’d like to know more about: ',
+    facts: [['Status', '<span class="dot"></span>Available now'], ['Experience', '3+ years, backend-focused'], ['Main stack', 'Java · Spring Boot · PostgreSQL'], ['Location', 'Morocco (GMT) · remote or relocation'], ['Open to', 'Full-time roles · freelance projects'], ['Languages', 'English · French · Arabic']],
+    cta: { talk: 'Start a conversation', cv: 'Download CV', cvBusy: 'Preparing…', cvFallback: 'Hi, could you send me your CV?' },
+    ask: 'Ask about this project', askMsg: 'Hi, I’d like to know more about: ',
     projects: projects.en,
-    services: { title: 'What I can do for you', lede: 'Fixed scope and a clear price, in English or French.', items: [['Build your backend', 'APIs, data models and integrations for web and mobile apps, from the first schema to production.'], ['Cut your software bills', 'Replace paid tools like DocuSign with self-hosted open-source equivalents that you own.'], ['Host it properly', 'A secure server with HTTPS, automatic deployments, monitoring, alerts and backups.'], ['Specify and audit', 'Write the specification (cahier des charges) before you build, or find what’s slowing your system down.']] },
-    moreTitle: 'More work', more: more.en,
+    services: services.en,
+    moreTitle: 'More work', more: more.en, labels: { problem: 'Problem', did: 'What I did', result: 'Result' },
     expTitle: 'Experience', experience: experience.en,
-    skillsTitle: 'Skills', skills: skills.en,
-    eduTitle: 'Education', education: education.en,
-    languagesTitle: 'Languages', languages: 'Arabic (native) · English (fluent) · French (fluent, DELF B2) · German (basic)',
-    contact: { title: 'Let’s talk', lede: 'A role, a project or a question about my work: tell me what you need and I’ll answer within a day.', name: 'Name', email: 'Email', company: 'Company (optional)', about: 'About', options: [['job', 'A job opportunity'], ['project', 'A freelance project'], ['question', 'A question about a project'], ['other', 'Something else']], message: 'Message', note: 'Goes straight to my inbox.', send: 'Send', sent: 'Thanks, message sent. I’ll get back to you soon.' },
-    credits: 'Scooter model “Vespa” by Jasmine Roberts (CC BY 3.0) · truck from Kenney’s Car Kit (CC0)',
-    hint: 'Move your cursor through the sand.',
-    cvPage: { title: 'CV · Anass Soulimani', role: 'Backend-oriented full-stack engineer', profile: 'Backend-oriented full-stack engineer with 3+ years building enterprise applications and client platforms in Java, Spring Boot and TypeScript. Strong on REST APIs, real-time systems, PostgreSQL and delivery automation, from specification to production.', projectsTitle: 'Selected projects', pdf: 'Download PDF', back: 'Back to the site', other: 'Version française' },
+    skillsTitle: 'Skills', tierNames: { core: 'Core', comfortable: 'Comfortable', needed: 'When needed', also: 'Also used' }, skillsHint: 'Hover or tap a skill to see where I used it.',
+    writingTitle: 'Writing', posts: posts.en,
+    contact: { title: 'Let’s work together.', copy: 'Copy', copied: 'Copied', available: 'Available now', local: 'in Morocco', reply: 'I reply within a day.', name: 'Name', email: 'Email', about: 'About', options: [['project', 'A project'], ['job', 'A job opportunity'], ['question', 'A question'], ['other', 'Something else']], message: 'Message', send: 'Send', sent: 'Thanks, message sent. I’ll get back to you soon.' },
+    credits: 'Scooter: “Vespa” by Jasmine Roberts (CC BY 3.0) · truck: Kenney Car Kit (CC0)',
   },
   fr: {
-    lang: 'fr', other: 'en', home: '/fr/', otherHome: '/', cv: '/cv/fr/',
+    lang: 'fr', other: 'en', home: '/fr/', otherHome: '/',
     title: 'Anass Soulimani · Ingénieur backend',
     description: 'Ingénieur backend : systèmes Java et Spring Boot, et l’infrastructure qui les fait tourner. Disponible en CDI et en freelance.',
-    nav: { work: 'Projets', services: 'Services', blog: 'Blog', contact: 'Contact', cv: 'CV' },
+    nav: { work: 'Projets', services: 'Services', writing: 'Articles', contact: 'Contact' },
     lede: 'Ingénieur backend. Je construis des systèmes <em>Java et Spring</em> pour de vraies entreprises, et je fais tourner l’infrastructure en dessous.',
-    facts: [['Statut', '<span class="dot"></span>Disponible maintenant'], ['Expérience', '3+ ans, orienté backend'], ['Stack principale', 'Java · Spring Boot · PostgreSQL'], ['Localisation', 'Maroc (GMT+1) · remote ou relocalisation'], ['Ouvert à', 'CDI · missions freelance'], ['Langues', 'Anglais · français · arabe']],
-    cta: { talk: 'Discutons', cv: 'Voir le CV' },
-    ask: 'Poser une question sur ce projet',
-    askMsg: 'Bonjour, j’aimerais en savoir plus sur : ',
+    facts: [['Statut', '<span class="dot"></span>Disponible maintenant'], ['Expérience', '3+ ans, orienté backend'], ['Stack principale', 'Java · Spring Boot · PostgreSQL'], ['Localisation', 'Maroc (GMT) · remote ou relocalisation'], ['Ouvert à', 'CDI · missions freelance'], ['Langues', 'Anglais · français · arabe']],
+    cta: { talk: 'Discutons', cv: 'Télécharger le CV', cvBusy: 'Préparation…', cvFallback: 'Bonjour, pourriez-vous m’envoyer votre CV ?' },
+    ask: 'Poser une question sur ce projet', askMsg: 'Bonjour, j’aimerais en savoir plus sur : ',
     projects: projects.fr,
-    services: { title: 'Ce que je peux faire pour vous', lede: 'Un périmètre défini et un prix clair, en français ou en anglais.', items: [['Construire votre backend', 'API, modèles de données et intégrations pour apps web et mobiles, du premier schéma à la production.'], ['Réduire vos abonnements', 'Remplacer des outils payants comme DocuSign par des équivalents open source auto-hébergés qui vous appartiennent.'], ['L’héberger correctement', 'Un serveur sécurisé avec HTTPS, déploiements automatiques, monitoring, alertes et sauvegardes.'], ['Cadrer et auditer', 'Rédiger le cahier des charges avant de construire, ou trouver ce qui ralentit votre système.']] },
-    moreTitle: 'Autres réalisations', more: more.fr,
+    services: services.fr,
+    moreTitle: 'Autres réalisations', more: more.fr, labels: { problem: 'Problème', did: 'Ce que j’ai fait', result: 'Résultat' },
     expTitle: 'Expérience', experience: experience.fr,
-    skillsTitle: 'Compétences', skills: skills.fr,
-    eduTitle: 'Formation', education: education.fr,
-    languagesTitle: 'Langues', languages: 'Arabe (natif) · anglais (courant) · français (courant, DELF B2) · allemand (notions)',
-    contact: { title: 'Parlons-en', lede: 'Un poste, un projet ou une question sur mon travail : dites-moi ce dont vous avez besoin, je réponds sous 24 h.', name: 'Nom', email: 'Email', company: 'Entreprise (optionnel)', about: 'Sujet', options: [['job', 'Une offre d’emploi'], ['project', 'Un projet freelance'], ['question', 'Une question sur un projet'], ['other', 'Autre chose']], message: 'Message', note: 'Arrive directement dans ma boîte mail.', send: 'Envoyer', sent: 'Merci, message envoyé. Je reviens vers vous vite.' },
-    credits: 'Modèle de scooter « Vespa » par Jasmine Roberts (CC BY 3.0) · camion du Car Kit de Kenney (CC0)',
-    hint: 'Passez le curseur dans le sable.',
-    cvPage: { title: 'CV · Anass Soulimani', role: 'Ingénieur full-stack orienté backend', profile: 'Ingénieur full-stack orienté backend, 3+ ans à construire des applications d’entreprise et des plateformes clients en Java, Spring Boot et TypeScript. Solide en API REST, systèmes temps réel, PostgreSQL et automatisation des livraisons, du cahier des charges à la production.', projectsTitle: 'Projets choisis', pdf: 'Télécharger le PDF', back: 'Retour au site', other: 'English version' },
+    skillsTitle: 'Compétences', tierNames: { core: 'Cœur', comfortable: 'À l’aise', needed: 'Quand il faut', also: 'Aussi utilisé' }, skillsHint: 'Survolez ou touchez une compétence pour voir où je l’ai utilisée.',
+    writingTitle: 'Articles', posts: posts.fr,
+    contact: { title: 'Travaillons ensemble.', copy: 'Copier', copied: 'Copié', available: 'Disponible maintenant', local: 'au Maroc', reply: 'Je réponds sous 24 h.', name: 'Nom', email: 'Email', about: 'Sujet', options: [['project', 'Un projet'], ['job', 'Une offre d’emploi'], ['question', 'Une question'], ['other', 'Autre chose']], message: 'Message', send: 'Envoyer', sent: 'Merci, message envoyé. Je reviens vers vous vite.' },
+    credits: 'Scooter : « Vespa » par Jasmine Roberts (CC BY 3.0) · camion : Car Kit de Kenney (CC0)',
   },
 };
+export { skillTiers };
