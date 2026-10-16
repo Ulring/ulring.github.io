@@ -8,7 +8,8 @@
 //     swirls them without pushing them outward;
 //   - loose (between figures, and the final dune): gravity, light drag, and a sand bed to land on;
 //   - the cursor brushes grains along its direction of travel; springs bring them back.
-// Each figure is placed into a DOM box ("stage") read every frame, so it lines up with the layout at any size.
+// Grains live in screen (world) space; only the targets are placed into each figure's DOM box ("stage"), read every
+// frame. So between figures every grain flies straight to its new place, and nothing slides across the screen as a block.
 
 const SIM_VS = `#version 300 es
 precision highp float; precision highp int;
@@ -17,8 +18,9 @@ layout(location = 1) in vec3 aVel;
 layout(location = 2) in float aRand;
 uniform highp sampler2D uT;
 uniform int uBase, uTexW;
-uniform float uDt, uTime, uSince, uDrop, uHmax, uRoadL;
-uniform vec4 uBrush;          // xy position, z radius, w strength (local units)
+uniform float uDt, uTime, uSince, uDrop, uHmax, uRoadL, uFloor;
+uniform mat4 uModel;          // places this figure's targets into its stage
+uniform vec4 uBrush;          // xy position, z radius, w strength (world units)
 uniform vec2 uBrushVel;
 out vec3 oPos; out vec3 oVel;
 
@@ -40,6 +42,7 @@ void main() {
   if (road) tgt.x = mod(tgt.x - uTime * 2.2 + uRoadL * .5, uRoadL) - uRoadL * .5;
 
   float start = uDrop + .05 + clamp(tgt.y / uHmax, 0., 1.) * .5 + aRand * .12;   // a wave that rises bottom-up
+  tgt = (uModel * vec4(tgt, 1.)).xyz;
   if (kind < 254.5 && uSince > start) {
     vec3 d = tgt - p;
     bool formed = uSince > start + 1.6;
@@ -47,7 +50,7 @@ void main() {
     acc = d * k - v * (2. * sqrt(k) * .95);
     if (formed) acc.y -= 7. * smoothstep(.25, 1., length(d));   // grains knocked well off sag like sand before returning
     acc += curl(p * .5 + aRand) * 1.3 * smoothstep(.04, 1.5, length(d));
-    if (road && uSince > start + .7) { p = tgt; v = vec3(0); acc = vec3(0); }
+    if (road) acc = d * 90. - v * 19.;              // road lines track their targets tightly; wrap-arounds happen where the road fades out
   } else {
     acc = vec3(0, -12., 0) + curl(p * .6) * .5 - v * .35;
   }
@@ -58,8 +61,8 @@ void main() {
   acc.z += (aRand - .5) * f * 6.;
 
   v += acc * uDt; p += v * uDt;
-  float bed = aRand * .04;
-  if (p.y < bed) { p.y = bed; v.y = abs(v.y) * .08; v.xz *= .8; }
+  float bed = uFloor + aRand * .04;
+  if (p.y < bed && v.y < 0.) { p.y = bed; v.y = abs(v.y) * .08; v.xz *= .8; }
   oPos = p; oVel = v;
 }`;
 
@@ -78,13 +81,13 @@ uniform float uPx, uSize, uTime, uRoadL;
 out vec4 vCol;
 void main() {
   int idx = uBase + gl_VertexID;
-  float kind = texelFetch(uT, ivec2(idx % uTexW, idx / uTexW), 0).w;
+  vec4 T = texelFetch(uT, ivec2(idx % uTexW, idx / uTexW), 0); float kind = T.w;
   vec4 c = uMVP * vec4(aPos, 1.);
   gl_Position = c;
   gl_PointSize = uSize * uPx * (.55 + aRand * .9) * (14. / c.w);
   float b = 1.;
   if (kind > 49.5 && kind < 254.5) b = (kind - 50.) / 200. < fract(uTime * .07) * 1.4 ? 1.8 : .45;   // code lines, calendar days
-  else if (kind > .5 && kind < 1.5) b = (1. - smoothstep(uRoadL * .22, uRoadL * .5, abs(aPos.x))) * .8;
+  else if (kind > .5 && kind < 1.5) b = (1. - smoothstep(uRoadL * .22, uRoadL * .5, abs(mod(T.x - uTime * 2.2 + uRoadL * .5, uRoadL) - uRoadL * .5))) * .8;
   else if (kind > 1.5 && kind < 2.5) b = .32;                                                         // dune: dim
   b += min(length(aVel) * .08, .7);
   vec3 col = mix(vec3(.95, .97, 1.), vec3(.62, .9, 1.), aRand);
@@ -102,9 +105,6 @@ const perspective = (fov, aspect, near, far) => { const f = 1 / Math.tan(fov / 2
 function model(x, y, s, yaw, pitch) {           // translate · rotY · rotX · scale
   const cy = Math.cos(yaw), sy = Math.sin(yaw), cx = Math.cos(pitch), sx = Math.sin(pitch);
   return new Float32Array([cy * s, 0, -sy * s, 0, sy * sx * s, cx * s, cy * sx * s, 0, sy * cx * s, -sx * s, cy * cx * s, 0, x, y, 0, 1]);
-}
-function toLocal(wx, wy, x, y, s, yaw, pitch) {  // inverse of model() for a point on the local z = 0 plane (small angles)
-  return [(wx - x) / (s * Math.cos(yaw)), (wy - y) / (s * Math.cos(pitch))];
 }
 
 // ---------- figure data ----------
@@ -185,7 +185,7 @@ export async function startSand(canvas, { slots, figureUrl, mobile, lowEnd, redu
 
   // state: two interleaved (pos, vel) buffers + a static random per grain
   const state0 = new Float32Array(N * 6), rand = new Float32Array(N);
-  for (let i = 0; i < N; i++) { rand[i] = Math.random(); state0[i * 6] = (Math.random() - .5) * 10; state0[i * 6 + 1] = Math.random() * .05; state0[i * 6 + 2] = (Math.random() - .5) * 1.5; }
+  for (let i = 0; i < N; i++) { rand[i] = Math.random(); state0[i * 6] = (Math.random() - .5) * 16; state0[i * 6 + 1] = -4.6 + Math.random() * .1; state0[i * 6 + 2] = (Math.random() - .5) * 1.5; }
   const bufs = [gl.createBuffer(), gl.createBuffer()];
   for (const b of bufs) { gl.bindBuffer(gl.ARRAY_BUFFER, b); gl.bufferData(gl.ARRAY_BUFFER, state0, gl.DYNAMIC_COPY); }
   const randBuf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, randBuf); gl.bufferData(gl.ARRAY_BUFFER, rand, gl.STATIC_DRAW);
@@ -230,11 +230,11 @@ export async function startSand(canvas, { slots, figureUrl, mobile, lowEnd, redu
   }
 
   // ---------- interaction ----------
-  let everBuilt = false, slot = 0, prev = 0, since = 0, drop = 0, blend = 1, mx = W / 2, my = H / 2, nx = 0, ny = 0;
-  let brushX = 99, brushY = 99, bvx = 0, bvy = 0, bstr = 0, lastPx = null;
+  let everBuilt = false, slot = 0, prev = 0, since = 0, drop = 0, mx = W / 2, my = H / 2, nx = 0, ny = 0;
+  let bvx = 0, bvy = 0, bstr = 0, lastPx = null;
   function show(i) {
     if (i === slot || i < 0) return;
-    prev = slot; slot = i; since = reduce ? 10 : 0; blend = 0;
+    prev = slot; slot = i; since = reduce ? 10 : 0;
     drop = prev === 0 && !everBuilt ? 0 : .22;                  // leaving a formed figure: let it slump first
   }
   if (!mobile) addEventListener('pointermove', e => { mx = e.clientX; my = e.clientY; nx = mx / W * 2 - 1; ny = my / H * 2 - 1; }, { passive: true });
@@ -251,21 +251,19 @@ export async function startSand(canvas, { slots, figureUrl, mobile, lowEnd, redu
     const dt = Math.min((now - last) / 1000, 1 / 30); last = now; t += dt; since += dt;
     if (since > 2.5) everBuilt = true;
 
-    // placement: blend from the previous stage to the current one, then follow the current stage exactly
-    blend = Math.min(1, blend + dt / .8);
-    const e = blend < .5 ? 4 * blend ** 3 : 1 - (-2 * blend + 2) ** 3 / 2;
-    const a = place(prev), b = place(slot);
-    const P = { x: a.x + (b.x - a.x) * e, y: a.y + (b.y - a.y) * e, s: a.s + (b.s - a.s) * e };
-    const onFigure = !!slots[slot].figure;
-    yaw += ((b.yaw + (onFigure ? nx * .12 : nx * .03)) - yaw) * .05;
+    // the current figure's targets follow its stage; grains follow their targets
+    const P = place(slot), onFigure = !!slots[slot].figure;
+    yaw += ((P.yaw + (onFigure ? nx * .12 : nx * .03)) - yaw) * .05;
     pitch += ((onFigure ? .1 - ny * .05 : 0) - pitch) * .05;
-    const M = mul(proj, model(P.x, P.y, P.s, yaw, pitch));
+    const Mod = model(P.x, P.y, P.s, yaw, pitch);
+    // while the old figure slumps, its grains land on the lower of the two floors (never pushed up)
+    const floor = since < drop + .6 ? Math.min(P.y, place(prev).y) : P.y;
 
-    // brush: cursor in the figure's local space, strength from cursor speed
-    const [lx, ly] = toLocal((mx - W / 2) * k, -(my - H / 2) * k, P.x, P.y, P.s, yaw, pitch);
+    // brush: cursor position and speed on the z = 0 plane, in world units
+    const lx = (mx - W / 2) * k, ly = -(my - H / 2) * k;
     if (lastPx) { const vx = (lx - lastPx[0]) / dt, vy = (ly - lastPx[1]) / dt; bvx += (vx - bvx) * .3; bvy += (vy - bvy) * .3; }
     lastPx = [lx, ly];
-    const speed = Math.hypot(bvx, bvy) * P.s;
+    const speed = Math.hypot(bvx, bvy);
     bstr += (Math.min(speed / 6, 1) - bstr) * .2;
     const bscale = Math.min(1, 6 / Math.max(Math.hypot(bvx, bvy), 1e-3));
 
@@ -275,8 +273,9 @@ export async function startSand(canvas, { slots, figureUrl, mobile, lowEnd, redu
     gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, tex);
     gl.uniform1i(sim.u.uT, 0); gl.uniform1i(sim.u.uTexW, TEXW); gl.uniform1i(sim.u.uBase, slot * N);
     gl.uniform1f(sim.u.uDt, dt); gl.uniform1f(sim.u.uTime, t); gl.uniform1f(sim.u.uSince, inf.ready ? since : 0);
-    gl.uniform1f(sim.u.uDrop, drop); gl.uniform1f(sim.u.uHmax, inf.hmax); gl.uniform1f(sim.u.uRoadL, 14);
-    gl.uniform4f(sim.u.uBrush, lx, ly, 1.25 / P.s, mobile ? 0 : bstr);
+    gl.uniform1f(sim.u.uDrop, drop); gl.uniform1f(sim.u.uHmax, inf.hmax); gl.uniform1f(sim.u.uRoadL, 14); gl.uniform1f(sim.u.uFloor, floor);
+    gl.uniformMatrix4fv(sim.u.uModel, false, Mod);
+    gl.uniform4f(sim.u.uBrush, lx, ly, 1.25, mobile ? 0 : bstr);
     gl.uniform2f(sim.u.uBrushVel, bvx * bscale * .1, bvy * bscale * .1);
     gl.bindBuffer(gl.ARRAY_BUFFER, null);           // a state buffer must not stay bound elsewhere while feedback writes it
     gl.bindVertexArray(vaos[cur]);
@@ -291,7 +290,7 @@ export async function startSand(canvas, { slots, figureUrl, mobile, lowEnd, redu
     gl.clear(gl.COLOR_BUFFER_BIT);
     gl.useProgram(draw.p);
     gl.uniform1i(draw.u.uT, 0); gl.uniform1i(draw.u.uTexW, TEXW); gl.uniform1i(draw.u.uBase, slot * N);
-    gl.uniformMatrix4fv(draw.u.uMVP, false, M);
+    gl.uniformMatrix4fv(draw.u.uMVP, false, proj);
     gl.uniform1f(draw.u.uSize, mobile ? 2.4 : 2.1); gl.uniform1f(draw.u.uTime, t); gl.uniform1f(draw.u.uRoadL, 14);
     gl.bindVertexArray(vaos[cur]);
     gl.drawArrays(gl.POINTS, 0, N);
