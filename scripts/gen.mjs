@@ -86,7 +86,7 @@ function page(c) {
 
 <main>
   <section class="hero" id="top">
-    <h1 class="sr">${esc(person.name)}, backend engineer</h1>
+    <h1 class="sr">${esc(person.name)}, full-stack engineer</h1>
     <div class="stage hero-stage" aria-hidden="true"></div>
     <div class="intro">
       <p class="lede">${c.lede}</p>
@@ -118,7 +118,7 @@ function page(c) {
       <div>
         <h2 class="kinetic">${esc(c.expTitle)}</h2>
         <ol class="timeline">${c.experience.map(x => `
-          <li><span class="yr">${esc(x.years)}</span><div><h3>${esc(x.role)}</h3><p class="org">${esc(x.org)}</p><p>${esc(x.text)}</p></div></li>`).join('')}
+          <li data-id="${x.id}"><span class="yr">${esc(x.years)}</span><div><h3>${esc(x.role)}</h3><p class="org">${esc(x.org)}</p><p>${esc(x.text)}</p></div></li>`).join('')}
         </ol>
       </div>
       <div>
