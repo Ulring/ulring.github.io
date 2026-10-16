@@ -186,6 +186,42 @@ const postList = [
 ];
 const posts = { en: postList, fr: postList.map(p => ({ ...p, note: 'en anglais' })) };
 
+
+// Case studies (English only). Facts come from the code; no client names, no screenshots.
+export const caseStudies = [
+  {
+    id: 'fleet', title: 'Fleet management ERP', summary: 'How a small team built the system that runs a large company’s transport operation, with security and performance as requirements from day one.',
+    facts: [['Role', 'Full-stack engineer, co-founder of the studio'], ['Team', 'Small team, 275+ commits'], ['Stack', 'Java 25, Spring Boot 4, PostgreSQL, Redis, Flyway, Next.js, Docker'], ['Users', 'Admins, fleet managers, data-entry agents, sales reps, drivers']],
+    sections: [
+      ['The problem', ['A large company runs its own fleet every day: trucks, drivers, missions with several stops and pick-ups, fuel, motorway tolls, maintenance and vehicle papers that expire. Before this system, much of it lived in spreadsheets and phone calls, with no single view of what each vehicle costs or where it is.']],
+      ['What we built', ['A back office for the office teams and an API for the drivers’ mobile app, on one Spring Boot backend.', '<ul><li><strong>Missions:</strong> planning with stops, pick-ups and per-city pricing with estimated distances, and replanning when the day changes.</li><li><strong>Vehicles:</strong> papers with expiry alerts, maintenance work orders with durations, fuel entries with consumption thresholds, toll entries.</li><li><strong>Alerts:</strong> configurable rules, scoped to who should see them.</li><li><strong>Drivers:</strong> trip stops and statuses from the phone, with forced app updates so nobody runs an old version.</li></ul>']],
+      ['Security', ['<ul><li>Five roles, and a permission check on every endpoint (more than a hundred), not just on the menu.</li><li>Sign-in tokens can be revoked instantly: a stolen phone or a departing employee is cut off at once, not when the token expires.</li><li>Vehicle papers and fuel receipts are only reachable through signed links that expire, never public file URLs.</li><li>Deleting a mission is audited.</li></ul>']],
+      ['Performance', ['<ul><li>Every list is paginated, so screens stay fast as years of missions pile up.</li><li>Queries load related data in one go instead of one query per row (the classic “N+1” problem).</li><li>Heavy reports use database views and functions, and every schema change is a versioned migration (20 so far), so the database evolves without manual fixes.</li></ul>']],
+      ['What I’d do next', ['Move the heaviest dashboards to pre-computed summaries, and add load tests to the CI pipeline so performance regressions are caught before release.']],
+    ],
+  },
+  {
+    id: 'delivery', title: 'Food delivery platform', summary: 'Five apps on one backend for a local delivery service, built to stay fast, secure and cheap to run.',
+    facts: [['Role', 'Backend engineer, co-founder of the studio'], ['Apps', 'Customer app, driver app, restaurant dashboard, admin console, API'], ['Stack', 'JHipster (Spring Boot), PostgreSQL, Redis, WebSockets, Twilio, Google Maps, Flutter, Next.js'], ['Focus', 'Real-time orders, security, running costs']],
+    sections: [
+      ['The problem', ['A local delivery service needed customers, restaurants and drivers on the same page in real time, on a startup budget where every paid API call counts.']],
+      ['What we built', ['<ul><li><strong>Customer and driver apps</strong> (Flutter) and <strong>web dashboards</strong> for restaurants and admins (Next.js), all on one JHipster backend.</li><li><strong>Live orders:</strong> status changes are pushed over WebSockets to every screen, from the kitchen to the door.</li><li><strong>SMS updates</strong> through Twilio, and product search for restaurant menus.</li></ul>']],
+      ['Keeping running costs down', ['Maps were the biggest variable cost, so the backend is careful with them:', '<ul><li>The delivery fee is a base price plus a price per kilometre of real road distance.</li><li>The route is computed once and saved on the cart, instead of asking Google again each time the cart is shown.</li><li>Calls request only the three fields the app needs (distance, duration and the route line), which keeps them in Google’s cheapest billing tier.</li></ul>']],
+      ['Security and performance', ['<ul><li>Token-based authentication with roles for customers, drivers, restaurants and admins.</li><li>Frequent look-ups such as users are cached, so busy hours don’t hit the database for every request.</li></ul>']],
+      ['What I’d do next', ['Group nearby orders per driver, and cache routes between frequent restaurant and neighbourhood pairs to cut map calls further.']],
+    ],
+  },
+];
+
+// "How I work", shown under the services
+const howIWork = {
+  en: { title: 'How I work', steps: [['Intro call', '20 minutes, free', 'You tell me what you need; I tell you honestly whether I’m the right person for it.'], ['Discovery', '1–2 weeks, fixed price', 'I study how things run today and write a plan with priorities and costs. It’s yours to keep.'], ['Build', 'Weekly demos', 'You see working software on a test server every week, not just at the end.'], ['Handover', 'Then optional support', 'Code, documentation and every access are yours. I can keep it running if you want.']], needs: 'What I need from you: one person who can decide, access to the systems involved, and feedback on each weekly demo.' },
+  fr: { title: 'Comment je travaille', steps: [['Appel découverte', '20 minutes, gratuit', 'Vous m’expliquez votre besoin ; je vous dis honnêtement si je suis la bonne personne.'], ['Audit & cadrage', '1 à 2 semaines, prix fixe', 'J’étudie le fonctionnement actuel et rédige un cahier des charges chiffré et priorisé. Il vous appartient.'], ['Réalisation', 'Démo chaque semaine', 'Vous voyez un logiciel qui fonctionne sur un serveur de test chaque semaine, pas seulement à la fin.'], ['Livraison', 'Puis suivi en option', 'Code, documentation et tous les accès vous appartiennent. Je peux en assurer le suivi si vous le souhaitez.']], needs: 'Ce dont j’ai besoin : une personne qui décide, l’accès aux systèmes concernés, et un retour à chaque démo hebdomadaire.' },
+};
+
+// Testimonials stay anonymous: { quote, who: 'Operations manager, transport company' }. Hidden while empty.
+const testimonials = { en: [], fr: [] };
+
 export const content = {
   en: {
     lang: 'en', other: 'fr', home: '/', otherHome: '/fr/',
@@ -197,7 +233,7 @@ export const content = {
     cta: { talk: 'Start a conversation', cv: 'Download CV', cvBusy: 'Preparing…', cvFallback: 'Hi, could you send me your CV?' },
     ask: 'Ask about this project', askMsg: 'Hi, I’d like to know more about: ',
     projects: projects.en,
-    services: services.en,
+    services: services.en, howIWork: howIWork.en, testimonials: testimonials.en, testimonialsTitle: 'What clients say', caseLabel: 'Read the case study',
     moreTitle: 'More work', more: more.en, labels: { problem: 'Problem', did: 'What I did', result: 'Result' },
     expTitle: 'Experience', experience: experience.en,
     skillsTitle: 'Skills', tierNames: { core: 'Core', comfortable: 'Comfortable', also: 'Also used' }, skillsHint: 'Hover or tap a skill to see where I used it.',
@@ -215,7 +251,7 @@ export const content = {
     cta: { talk: 'Discutons', cv: 'Télécharger le CV', cvBusy: 'Préparation…', cvFallback: 'Bonjour, pourriez-vous m’envoyer votre CV ?' },
     ask: 'Poser une question sur ce projet', askMsg: 'Bonjour, j’aimerais en savoir plus sur : ',
     projects: projects.fr,
-    services: services.fr,
+    services: services.fr, howIWork: howIWork.fr, testimonials: testimonials.fr, testimonialsTitle: 'Ce qu’en disent les clients', caseLabel: 'Lire l’étude de cas (en anglais)',
     moreTitle: 'Autres réalisations', more: more.fr, labels: { problem: 'Problème', did: 'Ce que j’ai fait', result: 'Résultat' },
     expTitle: 'Expérience', experience: experience.fr,
     skillsTitle: 'Compétences', tierNames: { core: 'Cœur', comfortable: 'À l’aise', also: 'Aussi utilisé' }, skillsHint: 'Survolez ou touchez une compétence pour voir où je l’ai utilisée.',

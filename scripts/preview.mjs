@@ -1,6 +1,7 @@
 // preview.mjs <fig.sand> <out.png> [rotY] [rotX] — software render of a baked figure, for checking shapes without a browser
 import fs from 'fs'; import zlib from 'zlib';
 const [file, out, ryA = '-0.45', rxA = '0.12'] = process.argv.slice(2);
+const BG = process.env.BG === undefined ? 12 : +process.env.BG;   // background grey level; BG=0 for pure black
 const b = zlib.gunzipSync(fs.readFileSync(file)), n = b.readUInt32LE(4), m = [0, 1, 2, 3, 4, 5].map(i => b.readFloatLE(8 + i * 4));
 const W = 1200, H = 700, acc = new Float32Array(W * H), ry = +ryA, rx = +rxA, f = H / 2 / Math.tan(20 * Math.PI / 180);
 for (let i = 0; i < n; i++) {
@@ -10,7 +11,7 @@ for (let i = 0; i < n; i++) {
   const d = 13 - z, px = Math.round(W / 2 + x * f / d), py = Math.round(H / 2 - y * f / d);
   if (px >= 0 && py >= 0 && px < W && py < H) acc[py * W + px] += k >= 50 ? .6 : k === 1 ? .2 : .35;
 }
-const raw = Buffer.alloc((W + 1) * H); for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) raw[y * (W + 1) + 1 + x] = Math.min(255, 12 + acc[y * W + x] * 255);
+const raw = Buffer.alloc((W + 1) * H); for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) raw[y * (W + 1) + 1 + x] = Math.min(255, BG + acc[y * W + x] * 255);
 const crcT = [...Array(256)].map((_, n) => { let c = n; for (let k = 0; k < 8; k++) c = c & 1 ? 0xedb88320 ^ (c >>> 1) : c >>> 1; return c >>> 0; });
 const crc = d => { let r = 0xffffffff; for (const x of d) r = crcT[(r ^ x) & 255] ^ (r >>> 8); return (r ^ 0xffffffff) >>> 0; };
 const chunk = (t, d) => { const l = Buffer.alloc(4); l.writeUInt32BE(d.length); const td = Buffer.concat([Buffer.from(t), d]), c = Buffer.alloc(4); c.writeUInt32BE(crc(td)); return Buffer.concat([l, td, c]); };

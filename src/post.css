@@ -33,3 +33,8 @@
 .post .env h4 { font: 600 16px var(--display); color: var(--ink); margin: 0 0 4px; }
 .post .env p { font-size: 15px; margin: 0; }
 .post .closing { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 22px; color: var(--ink); }
+.case-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 28px; margin: 0 0 24px; border-top: 1px solid var(--line); }
+.case-facts div { padding: 12px 0; border-bottom: 1px solid var(--line); }
+.case-facts dt { color: var(--ice); font-size: 13px; }
+.case-facts dd { margin: 2px 0 0; font-size: 15.5px; color: var(--ink); }
+@media (max-width: 600px) { .case-facts { grid-template-columns: 1fr; } }

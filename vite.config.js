@@ -3,7 +3,7 @@ import { resolve } from 'path';
 import fs from 'fs';
 
 // every page scripts/gen.mjs writes
-const pages = () => ['index.html', 'fr/index.html', 'links/index.html', ...fs.readdirSync('blog').map(d => `blog/${d}/index.html`)];
+const pages = () => ['index.html', 'fr/index.html', 'links/index.html', ...['blog', 'work'].flatMap(dir => fs.existsSync(dir) ? fs.readdirSync(dir).map(d => `${dir}/${d}/index.html`) : [])];
 
 export default defineConfig({
   base: '/',

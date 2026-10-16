@@ -1,6 +1,12 @@
 // Writes /index.html and /fr/index.html from src/content.js.
 import fs from 'fs';
-import { content, person, skillTiers } from '../src/content.js';
+import { content, person, skillTiers, caseStudies } from '../src/content.js';
+
+// case studies are drafts until Anass has reviewed them: only built with DRAFTS=1 (local preview)
+const DRAFTS = process.env.DRAFTS === '1';
+const cases = DRAFTS ? caseStudies : [];
+const OG = `${person.site}/og.png`;
+const ogTags = `<meta property="og:image" content="${OG}">\n<meta property="og:image:width" content="1200">\n<meta property="og:image:height" content="630">\n<meta name="twitter:card" content="summary_large_image">`;
 
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const write = (path, html) => { const dir = path.replace(/[^/]+$/, ''); if (dir) fs.mkdirSync(dir, { recursive: true }); fs.writeFileSync(path, html); };
@@ -23,7 +29,7 @@ function page(c) {
       <p class="lede">${esc(p.lede)}</p>
       <ul class="points">${p.points.map(x => `<li>${esc(x)}</li>`).join('')}</ul>
       <ul class="stack" aria-label="Stack">${p.stack.map(x => `<li>${esc(x)}</li>`).join('')}</ul>
-      <a class="btn" href="#contact" data-ask="${esc(p.title)}">${esc(c.ask)}</a>
+      <p class="chapter-actions">${cases.some(k => k.id === p.id) ? `<a class="btn solid" href="/work/${p.id}/">${esc(c.caseLabel)}</a>` : ''}<a class="btn" href="#contact" data-ask="${esc(p.title)}">${esc(c.ask)}</a></p>
     </div>
   </section>`;
 
@@ -64,6 +70,7 @@ function page(c) {
 <meta property="og:type" content="website">
 <meta property="og:url" content="${person.site}${c.home}">
 <link rel="canonical" href="${person.site}${c.home}">
+${ogTags}
 <link rel="alternate" hreflang="${c.lang}" href="${person.site}${c.home}">
 <link rel="alternate" hreflang="${c.other}" href="${person.site}${c.otherHome}">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='5' fill='%23a8ecff'/%3E%3C/svg%3E">
@@ -106,7 +113,18 @@ function page(c) {
       <header class="block-head"><h2 class="kinetic">${esc(c.services.title)}</h2><p>${esc(c.services.lede)}</p></header>
       <ol class="engagements">${c.services.items.map(service).join('')}
       </ol>
+      <div class="how">
+        <h3 class="how-title">${esc(c.howIWork.title)}</h3>
+        <ol class="steps">${c.howIWork.steps.map(([t, m, d], i) => `<li><span class="n">${i + 1}</span><h4>${esc(t)}</h4><span class="eng-meta">${esc(m)}</span><p>${esc(d)}</p></li>`).join('')}</ol>
+        <p class="needs">${esc(c.howIWork.needs)}</p>
+      </div>
     </section>
+${c.testimonials.length ? `
+    <section class="block" id="testimonials">
+      <header class="block-head"><h2 class="kinetic">${esc(c.testimonialsTitle)}</h2></header>
+      <ul class="quotes-big">${c.testimonials.map(t => `<li><blockquote>“${esc(t.quote)}”</blockquote><p>${esc(t.who)}</p></li>`).join('')}</ul>
+    </section>
+` : ''}
 
     <section class="block" id="more">
       <header class="block-head"><h2 class="kinetic">${esc(c.moreTitle)}</h2></header>
@@ -185,6 +203,7 @@ function subPage(c, { title, description, path, type = 'website', css, js, main 
 <meta property="og:type" content="${type}">
 <meta property="og:url" content="${person.site}${path}">
 <link rel="canonical" href="${person.site}${path}">
+${ogTags}
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='5' fill='%23a8ecff'/%3E%3C/svg%3E">
 <link rel="preload" href="/fonts/ClashGrotesk-Variable.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-Variable.woff2" as="font" type="font/woff2" crossorigin>
@@ -226,6 +245,21 @@ function postPage(c, p) {
   });
 }
 
+function casePage(c, k) {
+  return subPage(c, {
+    title: `${k.title}: case study · ${person.name}`, description: k.summary, path: `/work/${k.id}/`, type: 'article', css: 'post.css',
+    main: `  <a class="back" href="/#${k.id}">← ${esc(k.title)}</a>
+  <article class="post case-study">
+    <p class="post-meta">Case study</p>
+    <h1>${esc(k.title)}</h1>
+    <p class="lede">${esc(k.summary)}</p>
+    <dl class="case-facts">${k.facts.map(([a, b]) => `<div><dt>${esc(a)}</dt><dd>${esc(b)}</dd></div>`).join('')}</dl>
+    ${k.sections.map(([h, parts]) => `<h2>${esc(h)}</h2>\n    ${parts.map(x => x.startsWith('<') ? x : `<p>${x}</p>`).join('\n    ')}`).join('\n    ')}
+    <p class="closing"><a href="/#contact">Questions about this project? Get in touch →</a></p>
+  </article>`,
+  });
+}
+
 function linksPage(c) {
   const L = c.linksPage, links = JSON.parse(fs.readFileSync('content/links.json', 'utf8'));
   const count = (key, val) => links.filter(l => key === 'tags' ? l.tags.includes(val) : l.type === val).length;
@@ -253,4 +287,6 @@ write('index.html', page(content.en));
 write('fr/index.html', page(content.fr));
 for (const p of content.en.posts) write(`blog/${p.slug}/index.html`, postPage(content.en, p));
 write('links/index.html', linksPage(content.en));
-console.log(`generated /, /fr/, /links/ and ${content.en.posts.length} posts`);
+fs.rmSync('work', { recursive: true, force: true });
+for (const k of cases) write(`work/${k.id}/index.html`, casePage(content.en, k));
+console.log(`generated /, /fr/, /links/, ${content.en.posts.length} posts${cases.length ? `, ${cases.length} case studies (drafts)` : ''}`);
