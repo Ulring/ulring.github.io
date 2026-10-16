@@ -1,0 +1,51 @@
+@font-face { font-family: "Clash Grotesk"; src: url("/fonts/ClashGrotesk-Variable.woff2") format("woff2"); font-weight: 200 700; font-display: swap; }
+@font-face { font-family: "Switzer"; src: url("/fonts/Switzer-Variable.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
+@view-transition { navigation: auto; }
+
+:root { --ink: #0d1218; --soft: #3d4752; --dim: #6b7682; --line: #dfe4e8; --accent: #0b6e88; --bg: #f4f6f7; color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 400 15px/1.55 "Switzer", "Helvetica Neue", Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+.brand { font: 600 16px "Clash Grotesk", Arial, sans-serif; text-decoration: none; view-transition-name: brand; }
+.cv-bar { display: flex; justify-content: space-between; align-items: center; gap: 16px; max-width: 52rem; margin: 0 auto; padding: 18px; font-size: 14px; }
+.cv-bar span { display: flex; gap: 14px; align-items: center; }
+.cv-bar .pdf { border: 1px solid var(--ink); background: var(--ink); color: #fff; border-radius: 999px; padding: 7px 14px; text-decoration: none; }
+.cv { max-width: 52rem; margin: 0 auto 48px; background: #fff; padding: clamp(22px, 5vw, 56px); border-radius: 14px; box-shadow: 0 1px 0 var(--line); }
+.cv h1 { font: 600 clamp(30px, 5vw, 42px)/1 "Clash Grotesk", Arial, sans-serif; letter-spacing: -.03em; margin: 0; }
+.role { font-size: 17px; color: var(--soft); margin: 6px 0 4px; }
+.contact { font-size: 13.5px; color: var(--dim); margin: 0; }
+.contact a { text-decoration: none; }
+.profile { margin: 18px 0 0; }
+.cv h2 { font: 600 13px "Switzer", Arial, sans-serif; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); border-bottom: 1px solid var(--line); padding-bottom: 4px; margin: 26px 0 10px; }
+.item { margin-bottom: 12px; break-inside: avoid; }
+.row { display: flex; justify-content: space-between; gap: 16px; align-items: baseline; }
+.row span { color: var(--dim); font-size: 13.5px; white-space: nowrap; }
+.item h3 { font: 600 15.5px "Switzer", Arial, sans-serif; margin: 0; }
+.item p { margin: 2px 0; }
+.where { color: var(--dim); font-size: 13.5px; }
+.item ul { margin: 4px 0 0; padding-left: 18px; }
+.stack { color: var(--dim); font-size: 13px; }
+.skills { margin: 0; display: grid; gap: 4px; }
+.skills div { display: grid; grid-template-columns: 7rem 1fr; gap: 12px; }
+.skills dt { font-weight: 600; }
+.skills dd { margin: 0; }
+.edu { margin-bottom: 4px; }
+.edu span:first-child { color: var(--ink); white-space: normal; font-size: 15px; }
+@media (max-width: 600px) { .row { flex-direction: column; gap: 0; } .skills div { grid-template-columns: 1fr; gap: 0; } }
+@media print {
+  @page { size: A4; margin: 10mm 12mm; }
+  body { background: #fff; font-size: 9.5pt; line-height: 1.4; font-family: Arial, "Liberation Sans", Helvetica, sans-serif; }   /* standard font: applicant-tracking systems extract its text cleanly */
+  .cv h2, .item h3 { font-family: inherit; }
+  .cv h1 { font-size: 26pt; }
+  .role { font-size: 12pt; margin: 3px 0 2px; }
+  .profile { margin-top: 8px; }
+  .item { margin-bottom: 6px; }
+  .edu span:first-child, .item p, .item li, .skills div { font-size: 9.6pt; }
+  .row span, .where, .stack, .contact { font-size: 8.6pt; }
+  .item h3 { font-size: 10.2pt; }
+  .item ul { margin-top: 2px; }
+  .cv-bar { display: none; }
+  .cv { box-shadow: none; padding: 0; margin: 0; max-width: none; border-radius: 0; }
+  .cv h2 { margin: 9px 0 5px; font-size: 9pt; }
+  a { text-decoration: none; }
+}
