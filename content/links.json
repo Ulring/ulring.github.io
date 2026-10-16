@@ -1,0 +1,3049 @@
+[
+ {
+  "title": "0.30000000000000004",
+  "url": "https://0.30000000000000004.com",
+  "desc": "Floating Point Math",
+  "type": "Article, post",
+  "tags": [
+   "computer science"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "3Blue1Brown",
+  "url": "https://www.youtube.com/channel/UCYO_jab_esuFRV4b17AJtAw",
+  "desc": "",
+  "type": "YT channel/playlist",
+  "tags": [
+   "mathematics"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "3DS Hacks Guide",
+  "url": "https://3ds.hacks.guide",
+  "desc": "",
+  "type": "Tutorial, guide, manual",
+  "tags": [
+   "gaming",
+   "hacks"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "8bit.yarek.pl",
+  "url": "http://8bit.yarek.pl",
+  "desc": "8bit Projects For Everyone: memory, IDE, mouse, ISA cards",
+  "type": "Webportal, website",
+  "tags": [
+   "computer engineering",
+   "retro"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "A beginners' guide away from scanf()",
+  "url": "https://web.archive.org/web/20201112034702/http://www.sekrit.de/webdocs/c/beginners-guide-away-from-scanf.html",
+  "desc": "",
+  "type": "Tutorial, guide, manual",
+  "tags": [
+   "programming",
+   "C"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "A Compiler Writing Journey",
+  "url": "https://github.com/DoctorWkt/acwj",
+  "desc": "",
+  "type": "Notes",
+  "tags": [
+   "computer science",
+   "compilers"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "A Tutorial on Portable Makefiles",
+  "url": "https://nullprogram.com/blog/2017/08/20/",
+  "desc": "",
+  "type": "Tutorial, guide, manual",
+  "tags": [
+   "dev tools",
+   "build systems"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "A User's Guide to ZSH",
+  "url": "http://zsh.sourceforge.net/Guide/",
+  "desc": "",
+  "type": "Tutorial, guide, manual",
+  "tags": [
+   "programming",
+   "shell"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Advanced Bash-Scripting Guide",
+  "url": "https://tldp.org/LDP/abs/html/",
+  "desc": "",
+  "type": "Tutorial, guide, manual",
+  "tags": [
+   "programming",
+   "shell"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Algorithm Tutor",
+  "url": "https://algorithmtutor.com/",
+  "desc": "",
+  "type": "Webportal, website",
+  "tags": [
+   "computer science",
+   "algorithms"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Algorithms for Decision Making",
+  "url": "https://algorithmsbook.com/files/dm.pdf",
+  "desc": "",
+  "type": "Book",
+  "tags": [
+   "computer science",
+   "algorithms"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Alligator.io",
+  "url": "https://alligator.io/",
+  "desc": "",
+  "type": "Blog",
+  "tags": [
+   "WebDev"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "An Illustrated Guide to IPsec",
+  "url": "http://unixwiz.net/techtips/iguide-ipsec.html",
+  "desc": "",
+  "type": "Article, post",
+  "tags": [
+   "computer science",
+   "networking"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "An Introduction to Modern CMake",
+  "url": "https://cliutils.gitlab.io/modern-cmake/",
+  "desc": "",
+  "type": "Book",
+  "tags": [
+   "dev tools",
+   "build systems"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Analysis of Sorting Algorithms by Kolmogorov Complexity",
+  "url": "https://homepages.cwi.nl/~paulv/papers/sortingold.pdf",
+  "desc": "When push_swap is not enough",
+  "type": "Document, paper",
+  "tags": [
+   "computer science",
+   "algorithms",
+   "complexity"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Andreas Kling",
+  "url": "https://www.youtube.com/c/AndreasKling",
+  "desc": "",
+  "type": "YT channel/playlist",
+  "tags": [
+   "computer science",
+   "programming",
+   "OS"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Andrzej's C++ blog",
+  "url": "https://akrzemi1.wordpress.com/",
+  "desc": "",
+  "type": "Blog",
+  "tags": [
+   "programming",
+   "C++"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "AnkiWeb",
+  "url": "https://ankiweb.net",
+  "desc": "Flash cards",
+  "type": "Tool/service",
+  "tags": [
+   "languages"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Assembly Digest",
+  "url": "https://assemblydigest.tumblr.com",
+  "desc": "Assembly for GameBoy",
+  "type": "Blog",
+  "tags": [
+   "assembly",
+   "GameDev"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Awesome",
+  "url": "https://awesome.re",
+  "desc": "",
+  "type": "List, database, repository",
+  "tags": [],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Awesome C/C++",
+  "url": "https://fffaraz.github.io/awesome-cpp/",
+  "desc": "List of C/C++ frameworks, libraries, resources etc.",
+  "type": "List, database, repository",
+  "tags": [
+   "programming",
+   "C++",
+   "C"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Awk One-Liners Explained",
+  "url": "https://catonmat.net/awk-one-liners-explained-part-one",
+  "desc": "",
+  "type": "Tutorial, guide, manual",
+  "tags": [
+   "programming",
+   "shell"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Bash Hackers Wiki",
+  "url": "https://wiki.bash-hackers.org/",
+  "desc": "",
+  "type": "Wiki, encyclopedia",
+  "tags": [
+   "programming",
+   "shell"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Bash Pitfalls",
+  "url": "https://mywiki.wooledge.org/BashPitfalls",
+  "desc": "",
+  "type": "",
+  "tags": [
+   "programming",
+   "shell"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "BashGuide",
+  "url": "https://mywiki.wooledge.org/BashGuide",
+  "desc": "",
+  "type": "Tutorial, guide, manual",
+  "tags": [
+   "programming",
+   "shell"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Beej's Guides",
+  "url": "https://beej.us/guide/",
+  "desc": "",
+  "type": "Tutorial, guide, manual",
+  "tags": [
+   "programming"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Ben Eater",
+  "url": "https://www.youtube.com/user/eaterbc",
+  "desc": "Tutorials about electronics/computer architecture...",
+  "type": "YT channel/playlist",
+  "tags": [
+   "computer engineering",
+   "electronics"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Best aspects of C language",
+  "url": "https://blog.joren.ga/programming/best-of-c",
+  "desc": "",
+  "type": "Article, post",
+  "tags": [
+   "programming",
+   "C"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Big Pile of Vim-like",
+  "url": "https://vim.reversed.top",
+  "desc": "",
+  "type": "List, database, repository",
+  "tags": [
+   "dev tools",
+   "Vim"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Big-O Algorithm Complexity Cheat Sheet (Know Thy Complexities!)",
+  "url": "https://www.bigocheatsheet.com/",
+  "desc": "",
+  "type": "Infographic, cheatsheet",
+  "tags": [
+   "computer science",
+   "algorithms",
+   "complexity"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Boehm GC (Boehm–Demers–Weiser garbage collector)",
+  "url": "https://www.hboehm.info/gc/",
+  "desc": "",
+  "type": "",
+  "tags": [
+   "programming",
+   "C"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Brackeys",
+  "url": "https://www.youtube.com/c/Brackeys",
+  "desc": "",
+  "type": "YT channel/playlist",
+  "tags": [
+   "GameDev"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Build Your Own Lisp",
+  "url": "http://www.buildyourownlisp.com",
+  "desc": "",
+  "type": "Book",
+  "tags": [
+   "computer science",
+   "programming",
+   "C"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "C Programming Tutorial: Creating Libraries",
+  "url": "https://randu.org/tutorials/c/libraries.php",
+  "desc": "",
+  "type": "Tutorial, guide, manual",
+  "tags": [
+   "programming",
+   "C"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "C Traps and Pitfalls",
+  "url": "https://www.cs.tufts.edu/comp/40/docs/CTrapsAndPitfalls.pdf",
+  "desc": "",
+  "type": "Document, paper",
+  "tags": [
+   "programming",
+   "C"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "C++ code completion",
+  "url": "https://vim.fandom.com/wiki/C%2B%2B_code_completion",
+  "desc": "",
+  "type": "Article, post",
+  "tags": [
+   "dev tools",
+   "Vim"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "C++ Core Guidelines",
+  "url": "https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines",
+  "desc": "",
+  "type": "Manifesto, specification, guidelines",
+  "tags": [
+   "programming",
+   "C++"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "C++ FAQ",
+  "url": "https://isocpp.org/faq",
+  "desc": "to be used in 42 cpp-modules",
+  "type": "FAQ",
+  "tags": [
+   "programming",
+   "C++"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "C++ is not a superset of C | lochsh",
+  "url": "https://mcla.ug/blog/cpp-is-not-a-superset-of-c.html",
+  "desc": "",
+  "type": "Article, post",
+  "tags": [
+   "programming",
+   "C++",
+   "C"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "C++ Programming Style Guidelines",
+  "url": "http://geosoft.no/development/cppstyle.html",
+  "desc": "",
+  "type": "Manifesto, specification, guidelines",
+  "tags": [
+   "programming",
+   "C++"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "C99 with Technical corrigenda TC1, TC2, and TC3 included",
+  "url": "http://www.open-std.org/JTC1/SC22/WG14/www/docs/n1256.pdf",
+  "desc": "(ISO/IEC 9899:1999)",
+  "type": "Manifesto, specification, guidelines",
+  "tags": [
+   "programming",
+   "C",
+   "standard"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Calling shell commands from C++",
+  "url": "https://write.as/q1aq3t9pvqf39f8q.md",
+  "desc": "",
+  "type": "Article, post",
+  "tags": [
+   "programming",
+   "C++"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Carbon",
+  "url": "https://carbon.now.sh",
+  "desc": "Images of source code",
+  "type": "Tool/service",
+  "tags": [
+   "programming"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "ccan",
+  "url": "https://ccodearchive.net",
+  "desc": "Junkcode",
+  "type": "List, database, repository",
+  "tags": [
+   "programming",
+   "C"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "cdecl",
+  "url": "https://cdecl.org",
+  "desc": "C gibberish ↔ English",
+  "type": "Tool/service",
+  "tags": [
+   "programming",
+   "C"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "CGold: The Hitchhiker’s Guide to the CMake",
+  "url": "https://cgold.readthedocs.io/",
+  "desc": "",
+  "type": "Tutorial, guide, manual",
+  "tags": [
+   "dev tools",
+   "build systems"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Chmod Calculator",
+  "url": "https://chmodcommand.com",
+  "desc": "",
+  "type": "Tool/service",
+  "tags": [
+   "*nix",
+   "Linux"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Choose an open source license",
+  "url": "https://choosealicense.com",
+  "desc": "",
+  "type": "Webportal, website",
+  "tags": [
+   "open source"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "chubin/awesome-console-services",
+  "url": "https://github.com/chubin/awesome-console-services",
+  "desc": "Console services reachable via network protocols",
+  "type": "List, database, repository",
+  "tags": [
+   "*nix"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Circuit Simulator Applet",
+  "url": "http://www.falstad.com/circuit/",
+  "desc": "Electronic circuit simulator",
+  "type": "Tool/service",
+  "tags": [
+   "electronics"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "CLRS Solutions",
+  "url": "https://walkccc.github.io/CLRS/",
+  "desc": "",
+  "type": "",
+  "tags": [
+   "algorithms"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "CMake Tutorial",
+  "url": "https://cmake.org/cmake/help/latest/guide/tutorial/index.html",
+  "desc": "",
+  "type": "Tutorial, guide, manual",
+  "tags": [
+   "dev tools",
+   "build systems"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "COBOL Tutorial : Learn COBOL in One Video",
+  "url": "https://www.youtube.com/watch?v=TBs7HXI76yU",
+  "desc": "",
+  "type": "Video",
+  "tags": [
+   "programming",
+   "COBOL"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "code2flow",
+  "url": "https://code2flow.com/",
+  "desc": "Create diagrams",
+  "type": "",
+  "tags": [
+   "computer science",
+   "algorithms"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Codewars",
+  "url": "https://www.codewars.com",
+  "desc": "",
+  "type": "Challenges, quizzes",
+  "tags": [
+   "computer science",
+   "programming"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Colobot",
+  "url": "https://colobot.info",
+  "desc": "",
+  "type": "Game",
+  "tags": [
+   "programming",
+   "C++"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Command Line Heroes",
+  "url": "https://www.redhat.com/en/command-line-heroes",
+  "desc": "I really need to watch all the episodes!",
+  "type": "Podcast",
+  "tags": [
+   "computer science"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "comp.lang.c Frequently Asked Questions",
+  "url": "http://c-faq.com/",
+  "desc": "",
+  "type": "FAQ",
+  "tags": [
+   "programming",
+   "C"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Compiler Design in C",
+  "url": "https://holub.com/compiler",
+  "desc": "",
+  "type": "Book",
+  "tags": [
+   "computer science",
+   "programming",
+   "compilers"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Compiler Explorer",
+  "url": "https://godbolt.org",
+  "desc": "",
+  "type": "Tool/service",
+  "tags": [
+   "computer science",
+   "programming",
+   "C++",
+   "C"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Computer Science Field Guide",
+  "url": "https://csfieldguide.org.nz",
+  "desc": "",
+  "type": "Tutorial, guide, manual",
+  "tags": [
+   "computer science"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Computerphile",
+  "url": "https://www.youtube.com/channel/UC9-y-6csu5WGm29I7JiwpnA",
+  "desc": "",
+  "type": "YT channel/playlist",
+  "tags": [
+   "computer science"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Convert an array to a vector in C++",
+  "url": "https://www.techiedelight.com/convert-array-vector-cpp/",
+  "desc": "",
+  "type": "Article, post",
+  "tags": [
+   "programming",
+   "C++"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "CoRecursive",
+  "url": "https://corecursive.com/",
+  "desc": "",
+  "type": "Podcast",
+  "tags": [
+   "computer science"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "CppCast",
+  "url": "https://cppcast.com/",
+  "desc": "",
+  "type": "Podcast",
+  "tags": [
+   "programming",
+   "C++"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "CppQuiz",
+  "url": "http://cppquiz.org",
+  "desc": "",
+  "type": "Challenges, quizzes",
+  "tags": [
+   "computer science",
+   "programming",
+   "C++"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Cprogramming.com",
+  "url": "https://www.cprogramming.com/",
+  "desc": "",
+  "type": "",
+  "tags": [
+   "programming",
+   "C"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "CrashCourse",
+  "url": "https://www.youtube.com/user/crashcourse",
+  "desc": "",
+  "type": "YT channel/playlist",
+  "tags": [
+   "science"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Custom C++ Exceptions for Beginners",
+  "url": "http://peterforgacs.github.io/2017/06/25/Custom-C-Exceptions-For-Beginners/",
+  "desc": "",
+  "type": "Article, post",
+  "tags": [
+   "programming",
+   "C++"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Cymath",
+  "url": "https://www.cymath.com",
+  "desc": "Help with math problems",
+  "type": "Tool/service",
+  "tags": [
+   "mathematics"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "dCode",
+  "url": "https://www.dcode.fr/en",
+  "desc": "decoding messages,codes and encryptions",
+  "type": "Tool/service",
+  "tags": [
+   "mathematics"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Design Patterns Explained with Food",
+  "url": "https://github.com/wesdoyle/design-patterns-explained-with-food",
+  "desc": "",
+  "type": "",
+  "tags": [
+   "computer science"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Desmos",
+  "url": "https://www.desmos.com",
+  "desc": "Learn math and love learning math",
+  "type": "Tool/service",
+  "tags": [
+   "mathematics"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Destination Linux Network",
+  "url": "https://destinationlinux.network",
+  "desc": "",
+  "type": "Podcast",
+  "tags": [
+   "*nix",
+   "Linux"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Detexify",
+  "url": "http://detexify.kirelabs.org/classify.html",
+  "desc": "Turn drawing to LATEX symbol",
+  "type": "Tool/service",
+  "tags": [
+   "LaTeX"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "devSource",
+  "url": "https://devsource.netlify.com",
+  "desc": "Ressources for Web related things...",
+  "type": "List, database, repository",
+  "tags": [
+   "computer science",
+   "WebDev"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Discrete Mathematics in the Real World",
+  "url": "http://mathily.org/dm-rw.html",
+  "desc": "",
+  "type": "",
+  "tags": [
+   "mathematics"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Distrochooser",
+  "url": "https://distrochooser.de/en/",
+  "desc": "Help Linux beginners to choose a Linux distribution",
+  "type": "Tool/service",
+  "tags": [
+   "computer science",
+   "*nix",
+   "Linux"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "DistroTest.net",
+  "url": "https://distrotest.net/",
+  "desc": "Test directly online without installation",
+  "type": "Tool/service",
+  "tags": [
+   "*nix",
+   "Linux"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Donut math: how donut.c works",
+  "url": "https://www.a1k0n.net/2011/07/20/donut-math.html",
+  "desc": "",
+  "type": "Article, post",
+  "tags": [
+   "computer science",
+   "programming",
+   "C"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "DoradoList",
+  "url": "https://www.doradolist.com",
+  "desc": "Books suggested by experts or used at universities",
+  "type": "List, database, repository",
+  "tags": [],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Dragonfly - Program a Game Engine from Scratch",
+  "url": "https://dragonfly.wpi.edu/book/#down",
+  "desc": "",
+  "type": "Book",
+  "tags": [
+   "GameDev",
+   "programming"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Easy 6502 by skilldrick",
+  "url": "https://skilldrick.github.io/easy6502",
+  "desc": "",
+  "type": "Book",
+  "tags": [
+   "computer science",
+   "assembly",
+   "programming"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Embedded in Academia",
+  "url": "https://blog.regehr.org",
+  "desc": "",
+  "type": "Blog",
+  "tags": [
+   "programming",
+   "embedded"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Emperor Sh and the Traveller",
+  "url": "https://sanctum.geek.nz/etc/emperor-sh-and-the-traveller.txt",
+  "desc": "",
+  "type": "Article, post",
+  "tags": [
+   "computer science",
+   "dev tools",
+   "shell",
+   "humor"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Engineering a Compiler",
+  "url": "https://dl.acm.org/doi/pdf/10.5555/2737838",
+  "desc": "",
+  "type": "Book",
+  "tags": [
+   "computer science",
+   "programming",
+   "compilers"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "err0r500/foundational-knowledge-for-programmers",
+  "url": "https://github.com/err0r500/foundational-knowledge-for-programmers",
+  "desc": "",
+  "type": "",
+  "tags": [
+   "computer science",
+   "programming"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Exploring How Computers Work",
+  "url": "https://www.youtube.com/watch?v=QZwneRb-zqA",
+  "desc": "",
+  "type": "Video",
+  "tags": [
+   "computer engineering"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Extra Credits",
+  "url": "https://www.youtube.com/channel/UCCODtTcd5M1JavPCOr_Uydg",
+  "desc": "",
+  "type": "YT channel/playlist",
+  "tags": [
+   "science"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Fabien Sanglard's Website",
+  "url": "https://fabiensanglard.net",
+  "desc": "",
+  "type": "Blog",
+  "tags": [
+   "computer science",
+   "retro",
+   "programming"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Flexbox Froggy",
+  "url": "https://flexboxfroggy.com",
+  "desc": "A game for learning CSS flexbox",
+  "type": "Game",
+  "tags": [
+   "WebDev",
+   "CSS"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Fluent C++",
+  "url": "https://www.fluentcpp.com",
+  "desc": "",
+  "type": "Blog",
+  "tags": [
+   "programming",
+   "C++"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "freegames - r/linux_gaming",
+  "url": "https://www.reddit.com/r/linux_gaming/wiki/freegames",
+  "desc": "",
+  "type": "List, database, repository",
+  "tags": [
+   "Linux",
+   "gaming"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Game Maker's Toolkit",
+  "url": "https://www.youtube.com/user/McBacon1337",
+  "desc": "",
+  "type": "YT channel/playlist",
+  "tags": [
+   "GameDev"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "GameDev.net",
+  "url": "https://www.gamedev.net/",
+  "desc": "",
+  "type": "",
+  "tags": [
+   "GameDev"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "GamingMonsters",
+  "url": "https://www.youtube.com/c/gamingmonsters",
+  "desc": "",
+  "type": "YT channel/playlist",
+  "tags": [
+   "GameDev"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "GamingOnLinux",
+  "url": "https://www.gamingonlinux.com",
+  "desc": "",
+  "type": "",
+  "tags": [
+   "Linux",
+   "gaming"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "GB Studio",
+  "url": "https://www.gbstudio.dev/",
+  "desc": "Visual game builder",
+  "type": "Tool/service",
+  "tags": [
+   "GameDev"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Getting to Grips with LaTeX – Andrew Roberts",
+  "url": "https://www.andy-roberts.net/writing/latex",
+  "desc": "",
+  "type": "Article, post",
+  "tags": [
+   "LaTeX"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Git Best Practices",
+  "url": "http://sethrobertson.github.io/GitBestPractices",
+  "desc": "",
+  "type": "",
+  "tags": [
+   "Git",
+   "dev tools"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Git cheatsheet",
+  "url": "https://education.github.com/git-cheat-sheet-education.pdf",
+  "desc": "",
+  "type": "Infographic, cheatsheet",
+  "tags": [
+   "Git",
+   "dev tools"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "git rebase in depth",
+  "url": "https://git-rebase.io",
+  "desc": "",
+  "type": "",
+  "tags": [
+   "Git",
+   "dev tools"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "GoalKicker.com",
+  "url": "https://goalkicker.com",
+  "desc": "Programming Notes for Professionals books",
+  "type": "Book",
+  "tags": [
+   "computer science",
+   "programming"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Google Style Guides",
+  "url": "https://google.github.io/styleguide",
+  "desc": "",
+  "type": "Manifesto, specification, guidelines",
+  "tags": [
+   "programming"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "google/sanitizers",
+  "url": "https://github.com/google/sanitizers",
+  "desc": "AddressSanitizer, ThreadSanitizer, MemorySanitizer",
+  "type": "",
+  "tags": [
+   "programming",
+   "C++",
+   "C"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "HackerRank",
+  "url": "https://www.hackerrank.com",
+  "desc": "",
+  "type": "Challenges, quizzes",
+  "tags": [
+   "computer science",
+   "programming"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Haifux - The Haifa Linux club",
+  "url": "http://www.haifux.org/",
+  "desc": "",
+  "type": "",
+  "tags": [
+   "*nix",
+   "Linux"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Haskell for Imperative Programmers",
+  "url": "https://www.youtube.com/playlist?list=PLe7Ei6viL6jGp1Rfu0dil1JH1SHk9bgDV",
+  "desc": "",
+  "type": "YT channel/playlist",
+  "tags": [
+   "computer science",
+   "programming",
+   "functional programming"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Help! Linux ate my RAM!",
+  "url": "https://www.linuxatemyram.com/",
+  "desc": "",
+  "type": "",
+  "tags": [
+   "computer science",
+   "*nix",
+   "Linux"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "How are Unix pipes implemented?",
+  "url": "https://toroid.org/unix-pipe-implementation",
+  "desc": "",
+  "type": "Article, post",
+  "tags": [
+   "computer science",
+   "*nix"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "How Do I Declare A Function Pointer in C?",
+  "url": "https://fuckingfunctionpointers.com/",
+  "desc": "",
+  "type": "",
+  "tags": [
+   "programming",
+   "C"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "How Java’s Floating-Point Hurts Everyone Everywhere",
+  "url": "https://people.eecs.berkeley.edu/~wkahan/JAVAhurt.pdf",
+  "desc": "",
+  "type": "",
+  "tags": [
+   "computer science",
+   "programming"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "How to Do 90% of What Plugins Do (With Just Vim)",
+  "url": "https://www.youtube.com/watch?v=XA2WjJbmmoM",
+  "desc": "",
+  "type": "Video",
+  "tags": [
+   "dev tools",
+   "Vim"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "How to properly use macros in C | Preslav Mihaylov",
+  "url": "https://pmihaylov.com/macros-in-c/",
+  "desc": "",
+  "type": "Article, post",
+  "tags": [
+   "programming",
+   "C"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "How to Reduce Debugging Hours in GDB",
+  "url": "https://undo.io/resources/gdb-watchpoint/5-ways-reduce-debugging-hours",
+  "desc": "",
+  "type": "Article, post",
+  "tags": [
+   "computer science",
+   "dev tools",
+   "programming",
+   "C++",
+   "C"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Initialisation in C++17 – the matrix",
+  "url": "https://timur.audio/initialisation-in-c17-the-matrix",
+  "desc": "",
+  "type": "Article, post",
+  "tags": [
+   "programming",
+   "C++"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Interactive Vim tutorial",
+  "url": "https://www.openvim.com/",
+  "desc": "",
+  "type": "Tutorial, guide, manual",
+  "tags": [
+   "dev tools",
+   "Vim"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Jacob Sorber",
+  "url": "https://www.youtube.com/user/jms36086",
+  "desc": "",
+  "type": "YT channel/playlist",
+  "tags": [
+   "computer science",
+   "programming",
+   "C"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Jens Gustedt",
+  "url": "https://gustedt.wordpress.com/",
+  "desc": "Author of \"Modern C\"",
+  "type": "Blog",
+  "tags": [
+   "programming",
+   "C"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Julia Evans",
+  "url": "http://jvns.ca",
+  "desc": "",
+  "type": "Blog",
+  "tags": [
+   "computer science"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Jupiter Broadcasting",
+  "url": "https://www.jupiterbroadcasting.com",
+  "desc": "",
+  "type": "Podcast",
+  "tags": [
+   "computer science",
+   "*nix",
+   "Linux"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Keep a Changelog",
+  "url": "https://keepachangelog.com",
+  "desc": "",
+  "type": "Manifesto, specification, guidelines",
+  "tags": [
+   "standard"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "kozross/awesome-c",
+  "url": "https://github.com/kozross/awesome-c",
+  "desc": "",
+  "type": "",
+  "tags": [
+   "programming",
+   "C"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Langserver.org",
+  "url": "https://langserver.org/",
+  "desc": "",
+  "type": "List, database, repository",
+  "tags": [
+   "dev tools",
+   "programming"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "LaTeX tables generator",
+  "url": "https://www.tablesgenerator.com",
+  "desc": "",
+  "type": "Tool/service",
+  "tags": [],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Learn C++",
+  "url": "https://www.learncpp.com",
+  "desc": "",
+  "type": "Course, textbook",
+  "tags": [
+   "programming",
+   "C++"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Learn to code and write games on the Nintendo Game Boy",
+  "url": "https://www.youtube.com/watch?v=FzPTK91EJY8",
+  "desc": "",
+  "type": "Video",
+  "tags": [
+   "retro",
+   "GameDev",
+   "programming",
+   "C"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Learn Vimscript the Hard Way",
+  "url": "https://learnvimscriptthehardway.stevelosh.com/",
+  "desc": "",
+  "type": "Course, textbook",
+  "tags": [
+   "dev tools",
+   "Vim"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Learn X in Y Minutes",
+  "url": "https://learnxinyminutes.com/",
+  "desc": "",
+  "type": "Course, textbook",
+  "tags": [
+   "programming"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Learning COBOL: A Journey for the Modern Programmer",
+  "url": "https://monadical.com/posts/cobol.html",
+  "desc": "",
+  "type": "Article, post",
+  "tags": [
+   "programming",
+   "COBOL"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Let's Destroy C",
+  "url": "https://gist.github.com/shakna-israel/4fd31ee469274aa49f8f9793c3e71163#lets-destroy-c",
+  "desc": "",
+  "type": "Article, post",
+  "tags": [
+   "computer science",
+   "programming",
+   "C"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Linux Inside (by 0xAX)",
+  "url": "https://0xax.gitbooks.io/linux-insides/content",
+  "desc": "A book-in-progress about the linux kernel and its insides",
+  "type": "Book",
+  "tags": [
+   "computer science",
+   "*nix",
+   "Linux"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Linux Journey",
+  "url": "https://linuxjourney.com",
+  "desc": "",
+  "type": "",
+  "tags": [
+   "computer science",
+   "*nix",
+   "Linux"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Linux Kernel Teaching",
+  "url": "https://linux-kernel-labs.github.io/refs/heads/master/",
+  "desc": "",
+  "type": "",
+  "tags": [
+   "computer science",
+   "*nix",
+   "Linux"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "LQWiki",
+  "url": "http://wiki.linuxquestions.org/wiki/Main_Page",
+  "desc": "",
+  "type": "Wiki, encyclopedia",
+  "tags": [
+   "*nix",
+   "Linux"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Map of Computer Science",
+  "url": "https://flic.kr/p/XcFBKC",
+  "desc": "",
+  "type": "Infographic, cheatsheet",
+  "tags": [
+   "computer science"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Map of Mathematics",
+  "url": "https://flic.kr/p/RXdRRd",
+  "desc": "",
+  "type": "Infographic, cheatsheet",
+  "tags": [
+   "mathematics"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Marko Denic",
+  "url": "https://markodenic.com/blog",
+  "desc": "",
+  "type": "Blog",
+  "tags": [
+   "WebDev"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Mathcha",
+  "url": "https://www.mathcha.io/editor",
+  "desc": "Online math editor",
+  "type": "Tool/service",
+  "tags": [
+   "mathematics"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Mathonline",
+  "url": "https://mathonline.wikidot.com/",
+  "desc": "",
+  "type": "",
+  "tags": [
+   "mathematics"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "MattPD/cpplinks",
+  "url": "https://github.com/MattPD/cpplinks",
+  "desc": "A categorized list of C++ resources",
+  "type": "List, database, repository",
+  "tags": [
+   "programming",
+   "C++"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "meh.",
+  "url": "https://nee.lv",
+  "desc": "Cutting GTA Online loading times by 70%",
+  "type": "Blog",
+  "tags": [
+   "computer science"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Modern C",
+  "url": "http://hyse.org/pdf/ModernC.pdf",
+  "desc": "",
+  "type": "Book",
+  "tags": [
+   "programming",
+   "C"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Modernes C++",
+  "url": "https://www.modernescpp.com",
+  "desc": "",
+  "type": "",
+  "tags": [
+   "programming",
+   "C++"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "MYCPLUS",
+  "url": "https://www.mycplus.com/",
+  "desc": "",
+  "type": "",
+  "tags": [
+   "programming",
+   "C++",
+   "C"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "NA » NES Programming",
+  "url": "http://archive.nes.science/nintendoage-forums/nintendoage.com/forum/messageviewadfa.html?catid=22&threadid=7155",
+  "desc": "",
+  "type": "Tutorial, guide, manual",
+  "tags": [
+   "assembly",
+   "GameDev"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "nand2tetris",
+  "url": "https://www.nand2tetris.org",
+  "desc": "",
+  "type": "",
+  "tags": [
+   "computer science",
+   "programming"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "NandGame",
+  "url": "http://nandgame.com/",
+  "desc": "Build a computer from scratch",
+  "type": "Game",
+  "tags": [
+   "computer science",
+   "computer engineering"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "NCURSES Programming HOWTO",
+  "url": "http://www.tldp.org/HOWTO/NCURSES-Programming-HOWTO/index.html",
+  "desc": "Also check \"conio.h\"",
+  "type": "Tutorial, guide, manual",
+  "tags": [
+   "programming",
+   "C++",
+   "C"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "nixCraft",
+  "url": "https://www.cyberciti.biz",
+  "desc": "",
+  "type": "Blog",
+  "tags": [
+   "*nix"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "null program",
+  "url": "https://nullprogram.com/",
+  "desc": "",
+  "type": "Blog",
+  "tags": [
+   "computer science"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "O'Reilly Open Books Project",
+  "url": "https://www.oreilly.com/openbook/",
+  "desc": "",
+  "type": "Book",
+  "tags": [
+   "programming"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Oh Shit, Git!?!",
+  "url": "https://ohshitgit.com/",
+  "desc": "",
+  "type": "",
+  "tags": [
+   "Git"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "On undoing, fixing, or removing commits in git",
+  "url": "http://sethrobertson.github.io/GitFixUm/fixup.html",
+  "desc": "",
+  "type": "Article, post",
+  "tags": [
+   "Git",
+   "dev tools"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Online Turing Machine Simulator",
+  "url": "https://turingmachinesimulator.com",
+  "desc": "",
+  "type": "Tool/service",
+  "tags": [
+   "computer science",
+   "algorithms",
+   "Turing"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "OOP in C",
+  "url": "https://www.state-machine.com/doc/AN_OOP_in_C.pdf",
+  "desc": "",
+  "type": "",
+  "tags": [
+   "programming",
+   "C"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Open Textbook Library",
+  "url": "https://open.umn.edu/opentextbooks",
+  "desc": "",
+  "type": "Library, archive",
+  "tags": [],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "OpenGameArt.org",
+  "url": "https://opengameart.org",
+  "desc": "Free, legal art for Open Source game projects",
+  "type": "List, database, repository",
+  "tags": [
+   "GameDev"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "OpenStax",
+  "url": "https://openstax.org",
+  "desc": "",
+  "type": "Course, textbook",
+  "tags": [],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Oscar Forner",
+  "url": "https://oscarforner.com/",
+  "desc": "",
+  "type": "",
+  "tags": [
+   "computer science",
+   "algorithms"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "OSDev.org",
+  "url": "https://wiki.osdev.org/Main_Page",
+  "desc": "Information about the creation of operating systems",
+  "type": "Wiki, encyclopedia",
+  "tags": [
+   "computer science",
+   "OS"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "OSSU",
+  "url": "https://github.com/ossu",
+  "desc": "Path to a free self-taught education in Computer Science",
+  "type": "Course, textbook",
+  "tags": [
+   "computer science"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Papers We Love",
+  "url": "https://github.com/papers-we-love/papers-we-love",
+  "desc": "",
+  "type": "List, database, repository",
+  "tags": [
+   "computer science"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "PardCode",
+  "url": "https://www.youtube.com/channel/UCs1ssVSR49YItKE7DZ3-Jcw",
+  "desc": "",
+  "type": "YT channel/playlist",
+  "tags": [
+   "GameDev"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Pauls Online Math Notes",
+  "url": "https://tutorial.math.lamar.edu/",
+  "desc": "",
+  "type": "",
+  "tags": [
+   "mathematics"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "POSIX Shell and Utilities Quick Reference",
+  "url": "https://shellhaters.org/",
+  "desc": "",
+  "type": "",
+  "tags": [
+   "programming",
+   "shell",
+   "*nix"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Post-Production Editing using Git",
+  "url": "http://sethrobertson.github.io/GitPostProduction/gpp.html",
+  "desc": "",
+  "type": "Article, post",
+  "tags": [
+   "Git",
+   "dev tools"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "PrivacyTools",
+  "url": "https://privacytools.io",
+  "desc": "",
+  "type": "Webportal, website",
+  "tags": [
+   "privacy"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Prof. Rahul Simha's Course Materials",
+  "url": "https://www2.seas.gwu.edu/~simhaweb",
+  "desc": "",
+  "type": "Course, textbook",
+  "tags": [
+   "computer science",
+   "algorithms"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Proof That Computers Can't Do Everything (The Halting Problem)",
+  "url": "https://www.youtube.com/watch?v=92WHN-pAFCs",
+  "desc": "",
+  "type": "Video",
+  "tags": [
+   "computer science"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Regex Crossword",
+  "url": "https://regexcrossword.com",
+  "desc": "",
+  "type": "Game",
+  "tags": [
+   "RegEx"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "regexe",
+  "url": "http://www.regexe.com",
+  "desc": "Online regular expressions testing",
+  "type": "Tool/service",
+  "tags": [
+   "RegEx"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "RegexOne",
+  "url": "https://regexone.com",
+  "desc": "",
+  "type": "",
+  "tags": [
+   "RegEx"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Research Computing University of Colorado Boulder",
+  "url": "https://curc.readthedocs.io",
+  "desc": "",
+  "type": "",
+  "tags": [
+   "computer science"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Reverse engineering a GameBoy Advance game - Complete Guide",
+  "url": "https://itnext.io/reverse-engineering-a-gameboy-advance-game-complete-guide-c2fca11f9e59",
+  "desc": "",
+  "type": "Tutorial, guide, manual",
+  "tags": [
+   "GameDev"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Rook Polynomials",
+  "url": "https://homepages.bluffton.edu/~nesterd/apps/rookpolynomials.html",
+  "desc": "",
+  "type": "Tool/service",
+  "tags": [
+   "mathematics"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "sdslabs/recommends",
+  "url": "https://github.com/sdslabs/recommends",
+  "desc": "",
+  "type": "",
+  "tags": [
+   "computer science"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Semantic Versioning",
+  "url": "https://semver.org",
+  "desc": "",
+  "type": "Manifesto, specification, guidelines",
+  "tags": [
+   "computer science",
+   "standard"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "SFINAE and enable_if - Eli Bendersky's website",
+  "url": "https://eli.thegreenplace.net/2014/sfinae-and-enable_if/",
+  "desc": "",
+  "type": "Article, post",
+  "tags": [
+   "computer science",
+   "programming",
+   "C++"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "ShellCheck",
+  "url": "https://www.shellcheck.net/",
+  "desc": "Analysis tool for shell scripts",
+  "type": "Tool/service",
+  "tags": [
+   "programming",
+   "shell"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Software optimization resources",
+  "url": "https://www.agner.org/optimize",
+  "desc": "",
+  "type": "List, database, repository",
+  "tags": [
+   "computer science",
+   "programming"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Sorting Networks",
+  "url": "http://pages.ripco.net/~jgamble/nw",
+  "desc": "Demonstrates layout",
+  "type": "Tool/service",
+  "tags": [
+   "computer science",
+   "algorithms"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "SQLite C tutorial",
+  "url": "https://zetcode.com/db/sqlitec/",
+  "desc": "",
+  "type": "Tutorial, guide, manual",
+  "tags": [
+   "computer science",
+   "programming",
+   "C",
+   "databases"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "std::wstring VS std::string",
+  "url": "https://stackoverflow.com/q/402283/10247460",
+  "desc": "",
+  "type": "Thread, Q&A",
+  "tags": [
+   "programming",
+   "C++"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Storage Classes in C",
+  "url": "https://www.geeksforgeeks.org/storage-classes-in-c",
+  "desc": "But do the norminette accept them???",
+  "type": "Article, post",
+  "tags": [
+   "programming",
+   "C"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Structure and Interpretation of Computer Programs",
+  "url": "https://mitpress.mit.edu/sites/default/files/sicp/index.html",
+  "desc": "",
+  "type": "Book",
+  "tags": [
+   "computer science"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Symbolab",
+  "url": "https://www.symbolab.com",
+  "desc": "Computes step-by-step solutions to mathematical problems",
+  "type": "Tool/service",
+  "tags": [
+   "mathematics"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "TDDD38/726G82 - Advanced programming in C++, Template design patterns, Christoffer Holm",
+  "url": "https://www.ida.liu.se/~TDDD38/lecture/slides/design_patterns.pdf",
+  "desc": "",
+  "type": "",
+  "tags": [
+   "programming",
+   "C++"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Teach Yourself Cobol In 21 Days",
+  "url": "http://testa.roberta.free.fr/My%20Books/Mainframe/Cobol/Teach%20Yourself%20Cobol%20In%2021%20Days%20(2nd%20Ed).pdf",
+  "desc": "",
+  "type": "Book",
+  "tags": [
+   "programming",
+   "COBOL"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Teach Yourself Computer Science",
+  "url": "https://teachyourselfcs.com",
+  "desc": "",
+  "type": "",
+  "tags": [
+   "computer science"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Tech Talk about C++ and C Issues / Comeau C++ and C FAQ",
+  "url": "https://web.archive.org/web/20181217110054/http://www.comeaucomputing.com:80/techtalk",
+  "desc": "",
+  "type": "FAQ",
+  "tags": [
+   "programming",
+   "C++",
+   "C"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Techie Delight",
+  "url": "https://www.techiedelight.com/",
+  "desc": "",
+  "type": "Blog",
+  "tags": [
+   "computer science",
+   "algorithms",
+   "programming"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Testing With CTest",
+  "url": "https://gitlab.kitware.com/cmake/community/-/wikis/doc/ctest/Testing-With-CTest",
+  "desc": "",
+  "type": "",
+  "tags": [
+   "testing"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "The Art of Assembly Language",
+  "url": "http://www.plantation-productions.com/Webster/www.artofasm.com/Linux/HTML/AoATOC.html",
+  "desc": "",
+  "type": "",
+  "tags": [
+   "computer science",
+   "assembly",
+   "programming"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "The Best Motherfucking Website",
+  "url": "https://thebestmotherfucking.website",
+  "desc": "How To Create A Lightweight Web Page",
+  "type": "Webportal, website",
+  "tags": [
+   "WebDev",
+   "humor"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "The C Book",
+  "url": "https://publications.gbdirect.co.uk/c_book/",
+  "desc": "",
+  "type": "Book",
+  "tags": [
+   "programming",
+   "C"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "The C89 Draft",
+  "url": "https://web.archive.org/web/20210408230522/https://port70.net/~nsz/c/c89/c89-draft.html",
+  "desc": "Maybe this can be used in libft",
+  "type": "Manifesto, specification, guidelines",
+  "tags": [
+   "programming",
+   "C",
+   "standard"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "The Definitive C++ Book Guide and List",
+  "url": "https://stackoverflow.com/q/388242",
+  "desc": "",
+  "type": "Thread, Q&A",
+  "tags": [
+   "programming",
+   "C++"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "The Dharma of Vi",
+  "url": "https://blog.samwhited.com/2015/04/the-dharma-of-vi/",
+  "desc": "",
+  "type": "Article, post",
+  "tags": [
+   "dev tools",
+   "Vim",
+   "humor"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "The Grymoire",
+  "url": "https://www.grymoire.com",
+  "desc": "Collection of writings published years ago",
+  "type": "",
+  "tags": [
+   "*nix",
+   "Linux"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "The Hitchhiker’s Guide to Online Anonymity",
+  "url": "https://anonymousplanet.org",
+  "desc": "",
+  "type": "Tutorial, guide, manual",
+  "tags": [
+   "privacy"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "The magic behind configure, make, make install",
+  "url": "https://thoughtbot.com/blog/the-magic-behind-configure-make-make-install",
+  "desc": "",
+  "type": "Article, post",
+  "tags": [
+   "dev tools",
+   "build systems"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "The Python Tutorial",
+  "url": "https://docs.python.org/3/tutorial/index.html",
+  "desc": "",
+  "type": "Tutorial, guide, manual",
+  "tags": [
+   "programming",
+   "Python"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "The Ultimate Oldschool PC Font Pack",
+  "url": "https://int10h.org/oldschool-pc-fonts",
+  "desc": "",
+  "type": "List, database, repository",
+  "tags": [
+   "retro",
+   "UI/UX"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "thispointer.com",
+  "url": "https://thispointer.com",
+  "desc": "",
+  "type": "",
+  "tags": [
+   "programming"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Throw The Switch",
+  "url": "https://www.throwtheswitch.org",
+  "desc": "",
+  "type": "",
+  "tags": [
+   "testing"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "TryHackMe",
+  "url": "https://tryhackme.com",
+  "desc": "Cyber security training",
+  "type": "",
+  "tags": [
+   "computer science",
+   "cybersecurity"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "TSnippet",
+  "url": "https://tsnippet.trust-in-soft.com",
+  "desc": "C/C++ interpreter designed to catch undefined behavior",
+  "type": "Tool/service",
+  "tags": [
+   "programming",
+   "C++",
+   "C"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Turing Complete",
+  "url": "https://wiki.c2.com/?TuringComplete",
+  "desc": "",
+  "type": "",
+  "tags": [
+   "computer science",
+   "algorithms",
+   "Turing"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Tutorial on writing makefiles",
+  "url": "https://www.math.colostate.edu/~yzhou/computer/writemakefile.html",
+  "desc": "",
+  "type": "Tutorial, guide, manual",
+  "tags": [
+   "dev tools",
+   "build systems"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Two-Bit History",
+  "url": "https://twobithistory.org",
+  "desc": "",
+  "type": "Blog",
+  "tags": [
+   "computer science"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "txti",
+  "url": "http://txti.es",
+  "desc": "Txti is fast web pages.Meh...",
+  "type": "Tool/service",
+  "tags": [
+   "WebDev"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Unity Learn",
+  "url": "https://unity.com/learn",
+  "desc": "",
+  "type": "",
+  "tags": [
+   "GameDev"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Unix ASCII games | awesome-ttygames",
+  "url": "https://ligurio.github.io/awesome-ttygames",
+  "desc": "Unix ASCII games",
+  "type": "List, database, repository",
+  "tags": [
+   "Linux",
+   "gaming"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "VIM Adventures",
+  "url": "https://vim-adventures.com/",
+  "desc": "",
+  "type": "",
+  "tags": [
+   "dev tools",
+   "Vim"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Vim Awesome",
+  "url": "https://vimawesome.com/",
+  "desc": "",
+  "type": "List, database, repository",
+  "tags": [
+   "dev tools",
+   "Vim"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Vim colors",
+  "url": "https://vimcolors.org",
+  "desc": "",
+  "type": "List, database, repository",
+  "tags": [
+   "dev tools",
+   "Vim"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Vim Kōans | Arabesque",
+  "url": "https://blog.sanctum.geek.nz/vim-koans/",
+  "desc": "",
+  "type": "Article, post",
+  "tags": [
+   "dev tools",
+   "Vim",
+   "humor"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Vim License Gen",
+  "url": "https://vim-license.dev/",
+  "desc": "",
+  "type": "Tool/service",
+  "tags": [
+   "dev tools",
+   "Vim"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Vim Statusline Generator",
+  "url": "http://tdaly.co.uk/projects/vim-statusline-generator",
+  "desc": "",
+  "type": "Tool/service",
+  "tags": [
+   "dev tools",
+   "Vim"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Vim Tips Wiki",
+  "url": "https://vim.fandom.com/wiki/Vim_Tips_Wiki",
+  "desc": "",
+  "type": "Wiki, encyclopedia",
+  "tags": [
+   "dev tools",
+   "Vim"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "vim.help",
+  "url": "https://vim.help/",
+  "desc": "",
+  "type": "Documentation",
+  "tags": [
+   "dev tools",
+   "Vim"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "VisuAlgo",
+  "url": "https://visualgo.net/",
+  "desc": "Algorithms visualization",
+  "type": "Webportal, website",
+  "tags": [
+   "algorithms"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Vita Hacks Guide",
+  "url": "https://vita.hacks.guide",
+  "desc": "",
+  "type": "",
+  "tags": [
+   "gaming",
+   "hacks"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Wat",
+  "url": "https://www.destroyallsoftware.com/talks/wat",
+  "desc": "Few examples of weird quirks of Ruby and JS",
+  "type": "Video",
+  "tags": [
+   "programming",
+   "humor"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "What are good Linux/Unix books for an advancing user?",
+  "url": "https://stackoverflow.com/q/236838/10247460",
+  "desc": "",
+  "type": "Thread, Q&A",
+  "tags": [
+   "*nix",
+   "Linux"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "What are X-macros?",
+  "url": "https://quuxplusone.github.io/blog/2021/02/01/x-macros",
+  "desc": "I need to use them in future projects",
+  "type": "Article, post",
+  "tags": [
+   "programming",
+   "C++",
+   "C"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "What Every C++ Developer Should Know to (Correctly) Define Global Constants",
+  "url": "https://www.fluentcpp.com/2019/07/23/how-to-define-a-global-constant-in-cpp/",
+  "desc": "",
+  "type": "Article, post",
+  "tags": [
+   "programming",
+   "C++"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "What every programmer should know about memory, Part 1 [LWN.net]",
+  "url": "https://lwn.net/Articles/250967/",
+  "desc": "",
+  "type": "Article, post",
+  "tags": [
+   "computer science",
+   "programming"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "When should static_cast, dynamic_cast, const_cast and reinterpret_cast be used?",
+  "url": "https://stackoverflow.com/a/332086/10247460",
+  "desc": "",
+  "type": "Thread, Q&A",
+  "tags": [
+   "programming",
+   "C++"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Why do we need C Unions?",
+  "url": "https://stackoverflow.com/q/252552/10247460",
+  "desc": "",
+  "type": "Thread, Q&A",
+  "tags": [
+   "programming",
+   "C"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Why is \"while ( !feof (file) )\" always wrong?",
+  "url": "https://stackoverflow.com/a/26557243/10247460",
+  "desc": "",
+  "type": "Thread, Q&A",
+  "tags": [
+   "programming",
+   "C"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "Why you need ARCHITECTURE.md",
+  "url": "https://matklad.github.io//2021/02/06/ARCHITECTURE.md.html",
+  "desc": "",
+  "type": "Article, post",
+  "tags": [
+   "software engineering"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "x86_64 Linux Assembly",
+  "url": "https://www.youtube.com/playlist?list=PLetF-YjXm-sCH6FrTz4AQhfH6INDQvQSn",
+  "desc": "",
+  "type": "YT channel/playlist",
+  "tags": [
+   "computer science",
+   "assembly",
+   "programming"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "x86-64 Assembly Language Programming with Ubuntu",
+  "url": "http://www.egr.unlv.edu/~ed/assembly64.pdf",
+  "desc": "",
+  "type": "",
+  "tags": [
+   "assembly",
+   "programming"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "YoLinux.com",
+  "url": "http://www.yolinux.com/",
+  "desc": "",
+  "type": "",
+  "tags": [
+   "*nix",
+   "Linux"
+  ],
+  "langs": [
+   "en"
+  ]
+ },
+ {
+  "title": "ZetCode",
+  "url": "https://zetcode.com/all",
+  "desc": "Tutorials for multiples programming languages.",
+  "type": "List, database, repository",
+  "tags": [
+   "programming",
+   "UI/UX",
+   "databases"
+  ],
+  "langs": [
+   "en"
+  ]
+ }
+]

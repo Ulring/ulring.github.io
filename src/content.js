@@ -167,19 +167,24 @@ const experience = {
     { id: 'splinedge', years: '2025–26', org: 'SplinEdge', role: 'Co-founder & full-stack engineer', text: 'Client applications (Spring backends, Angular frontends), discovery, hosting and CI/CD.' },
     { id: 'cbx', years: '2022–25', org: 'BMA Conseil IT / CBX Conseil', role: 'Full-stack developer', text: 'GalaxyTest and Timesheet with Spring Boot and Angular; 95% test coverage under SonarQube.' },
     { id: 'gep', years: '2022', org: 'Green Energy Park', role: 'Software engineer intern', text: 'Drone solar inspection with computer vision.' },
-    { id: 'school', years: '2020–23', org: 'EHEI Oujda · 1337', role: 'Master’s in Computer Science', text: 'Plus the 1337 coding school bootcamp, taught in C.' },
+    { id: 'school', years: '2020–23', org: 'EHEI Oujda · 1337', role: 'State engineering degree in computer science', text: 'Plus the 1337 coding school bootcamp, taught in C.' },
   ],
   fr: [
     { id: 'splinedge', years: '2025–26', org: 'SplinEdge', role: 'Cofondateur & ingénieur full-stack', text: 'Applications clients (backends Spring, frontends Angular), audits, hébergement et CI/CD.' },
     { id: 'cbx', years: '2022–25', org: 'BMA Conseil IT / CBX Conseil', role: 'Développeur full-stack', text: 'GalaxyTest et Timesheet avec Spring Boot et Angular ; 95 % de couverture de tests sous SonarQube.' },
     { id: 'gep', years: '2022', org: 'Green Energy Park', role: 'Stagiaire ingénieur logiciel', text: 'Inspection de panneaux solaires par drone avec la vision par ordinateur.' },
-    { id: 'school', years: '2020–23', org: 'EHEI Oujda · 1337', role: 'Master en informatique', text: 'Et le bootcamp de l’école 1337, enseigné en C.' },
+    { id: 'school', years: '2020–23', org: 'EHEI Oujda · 1337', role: 'Diplôme d’ingénieur d’État en informatique', text: 'Et le bootcamp de l’école 1337, enseigné en C.' },
   ],
 };
 
 // Blog posts: the Writing section and its nav link only appear once this has an entry.
 // { title, date: 'YYYY-MM-DD', url, minutes }
-const posts = { en: [], fr: [] };
+// slug = content/posts/<slug>.html; minutes and the page itself come from scripts/gen.mjs
+const postList = [
+  { slug: 'agents-inside-the-rules', title: 'Letting AI agents operate a server, inside the rules', date: '2026-10-15', topics: 'AI agents · Guardrails · DevOps', summary: 'A rulebook, a tested pre-execution guard and a CI backstop that let coding agents do real work on a server safely.' },
+  { slug: 'portable-hosting-platform', title: 'A portable hosting platform, built at home first', date: '2026-10-15', topics: 'Self-hosting · Docker · Traefik', summary: 'One machine run like a small platform: one entry point, isolated tenants, three environments per project and rules checked in CI.' },
+];
+const posts = { en: postList, fr: postList.map(p => ({ ...p, note: 'en anglais' })) };
 
 export const content = {
   en: {
@@ -196,7 +201,7 @@ export const content = {
     moreTitle: 'More work', more: more.en, labels: { problem: 'Problem', did: 'What I did', result: 'Result' },
     expTitle: 'Experience', experience: experience.en,
     skillsTitle: 'Skills', tierNames: { core: 'Core', comfortable: 'Comfortable', also: 'Also used' }, skillsHint: 'Hover or tap a skill to see where I used it.',
-    writingTitle: 'Writing', posts: posts.en,
+    writingTitle: 'Writing', posts: posts.en, readLabel: 'min read', allWriting: 'All writing', linksLabel: 'Links I’ve collected', linksPage: { title: 'Links I’ve collected', lede: 'Tools, courses, papers and references I keep coming back to.', search: 'Search links', types: 'Type', tags: 'Tags', shown: 'shown', clear: 'Clear filters' },
     contact: { title: 'Let’s work together.', copy: 'Copy', copied: 'Copied', available: 'Available now', local: 'in Morocco', reply: 'I reply within a day.', name: 'Name', email: 'Email', about: 'About', options: [['project', 'A project'], ['job', 'A job opportunity'], ['question', 'A question'], ['other', 'Something else']], message: 'Message', send: 'Send', sent: 'Thanks, message sent. I’ll get back to you soon.' },
     credits: 'Scooter: “Vespa” by Jasmine Roberts (CC BY 3.0) · truck: Kenney Car Kit (CC0)',
   },
@@ -214,7 +219,7 @@ export const content = {
     moreTitle: 'Autres réalisations', more: more.fr, labels: { problem: 'Problème', did: 'Ce que j’ai fait', result: 'Résultat' },
     expTitle: 'Expérience', experience: experience.fr,
     skillsTitle: 'Compétences', tierNames: { core: 'Cœur', comfortable: 'À l’aise', also: 'Aussi utilisé' }, skillsHint: 'Survolez ou touchez une compétence pour voir où je l’ai utilisée.',
-    writingTitle: 'Articles', posts: posts.fr,
+    writingTitle: 'Articles', posts: posts.fr, readLabel: 'min de lecture', allWriting: 'Tous les articles', linksLabel: 'Liens que j’ai rassemblés', linksPage: { title: 'Liens que j’ai rassemblés', lede: 'Outils, cours, articles et références auxquels je reviens souvent.', search: 'Rechercher', types: 'Type', tags: 'Tags', shown: 'affichés', clear: 'Effacer les filtres' },
     contact: { title: 'Travaillons ensemble.', copy: 'Copier', copied: 'Copié', available: 'Disponible maintenant', local: 'au Maroc', reply: 'Je réponds sous 24 h.', name: 'Nom', email: 'Email', about: 'Sujet', options: [['project', 'Un projet'], ['job', 'Une offre d’emploi'], ['question', 'Une question'], ['other', 'Autre chose']], message: 'Message', send: 'Envoyer', sent: 'Merci, message envoyé. Je reviens vers vous vite.' },
     credits: 'Scooter : « Vespa » par Jasmine Roberts (CC BY 3.0) · camion : Car Kit de Kenney (CC0)',
   },

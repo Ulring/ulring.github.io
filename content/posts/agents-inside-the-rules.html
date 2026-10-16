@@ -1,0 +1,61 @@
+<div class="kicker"><span class="led" aria-hidden="true"></span>AI agents · Guardrails · DevOps</div>
+  <h1>Letting AI agents operate a server, inside the rules</h1>
+  <p class="lede">I use Claude Code and Codex to do real work on my hosting platform: scaffold stacks, debug TLS, read logs, ship changes. That's only comfortable because the server tells them how things are done, and stops them when they shouldn't do something.</p>
+
+  <section class="goals" aria-label="Principles">
+    <div class="goal"><b>Context</b><span>Every agent starts from the same rulebook.</span></div>
+    <div class="goal"><b>Enforcement</b><span>Dangerous actions are blocked before they run.</span></div>
+    <div class="goal"><b>Human in the loop</b><span>Shared infrastructure and production need a yes.</span></div>
+    <div class="goal"><b>Backstop</b><span>CI rejects broken stacks whatever wrote them.</span></div>
+  </section>
+
+  <h2>The problem with a helpful agent</h2>
+  <p>An agent with a shell on a server can do in seconds what takes me minutes, and that includes the wrong things. "Free up some disk space" can mean <code>docker system prune --volumes</code>. "Check why the app can't connect" can mean printing a container's environment, secrets included, straight into a chat transcript. Agents are good at following instructions. They need the right instructions, and limits for when the instructions aren't enough.</p>
+
+  <h2>Layer 1: one rulebook, loaded automatically</h2>
+  <p>The platform's repository has an <code>AGENTS.md</code>: how the server works, naming, paths, which network a tenant uses, where secrets live, what needs a human, plus a table of open issues and decisions already taken. It's written for an agent, so it's concrete: commands, paths and examples, not principles.</p>
+  <ul>
+    <li><strong>Codex</strong> reads <code>AGENTS.md</code> natively.</li>
+    <li><strong>Claude Code</strong> gets a <code>CLAUDE.md</code> that simply imports it, so there's one source of truth.</li>
+    <li>A short global instruction file on the host tells <em>every</em> session, started in any folder, to read the rulebook before touching Docker, DNS or deployments.</li>
+  </ul>
+  <p>Recording decisions matters as much as recording rules. When I make a call on a trade-off, it goes into the table as closed, with the date and the reason, and agents stop re-raising it in every session.</p>
+
+  <h2>Layer 2: a guard that runs before every action</h2>
+  <p>Claude Code supports <code>PreToolUse</code> hooks: a script that sees each command or file write before it runs and can allow it, block it, or require my confirmation. Mine has three outcomes:</p>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Decision</th><th>Examples</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Block</strong></td><td>pruning Docker volumes, <code>down -v</code>, recursive deletes on data directories, formatting or partitioning disks, disabling the firewall, mounting the Docker socket, reading secret files, unfiltered <code>docker inspect</code>, printing a container's environment, writing anything that looks like a token into the repo</td></tr>
+        <tr><td><strong>Ask me</strong></td><td><code>sudo</code>, editing or restarting shared infrastructure, stopping a production stack, force-pushing, piping a download into a shell, publishing a port</td></tr>
+        <tr><td><strong>Allow</strong></td><td>everything else: reading logs, scaffolding projects, linting, running dev and staging</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Static permission rules in the agent's settings add a second, simpler layer: secret paths can't be read with the file tools at all.</p>
+  <p>Secret hygiene shaped a lot of the rules. The agent never needs a secret's value, only its name, so every path that could print one is closed: no <code>cat</code> of secret files, no <code>docker compose config</code> without <code>-q</code> (it renders <code>env_file</code> contents), no <code>docker inspect</code> without a format filter. When the agent needs to prove credentials work, it runs a check inside the container that prints only an HTTP status code.</p>
+
+  <h2>Layer 3: a backstop that doesn't care who wrote the change</h2>
+  <p>Hooks only protect sessions that load them. A Codex session on my laptop, or me at 2 a.m., wouldn't be covered. So the same rules also live in a linter that checks every stack (pinned images, resource limits, no published ports, private databases, valid TLS labels) and runs as a Git pre-commit hook and in GitHub Actions on every push. Whatever the source, a change that breaks the rules can't land.</p>
+
+  <h2>Test the guard like any other code</h2>
+  <p>A guard is just pattern matching, and pattern matching has bugs. The guard has a regression suite of 43 cases: commands that must be blocked, ones that must ask, and ones that must pass. It runs in CI and whenever the guard changes.</p>
+  <div class="lesson">
+    <div class="tag">Lesson learned</div>
+    <p>The first version blocked its own maintenance. The rule for the shell's <code>. file</code> source command was written as an unanchored <code>\.</code>, which matched <em>any</em> dot followed later by a secret path. Even editing <code>agent-guard.sh</code> tripped it.</p>
+    <p>False positives are cheap compared with a missed block, but they train you to work around the guard, which defeats its purpose. Each one now becomes a new "must allow" test case before the pattern is fixed.</p>
+  </div>
+
+  <h2>What it's like in practice</h2>
+  <p>I can ask an agent to "host acme's shop with a frontend and an API". It reads the rulebook, scaffolds the stack in the right place with the right names and tenant network, writes the env files for dev, staging and prod, lists the secret variables I need to create (without asking me to paste them), lints, starts staging, tests it through Traefik, and commits. When it reaches for production or shared infrastructure, it stops and asks.</p>
+  <p>When something breaks, it diagnoses from evidence: it reads Traefik's logs, checks the served certificate with <code>openssl</code>, queries the log platform, and tests credentials with a single read-only API call instead of retrying blindly.</p>
+
+  <h2>Limits worth knowing</h2>
+  <ul>
+    <li>The guard reads text, not intent. It can't always tell a command from a commit message that mentions one, so it errs on the side of blocking.</li>
+    <li>Pattern rules aren't a sandbox. The agent runs as a user in the <code>docker</code> group, which is effectively root on that host. The guard reduces the chance of a mistake; least-privilege accounts and backups limit its impact.</li>
+    <li>Rules drift unless they're tested and kept in the same repository as the code they protect.</li>
+  </ul>
+
+  <p class="closing">The goal isn't to distrust the agent. It's the same thing we do for people: give them clear documentation, automate the guardrails, and require a second pair of eyes where the stakes are high.</p>

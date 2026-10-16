@@ -131,7 +131,10 @@ function page(c) {
 ${hasPosts ? `
     <section class="block" id="writing">
       <header class="block-head"><h2 class="kinetic">${esc(c.writingTitle)}</h2></header>
-      <ol class="posts">${c.posts.map(p => `<li><a href="${esc(p.url)}"><span class="t">${esc(p.title)}</span><span class="y">${esc(p.date)} · ${p.minutes} min</span></a></li>`).join('')}</ol>
+      <ol class="posts">${c.posts.map(p => `
+        <li><a href="/blog/${p.slug}/"><span class="t">${esc(p.title)}</span><span class="s">${esc(p.summary)}</span><span class="y">${fmtDate(p.date, c.lang)} · ${minutes(p.slug)} ${c.readLabel}${p.note ? ` · ${p.note}` : ''}</span></a></li>`).join('')}
+      </ol>
+      <p class="more-links"><a href="/links/">${esc(c.linksLabel)} →</a></p>
     </section>
 ` : ''}
     <section class="cta" id="contact">
@@ -155,6 +158,7 @@ ${hasPosts ? `
 
 <footer>
   <span>© 2026 ${esc(person.name)}</span>
+  <a href="/links/">${esc(c.linksLabel)}</a>
   <span class="credits">${esc(c.credits)}</span>
 </footer>
 </body>
@@ -162,6 +166,91 @@ ${hasPosts ? `
 `;
 }
 
+// ---------- shared bits for the sub-pages (blog posts, links); English only ----------
+const postBody = slug => fs.readFileSync(`content/posts/${slug}.html`, 'utf8');
+function minutes(slug) { return Math.max(1, Math.round(postBody(slug).replace(/<[^>]+>/g, ' ').split(/\s+/).length / 220)); }
+function fmtDate(d, lang) { return new Date(d + 'T12:00:00Z').toLocaleDateString(lang === 'fr' ? 'fr-FR' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' }); }
+
+function subPage(c, { title, description, path, type = 'website', css, js, main }) {
+  return `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>${esc(title)}</title>
+<meta name="description" content="${esc(description)}">
+<meta name="theme-color" content="#04060a">
+<meta property="og:title" content="${esc(title)}">
+<meta property="og:description" content="${esc(description)}">
+<meta property="og:type" content="${type}">
+<meta property="og:url" content="${person.site}${path}">
+<link rel="canonical" href="${person.site}${path}">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='5' fill='%23a8ecff'/%3E%3C/svg%3E">
+<link rel="preload" href="/fonts/ClashGrotesk-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/Switzer-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/src/style.css">
+<link rel="stylesheet" href="/src/${css}">${js ? `\n<script type="module" src="/src/${js}"></script>` : ''}
+</head>
+<body class="sub">
+<header class="top">
+  <a class="brand" href="/">${esc(person.name)}</a>
+  <nav aria-label="Main">
+    <a href="/#work">${c.nav.work}</a>
+    <a href="/#services">${c.nav.services}</a>
+    <a href="/#writing">${c.nav.writing}</a>
+  </nav>
+  <a class="btn small solid" href="/#contact">${c.nav.contact}</a>
+</header>
+<main class="sub-main">
+${main}
+</main>
+<footer>
+  <span>© 2026 ${esc(person.name)}</span>
+  <a href="/links/">${esc(c.linksLabel)}</a>
+</footer>
+</body>
+</html>
+`;
+}
+
+function postPage(c, p) {
+  // the old "kicker" line (an uppercase eyebrow label) becomes a plain meta line
+  const body = postBody(p.slug).replace(/<div class="kicker">[\s\S]*?<\/div>\s*/, '');
+  return subPage(c, {
+    title: `${p.title} · ${person.name}`, description: p.summary, path: `/blog/${p.slug}/`, type: 'article', css: 'post.css',
+    main: `  <a class="back" href="/#writing">← ${esc(c.allWriting)}</a>
+  <article class="post">
+    <p class="post-meta">${fmtDate(p.date, 'en')} · ${esc(p.topics)} · ${minutes(p.slug)} ${c.readLabel}</p>
+    ${body}
+  </article>`,
+  });
+}
+
+function linksPage(c) {
+  const L = c.linksPage, links = JSON.parse(fs.readFileSync('content/links.json', 'utf8'));
+  const count = (key, val) => links.filter(l => key === 'tags' ? l.tags.includes(val) : l.type === val).length;
+  const types = [...new Set(links.map(l => l.type).filter(Boolean))].sort((a, b) => count('type', b) - count('type', a));
+  const tags = [...new Set(links.flatMap(l => l.tags))].sort((a, b) => count('tags', b) - count('tags', a));
+  return subPage(c, {
+    title: `${L.title} · ${person.name}`, description: L.lede, path: '/links/', css: 'links.css', js: 'links.js',
+    main: `  <header class="links-head">
+    <h1>${esc(L.title)}</h1>
+    <p>${esc(L.lede)}</p>
+  </header>
+  <div class="filters" hidden>
+    <input type="search" id="q" placeholder="${esc(L.search)}" aria-label="${esc(L.search)}">
+    <div class="chips" data-group="type" aria-label="${esc(L.types)}"><span class="chips-label">${esc(L.types)}</span>${types.map(t => `<button type="button" data-v="${esc(t)}">${esc(t)} <i>${count('type', t)}</i></button>`).join('')}</div>
+    <div class="chips" data-group="tag" aria-label="${esc(L.tags)}"><span class="chips-label">${esc(L.tags)}</span>${tags.map(t => `<button type="button" data-v="${esc(t)}">${esc(t)} <i>${count('tags', t)}</i></button>`).join('')}</div>
+    <p class="count"><span id="n">${links.length}</span> / ${links.length} ${esc(L.shown)} <button type="button" id="clear" class="link-btn">${esc(L.clear)}</button></p>
+  </div>
+  <ol class="linklist">${links.map(l => `
+    <li data-type="${esc(l.type)}" data-tags="${esc(l.tags.join('|'))}" data-text="${esc(`${l.title} ${l.desc} ${l.tags.join(' ')} ${l.type}`.toLowerCase())}"><a href="${esc(l.url)}" rel="noopener" target="_blank">${esc(l.title)}</a><p>${esc(l.desc)}</p><span>${esc([l.type, ...l.tags].filter(Boolean).join(' · '))}</span></li>`).join('')}
+  </ol>`,
+  });
+}
+
 write('index.html', page(content.en));
 write('fr/index.html', page(content.fr));
-console.log('generated / and /fr/');
+for (const p of content.en.posts) write(`blog/${p.slug}/index.html`, postPage(content.en, p));
+write('links/index.html', linksPage(content.en));
+console.log(`generated /, /fr/, /links/ and ${content.en.posts.length} posts`);

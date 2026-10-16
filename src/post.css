@@ -1,0 +1,35 @@
+/* Blog posts: the site's dark look, set for long reading. Restyles the components the posts were written with. */
+.sub-main { position: relative; z-index: 1; padding: calc(var(--header) + 6vh) var(--pad) 10vh; }
+.back { display: inline-block; color: var(--dim); text-decoration: none; font-size: 14px; margin-bottom: 5vh; }
+.back:hover { color: var(--ice); }
+.post { max-width: 44rem; margin: 0 auto; font-size: 17.5px; line-height: 1.72; color: var(--soft); }
+.post-meta { color: var(--dim); font-size: 14px; margin: 0 0 14px; }
+.post h1 { font: 600 clamp(36px, 5.4vw, 64px)/1 var(--display); letter-spacing: -.035em; color: var(--ink); margin: 0 0 22px; text-wrap: balance; }
+.post .lede { font-size: clamp(18.5px, 1.6vw, 21px); color: var(--ink); line-height: 1.55; max-width: none; margin: 0 0 40px; }
+.post h2 { font-size: clamp(26px, 3vw, 36px); line-height: 1.1; color: var(--ink); margin: 56px 0 14px; }
+.post h3 { font-size: 20px; color: var(--ink); margin: 32px 0 8px; }
+.post p { margin: 0 0 18px; }
+.post ul { padding-left: 1.2rem; margin: 0 0 20px; display: grid; gap: 8px; }
+.post strong { color: var(--ink); font-weight: 600; }
+.post a { color: var(--ice); }
+.post code { font: .86em "SFMono-Regular", ui-monospace, Menlo, Consolas, monospace; background: rgba(255, 255, 255, .06); border: 1px solid var(--line); padding: .05em .35em; border-radius: 5px; color: var(--ink); overflow-wrap: anywhere; }
+.post pre { background: #0a0e14; border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; overflow-x: auto; margin: 0 0 24px; font-size: 14px; line-height: 1.6; }
+.post pre code { background: none; border: 0; padding: 0; font-size: inherit; overflow-wrap: normal; }
+.post .diagram { font: 13px/1.55 "SFMono-Regular", ui-monospace, Menlo, Consolas, monospace; white-space: pre; overflow-x: auto; background: #0a0e14; border: 1px solid var(--line); border-radius: 12px; padding: 18px; margin: 0 0 26px; color: var(--soft); }
+.post .diagram b { color: var(--ice); font-weight: 500; }
+.post .goals { display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: 0 28px; margin: 0 0 40px; border-top: 1px solid var(--line); }
+.post .goal { padding: 14px 0; border-bottom: 1px solid var(--line); }
+.post .goal b { display: block; font: 600 16px var(--display); color: var(--ice); margin-bottom: 2px; }
+.post .goal span { font-size: 15px; }
+.post .lesson { border-left: 2px solid var(--ice); padding: 4px 0 4px 20px; margin: 32px 0; }
+.post .lesson .tag { font: 600 16px var(--display); color: var(--ice); margin-bottom: 6px; }
+.post .tablewrap { overflow-x: auto; margin: 0 0 24px; }
+.post table { border-collapse: collapse; width: 100%; font-size: 15.5px; }
+.post th { text-align: left; font-weight: 500; color: var(--dim); font-size: 13.5px; border-bottom: 1px solid var(--line); padding: 8px 14px 8px 0; }
+.post td { border-bottom: 1px solid var(--line); padding: 10px 14px 10px 0; vertical-align: top; }
+.post .envs { display: grid; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); gap: 16px; margin: 0 0 24px; }
+.post .env { border-top: 2px solid var(--line); padding-top: 10px; }
+.post .env.prod { border-top-color: var(--ice); }
+.post .env h4 { font: 600 16px var(--display); color: var(--ink); margin: 0 0 4px; }
+.post .env p { font-size: 15px; margin: 0; }
+.post .closing { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 22px; color: var(--ink); }

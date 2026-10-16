@@ -3,4 +3,5 @@ dist
 # generated from src/content.js by scripts/gen.mjs
 /index.html
 /fr/
-/cv/
+/blog/
+/links/

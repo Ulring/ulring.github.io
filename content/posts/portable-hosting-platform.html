@@ -1,0 +1,120 @@
+<div class="kicker"><span class="led" aria-hidden="true"></span>Self-hosting · Docker · Traefik · Observability</div>
+  <h1>A portable hosting platform, built at home first</h1>
+  <p class="lede">My clients run on their own VPSs. At home I run a lab: a single machine that is the MVP of the platform I want everywhere. It's designed so that moving it to bigger hardware or a cloud server is a clone, a bootstrap script and a DNS change.</p>
+
+  <section class="goals" aria-label="Design goals">
+    <div class="goal"><b>Portable</b><span>Every host-level setting lives in Git next to a bootstrap script.</span></div>
+    <div class="goal"><b>Private by default</b><span>One public entry point; services opt in.</span></div>
+    <div class="goal"><b>Isolated tenants</b><span>Each client gets its own network and resource limits.</span></div>
+    <div class="goal"><b>Observable</b><span>Every log line and request lands in one place.</span></div>
+    <div class="goal"><b>Policy as code</b><span>Rules are checked on every commit, not remembered.</span></div>
+  </section>
+
+  <h2>The shape of it</h2>
+  <div class="diagram" role="img" aria-label="Request path from the internet to an application container">Internet ─▶ <b>DNS</b>  wildcard record, kept current by a dynamic-DNS timer
+         ─▶ router / firewall          only 80 and 443 forwarded
+         ─▶ <b>Traefik</b>                    TLS · headers · rate limit · compression
+              │  reads containers via a read-only Docker API proxy
+              ├─▶ proxy-c-acme      ─▶ c-acme-shop-prod-frontend / -backend
+              ├─▶ proxy-c-globex    ─▶ c-globex-crm-staging-…
+              └─▶ proxy             ─▶ shared tools (OpenObserve)
+         databases ─ only on each stack's private network, never routable
+
+ observability (internal network, no egress):  Vector + node-exporter ─▶ OpenObserve</div>
+  <p>Everything is Docker Compose. That choice is deliberate: it's boring, portable, readable by anyone, and the same files run on a home box, a 4 € VPS or a dedicated server.</p>
+
+  <h2>Storage: separate the control plane from the data plane</h2>
+  <p>The machine has a small fast disk and a large slow one. The operating system and a Git repository of configuration live on the fast disk. Everything that grows lives on a dedicated data volume: Docker's data root, the containerd image store, container logs, application data, build artifacts.</p>
+  <ul>
+    <li>Docker's <code>data-root</code> and containerd's <code>root</code> are moved to the data volume, and both systemd units carry <code>RequiresMountsFor=</code> on it. If the volume isn't mounted, Docker doesn't start, so nothing ever silently fills the system disk.</li>
+    <li>The daemon is tuned for a long-running host: log rotation (10 MB × 3 per container), <code>live-restore</code> so containers keep serving while the Docker daemon itself restarts or upgrades, and a dedicated <code>default-address-pools</code> range so dozens of tenant networks can never collide with the LAN.</li>
+    <li>SMART monitoring watches both disks.</li>
+  </ul>
+  <p>On a VPS the same layout maps onto a block-storage volume, which is exactly why the split exists.</p>
+
+  <h2>The edge: one door, many rooms</h2>
+  <p>Only Traefik publishes ports. It discovers services from Docker labels with <code>exposedByDefault=false</code>, so starting a container never publishes it by accident.</p>
+  <h3>Least privilege for service discovery</h3>
+  <p>Traefik never mounts the Docker socket. It talks to a socket proxy on an internal network that only permits read endpoints (containers, events, networks) and rejects every write. Anything that can read the raw socket effectively has root, so that capability stays in one tiny, read-only container.</p>
+  <h3>Security applied once, everywhere</h3>
+  <p>A middleware chain is attached at the entry-point level, so every route gets it without anyone remembering to add it:</p>
+  <ul>
+    <li>security headers: HSTS, <code>nosniff</code>, frame options, referrer and permissions policy, stripped <code>Server</code> and <code>X-Powered-By</code></li>
+    <li>per-client-IP rate limiting and response compression</li>
+    <li>header-alias stripping, so <code>X_Real_IP</code> can't impersonate <code>X-Real-IP</code> for PHP or CGI backends</li>
+  </ul>
+  <p>Opt-in extras are one label away: a stricter limit for APIs and login routes, a concurrent-request cap, a LAN-only allow-list for admin interfaces, and <code>X-Robots-Tag: noindex</code> for anything that isn't production.</p>
+  <h3>Two certificate strategies</h3>
+  <ul>
+    <li><strong>Platform domain:</strong> a single wildcard certificate through the ACME DNS-01 challenge, using the DNS provider's API. Every new subdomain is HTTPS from its first request and costs no extra issuance.</li>
+    <li><strong>Client domains:</strong> per-host certificates through HTTP-01, once the client's DNS points at the platform.</li>
+  </ul>
+
+  <div class="lesson">
+    <div class="tag">Lesson learned</div>
+    <p>The first certificate never arrived, and Traefik logged no error. The cause was one innocent label, <code>tls=true</code>, on a router. In Traefik, a router's own TLS block <strong>replaces</strong> the entry point's TLS defaults rather than merging with them, so that router silently lost both its certificate resolver and its wildcard domain, and Traefik never had a reason to ask Let's Encrypt for anything.</p>
+    <p>The fix took a minute. The real fix was making it impossible to repeat: the platform's linter now rejects a bare <code>tls=true</code>, and project templates always state their resolver and certificate domain explicitly.</p>
+  </div>
+
+  <h2>Multi-tenancy without Kubernetes</h2>
+  <p>Everything hosted falls into one of four kinds, and the kind decides the name, the path and the network:</p>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Kind</th><th>ID</th><th>Edge network</th></tr></thead>
+      <tbody>
+        <tr><td>Shared tool</td><td><code>openobserve</code></td><td><code>proxy</code></td></tr>
+        <tr><td>Personal project</td><td><code>p-portfolio</code></td><td><code>proxy-personal</code></td></tr>
+        <tr><td>Client project</td><td><code>c-acme-shop</code></td><td><code>proxy-c-acme</code></td></tr>
+        <tr><td>Tool hosted for a client</td><td><code>c-acme-n8n</code></td><td><code>proxy-c-acme</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p><strong>Network isolation.</strong> Each client has its own edge network, shared only with Traefik. Clients can't reach each other's containers, and databases sit on each stack's private network where nothing from the edge can route to them. Traefik joins new tenant networks live, without a restart.</p>
+  <p><strong>Environments.</strong> A project is one Compose file whose services are its parts (<code>frontend</code>, <code>backend</code>, <code>db</code>, <code>worker</code>). Three small env files run it three ways:</p>
+  <div class="envs">
+    <div class="env"><h4>dev</h4><p>Latest build, LAN-only, noindex, smallest limits.</p></div>
+    <div class="env"><h4>staging</h4><p>Client preview, noindex, reduced limits.</p></div>
+    <div class="env prod"><h4>prod</h4><p>Client domain, full limits.</p></div>
+  </div>
+  <p>Names are mechanical: <code>c-acme-shop-staging-backend</code> is the container, the Traefik router and the log label. Data, secrets and builds mirror the same path, so anything can be found by reasoning instead of searching. Every container gets CPU and memory limits, <code>no-new-privileges</code> and a pinned image tag. A wrapper makes the environment an explicit argument, so prod is never started by accident:</p>
+  <pre><code>bin/new-project client acme shop          # stack, env files, tenant network
+bin/dc clients/acme/shop staging up -d    # environment is always explicit
+bin/dc clients/acme/shop prod logs -f backend</code></pre>
+
+  <h2>Secrets never touch Git</h2>
+  <p>Configuration is versioned; secrets are not. They live in a root-owned directory on the host, one file per component and environment, mode 600, and Compose only references them through <code>env_file</code>. The repository could be made public without leaking a single credential.</p>
+
+  <h2>Observability: one pane for everything</h2>
+  <p>OpenObserve is the single place for logs and metrics, fed by a small collector stack:</p>
+  <ul>
+    <li><strong>Vector</strong> tails every container through its own read-only API proxy (allowed to read logs, nothing else). A VRL transform tags each line with its project and service, parses JSON payloads, and routes Traefik's access log to its own stream.</li>
+    <li>That access stream holds every request with host, status, duration and client, which makes "which tenant is throwing 5xx right now" a single query.</li>
+    <li><strong>node-exporter</strong> metrics go in through Prometheus remote-write.</li>
+    <li>The pipeline runs on an internal Docker network with no internet egress, and retention is capped at 30 days so telemetry can't fill the disk.</li>
+  </ul>
+
+  <h2>Policy as code</h2>
+  <p>Conventions only hold if something checks them. A linter renders every stack in every environment and fails on:</p>
+  <ul>
+    <li>unpinned images, missing CPU or memory limits, missing <code>no-new-privileges</code>, privileged or host-network containers</li>
+    <li>published ports anywhere except the edge, and Docker socket mounts anywhere except the read-only proxies</li>
+    <li>databases on an edge network, wrong tenant networks, names that break the convention</li>
+    <li>TLS and routing mistakes: bare <code>tls=true</code>, hostnames too deep for the wildcard, references to middlewares that don't exist</li>
+    <li>invalid Traefik dynamic configuration, and anything in the repository that looks like a secret</li>
+  </ul>
+  <p>It runs as a Git pre-commit hook and again in GitHub Actions on every push. A stack that breaks the rules can't land.</p>
+
+  <h2>Built to move</h2>
+  <p>Everything needed to rebuild the platform is in one private repository: the stacks, copies of every host-level config (Docker daemon, containerd, systemd overrides, DDNS units, SSH hardening, firewall rules), a bootstrap script for a fresh machine, an inventory of what runs where, and runbooks for disaster recovery and remote access. Moving to new hardware or a VPS is:</p>
+  <pre><code>git clone …/server-ops &amp;&amp; sudo host/scripts/bootstrap-host.sh
+# restore data, recreate tenant networks, docker compose up, switch DNS</code></pre>
+
+  <h2>What's next</h2>
+  <ul>
+    <li>Cloudflare Tunnel in front: no inbound ports at all, the origin IP hidden, DDoS and bot protection at the edge</li>
+    <li>a CI image pipeline: GitHub Actions builds and signs versioned images, hosts only pull</li>
+    <li>external uptime checks and alerting on error rates, disk usage and certificate expiry</li>
+    <li>encrypted off-site backups with scheduled restore tests</li>
+  </ul>
+
+  <p class="closing">It's a lab, but it runs like a small platform: one entry point, isolated tenants, three environments per project, central telemetry and every rule enforced in CI. When it outgrows the box, it moves.</p>

@@ -1,0 +1,28 @@
+.sub-main { position: relative; z-index: 1; padding: calc(var(--header) + 6vh) var(--pad) 10vh; }
+.links-head h1 { font: 600 clamp(40px, 6vw, 84px)/.95 var(--display); letter-spacing: -.04em; margin: 0 0 16px; }
+.links-head p { color: var(--soft); font-size: 18px; margin: 0 0 5vh; max-width: 36rem; }
+.filters { display: grid; gap: 14px; margin-bottom: 4vh; }
+.filters[hidden] { display: none; }
+.filters input { max-width: 30rem; font: inherit; font-size: 16px; color: var(--ink); background: rgba(255, 255, 255, .04); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; }
+.filters input:focus { outline: none; border-color: var(--ice); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.chips-label { color: var(--dim); font-size: 13px; width: 3.5rem; }
+.chips button { font: 500 13px var(--body); color: var(--soft); background: none; border: 1px solid var(--line); border-radius: 999px; padding: 4px 11px; cursor: pointer; }
+.chips button i { font-style: normal; color: var(--dim); margin-left: 3px; }
+.chips button:hover { border-color: rgba(168, 236, 255, .5); }
+.chips button[aria-pressed="true"] { background: var(--ice); border-color: var(--ice); color: var(--bg); }
+.chips button[aria-pressed="true"] i { color: var(--bg); }
+.count { color: var(--dim); font-size: 14px; margin: 0; }
+.link-btn { font: inherit; color: var(--ice); background: none; border: 0; cursor: pointer; margin-left: 10px; padding: 0; }
+.linklist { list-style: none; margin: 0; padding: 0; columns: 2 26rem; column-gap: 48px; }
+.linklist li { break-inside: avoid; padding: 14px 0; border-top: 1px solid var(--line); }
+.linklist li[hidden] { display: none; }
+.linklist a { font: 600 18px var(--display); text-decoration: none; letter-spacing: -.01em; }
+.linklist a:hover { color: var(--ice); }
+.linklist p { margin: 3px 0 4px; color: var(--soft); font-size: 15px; line-height: 1.5; }
+.linklist span { color: var(--dim); font-size: 12.5px; }
+@media (max-width: 860px) {
+  .chips { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; padding-bottom: 2px; }   /* one swipeable row per group on phones */
+  .chips button { flex: none; }
+  .chips-label { flex: none; width: auto; margin-right: 4px; }
+}

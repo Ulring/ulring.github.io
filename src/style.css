@@ -133,7 +133,15 @@ button.skill:hover, button.skill.on { border-color: var(--ice); background: rgba
 /* writing */
 .posts { list-style: none; margin: 0; padding: 0; }
 .posts a { display: flex; justify-content: space-between; gap: 16px; padding: 18px 0; border-top: 1px solid var(--line); text-decoration: none; }
-.posts .t { font: 600 20px var(--display); }
+.posts .t { font: 600 clamp(20px, 2vw, 26px) var(--display); letter-spacing: -.02em; }
+.posts a { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 24px; align-items: baseline; }
+.posts .s { grid-column: 1; grid-row: 2; color: var(--soft); font-size: 15px; }
+.posts a:hover .t { color: var(--ice); }
+.more-links { margin: 24px 0 0; }
+.more-links a { color: var(--soft); text-decoration: none; border-bottom: 1px solid var(--line); }
+.more-links a:hover { color: var(--ice); border-color: var(--ice); }
+footer a { color: var(--soft); text-decoration: none; }
+footer a:hover { color: var(--ice); }
 .posts .y { color: var(--dim); font-size: 14px; white-space: nowrap; }
 
 /* contact: big call to action */
