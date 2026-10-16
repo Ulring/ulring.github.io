@@ -4,6 +4,8 @@ import { content, person, skillTiers, caseStudies } from '../src/content.js';
 
 // case studies are drafts until Anass has reviewed them: only built with DRAFTS=1 (local preview)
 const DRAFTS = process.env.DRAFTS === '1';
+// GoatCounter: cookie-free visit counts (dashboard at ulring.goatcounter.com)
+const ANALYTICS = '<script data-goatcounter="https://ulring.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>';
 const cases = DRAFTS ? caseStudies : [];
 const OG = `${person.site}/og.png`;
 const ogTags = `<meta property="og:image" content="${OG}">\n<meta property="og:image:width" content="1200">\n<meta property="og:image:height" content="630">\n<meta name="twitter:card" content="summary_large_image">`;
@@ -78,6 +80,7 @@ ${ogTags}
 <link rel="preload" href="/fonts/Switzer-Variable.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/src/style.css">
 <script type="module" src="/src/main.js"></script>
+${ANALYTICS}
 </head>
 <body data-lang="${c.lang}" data-ask-msg="${esc(c.askMsg)}" data-sent="${esc(c.contact.sent)}" data-cv-busy="${esc(c.cta.cvBusy)}" data-cv-fallback="${esc(c.cta.cvFallback)}" data-copied="${esc(c.contact.copied)}">
 <canvas id="sand" aria-hidden="true"></canvas>
@@ -209,6 +212,7 @@ ${ogTags}
 <link rel="preload" href="/fonts/Switzer-Variable.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/src/style.css">
 <link rel="stylesheet" href="/src/${css}">${js ? `\n<script type="module" src="/src/${js}"></script>` : ''}
+${ANALYTICS}
 </head>
 <body class="sub">
 <header class="top">

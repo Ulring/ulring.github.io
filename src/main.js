@@ -53,7 +53,7 @@ function prefill(type, message) {
 }
 document.querySelectorAll('[data-ask]').forEach(b => b.addEventListener('click', e => { e.preventDefault(); prefill('question', body.askMsg + b.dataset.ask + '.\n\n'); }));
 
-const WEB3FORMS_KEY = '';   // free key from web3forms.com; empty = open the visitor's mail app instead
+const WEB3FORMS_KEY = '0f32c1ee-be7d-4a8c-92b1-6e4f859bb71e';   // web3forms.com form key; public by design (it only lets people send to Anass's inbox)
 form.addEventListener('submit', async e => {
   e.preventDefault();
   const f = Object.fromEntries(new FormData(form)), status = document.getElementById('form-status');
