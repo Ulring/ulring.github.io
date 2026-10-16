@@ -19,7 +19,8 @@ const projects = {
       points: [
         'Mission planning with stops, pick-ups and per-city pricing, and replanning on the fly',
         'Vehicle papers with expiry alerts, maintenance work orders, fuel and motorway toll tracking',
-        'Separate access for fleet managers, data-entry agents and drivers',
+        'Fuel refills checked against distance driven, so theft and abuse get flagged',
+        'Maintenance predicted from mileage, and about twenty alerts for papers, inspections and toll cards',
         'Driver mobile app API, with forced app updates',
         'Built for security and performance from the start: per-role data visibility, and queries that stay fast as the data grows',
       ],
@@ -41,7 +42,7 @@ const projects = {
     {
       id: 'galaxytest', figure: 'laptop', org: 'CBX Conseil', years: '2023–2025',
       title: 'GalaxyTest',
-      lede: 'A coding-game platform in the spirit of CodinGame, used to assess developers before hiring them.',
+      lede: 'A complete hiring flow for developers: from the apply button on the company’s website, through a coding-game test in the spirit of CodinGame, to the job offer.',
       points: [
         'Test campaigns per technology, with candidates invited by email',
         'Timed tests mixing multiple choice, written answers and code',
@@ -52,7 +53,7 @@ const projects = {
     {
       id: 'timesheet', figure: 'calendar', org: 'CBX Conseil', years: '2023–2025',
       title: 'Timesheet',
-      lede: 'The back office of a consulting firm: consultants fill in their monthly activity report (CRA), and billing follows from it.',
+      lede: 'Built around how a French consulting firm really works, where global tools like Clockify fall short: monthly activity reports (CRA) in days, and billing that follows from them.',
       points: [
         'Worked days computed with each country’s public holidays, leave and on-call duty',
         'Client invoices generated as PDF from validated reports, plus supplier invoices',
@@ -70,7 +71,8 @@ const projects = {
       points: [
         'Planification des missions avec arrêts, prises en charge et tarifs par ville, et replanification à la volée',
         'Documents des véhicules avec alertes d’expiration, ordres de maintenance, suivi carburant et péage',
-        'Accès séparés pour gestionnaires de parc, agents de saisie et chauffeurs',
+        'Pleins de carburant comparés aux kilomètres parcourus, pour repérer vols et abus',
+        'Entretien prévu selon le kilométrage, et une vingtaine d’alertes pour documents, visites et cartes Jawaz',
         'API de l’app mobile chauffeurs, avec mises à jour obligatoires',
         'Pensé dès le départ pour la sécurité et la performance : visibilité des données par rôle, et requêtes qui restent rapides quand les données grossissent',
       ],
@@ -92,7 +94,7 @@ const projects = {
     {
       id: 'galaxytest', figure: 'laptop', org: 'CBX Conseil', years: '2023–2025',
       title: 'GalaxyTest',
-      lede: 'Une plateforme de coding game dans l’esprit de CodinGame, pour évaluer les développeurs avant de les recruter.',
+      lede: 'Un parcours de recrutement complet : du bouton « postuler » sur le site de l’entreprise, à un test de coding game dans l’esprit de CodinGame, jusqu’à l’offre d’emploi.',
       points: [
         'Campagnes de tests par technologie, candidats invités par email',
         'Tests chronométrés mêlant QCM, réponses écrites et code',
@@ -103,7 +105,7 @@ const projects = {
     {
       id: 'timesheet', figure: 'calendar', org: 'CBX Conseil', years: '2023–2025',
       title: 'Timesheet',
-      lede: 'Le back-office d’une ESN : les consultants saisissent leur compte rendu d’activité (CRA) mensuel, et la facturation en découle.',
+      lede: 'Pensé pour le fonctionnement réel d’une ESN française, là où des outils globaux comme Clockify ne suffisent pas : CRA mensuels en jours, et facturation qui en découle.',
       points: [
         'Jours travaillés calculés avec les jours fériés de chaque pays, les congés et les astreintes',
         'Factures clients générées en PDF à partir des CRA validés, plus les factures fournisseurs',
@@ -187,17 +189,21 @@ const postList = [
 const posts = { en: postList, fr: postList.map(p => ({ ...p, note: 'en anglais' })) };
 
 
-// Case studies (English only). Facts come from the code; no client names, no screenshots.
+// Case studies (English only). Facts come from the code and from Anass; no client names, no screenshots.
+const ul = items => `<ul>${items.map(i => `<li>${i}</li>`).join('')}</ul>`;
 export const caseStudies = [
   {
-    id: 'fleet', title: 'Fleet management ERP', summary: 'How a small team built the system that runs a large company’s transport operation, with security and performance as requirements from day one.',
-    facts: [['Role', 'Full-stack engineer, co-founder of the studio'], ['Team', 'Small team, 275+ commits'], ['Stack', 'Java 25, Spring Boot 4, PostgreSQL, Redis, Flyway, Next.js, Docker'], ['Users', 'Admins, fleet managers, data-entry agents, sales reps, drivers']],
+    id: 'fleet', title: 'Fleet management ERP', summary: 'The system that runs a large company’s transport operation: missions, vehicles and drivers, built to catch waste and theft and to keep every vehicle legal and maintained.',
+    facts: [['Role', 'Full-stack engineer, co-founder of the studio'], ['Team', 'Small team, 275+ commits'], ['Stack', 'Java 25, Spring Boot 4, PostgreSQL, Redis, Flyway, Next.js, Docker, GitHub Actions'], ['Users', 'Admins, fleet managers, data-entry agents, sales reps, drivers']],
     sections: [
-      ['The problem', ['A large company runs its own fleet every day: trucks, drivers, missions with several stops and pick-ups, fuel, motorway tolls, maintenance and vehicle papers that expire. Before this system, much of it lived in spreadsheets and phone calls, with no single view of what each vehicle costs or where it is.']],
-      ['What we built', ['A back office for the office teams and an API for the drivers’ mobile app, on one Spring Boot backend.', '<ul><li><strong>Missions:</strong> planning with stops, pick-ups and per-city pricing with estimated distances, and replanning when the day changes.</li><li><strong>Vehicles:</strong> papers with expiry alerts, maintenance work orders with durations, fuel entries with consumption thresholds, toll entries.</li><li><strong>Alerts:</strong> configurable rules, scoped to who should see them.</li><li><strong>Drivers:</strong> trip stops and statuses from the phone, with forced app updates so nobody runs an old version.</li></ul>']],
-      ['Security', ['<ul><li>Five roles, and a permission check on every endpoint (more than a hundred), not just on the menu.</li><li>Sign-in tokens can be revoked instantly: a stolen phone or a departing employee is cut off at once, not when the token expires.</li><li>Vehicle papers and fuel receipts are only reachable through signed links that expire, never public file URLs.</li><li>Deleting a mission is audited.</li></ul>']],
-      ['Performance', ['<ul><li>Every list is paginated, so screens stay fast as years of missions pile up.</li><li>Queries load related data in one go instead of one query per row (the classic “N+1” problem).</li><li>Heavy reports use database views and functions, and every schema change is a versioned migration (20 so far), so the database evolves without manual fixes.</li></ul>']],
-      ['What I’d do next', ['Move the heaviest dashboards to pre-computed summaries, and add load tests to the CI pipeline so performance regressions are caught before release.']],
+      ['The problem', ['Running a big fleet leaks money in quiet ways: fuel that disappears, toll cards nobody tracks, vehicles driven until they break, insurance and inspections that lapse because a driver forgot. The company needed one system that plans the work and also notices when something is off.']],
+      ['What we built', ['A back office for the office teams and an API for the drivers’ mobile app, on one Spring Boot backend.', ul(['<strong>Missions:</strong> planning with stops, pick-ups and per-city pricing with estimated distances, and replanning when the day changes.', '<strong>Money per trip:</strong> planned versus real duration, amounts owed and paid at every stop, and trips flagged when they are overcharged.', '<strong>Drivers:</strong> trip stops and statuses from the phone, an SOS alert, and forced app updates so nobody runs an old version.'])]],
+      ['Catching waste and theft', [ul(['Every refuel is checked against the distance driven since the previous one. When a vehicle’s consumption drifts from its norm, it is flagged, which is how fuel theft and abuse show up.', 'Motorway toll cards are tracked per device: top-ups, deductions and history, so you know where the money went and when a card needs refilling before a driver gets stuck.', 'Every figure is attached to a vehicle and a driver, so patterns point to a person, not just a number.'])]],
+      ['Maintenance before breakdowns', [ul(['The next oil change is predicted by kilometres and by date, and the interval is learned from the vehicle’s own history.', 'Tyres, work orders with estimated and real time in the workshop, and the cost of each intervention are tracked per vehicle.', 'Vehicles that are not looked after stand out, instead of failing on the road.'])]],
+      ['Papers that never expire unnoticed', ['About twenty alert types cover what drivers and offices tend to forget: insurance, registration, technical inspection, road tax, tachograph, fire extinguisher, refrigeration unit, driver licence, medical check-ups and more. Alerts are scoped to the people who should act on them.']],
+      ['Security', [ul(['Five roles, and a permission check on every endpoint (more than a hundred), not just on the menu.', 'Sign-in tokens can be revoked instantly: a stolen phone or a departing employee is cut off at once.', 'Vehicle papers and fuel receipts are only reachable through signed links that expire.', 'Optimistic locking on every record: if two people edit the same mission, the second save is refused with a clear message instead of silently overwriting the first.', 'Deleting a mission is audited.'])]],
+      ['Performance', [ul(['Every list is paginated, so screens stay fast as years of missions pile up.', 'Queries load related data in one go instead of one query per row (the classic “N+1” problem).', 'Business figures such as consumption deviation, unpaid amounts and real durations are computed by the database itself, so dashboards read them ready-made.', 'Every schema change is a versioned migration (20 so far): the database evolves without manual fixes.'])]],
+      ['Delivery pipeline', ['Every push runs the test suite against real PostgreSQL and Redis instances, builds a container image, and deploys it automatically to development, staging or production depending on the branch, with a health check that fails the deployment if the new version doesn’t come up.']],
     ],
   },
   {
@@ -205,10 +211,29 @@ export const caseStudies = [
     facts: [['Role', 'Backend engineer, co-founder of the studio'], ['Apps', 'Customer app, driver app, restaurant dashboard, admin console, API'], ['Stack', 'JHipster (Spring Boot), PostgreSQL, Redis, WebSockets, Twilio, Google Maps, Flutter, Next.js'], ['Focus', 'Real-time orders, security, running costs']],
     sections: [
       ['The problem', ['A local delivery service needed customers, restaurants and drivers on the same page in real time, on a startup budget where every paid API call counts.']],
-      ['What we built', ['<ul><li><strong>Customer and driver apps</strong> (Flutter) and <strong>web dashboards</strong> for restaurants and admins (Next.js), all on one JHipster backend.</li><li><strong>Live orders:</strong> status changes are pushed over WebSockets to every screen, from the kitchen to the door.</li><li><strong>SMS updates</strong> through Twilio, and product search for restaurant menus.</li></ul>']],
-      ['Keeping running costs down', ['Maps were the biggest variable cost, so the backend is careful with them:', '<ul><li>The delivery fee is a base price plus a price per kilometre of real road distance.</li><li>The route is computed once and saved on the cart, instead of asking Google again each time the cart is shown.</li><li>Calls request only the three fields the app needs (distance, duration and the route line), which keeps them in Google’s cheapest billing tier.</li></ul>']],
-      ['Security and performance', ['<ul><li>Token-based authentication with roles for customers, drivers, restaurants and admins.</li><li>Frequent look-ups such as users are cached, so busy hours don’t hit the database for every request.</li></ul>']],
-      ['What I’d do next', ['Group nearby orders per driver, and cache routes between frequent restaurant and neighbourhood pairs to cut map calls further.']],
+      ['What we built', [ul(['<strong>Customer and driver apps</strong> (Flutter) and <strong>web dashboards</strong> for restaurants and admins (Next.js), all on one JHipster backend.', '<strong>Live orders:</strong> status changes are pushed over WebSockets to every screen, from the kitchen to the door.', '<strong>SMS updates</strong> through Twilio, and product search for restaurant menus.'])]],
+      ['Keeping running costs down', ['Maps were the biggest variable cost, so the backend is careful with them:', ul(['The delivery fee is a base price plus a price per kilometre of real road distance.', 'The route is computed once and saved on the cart, instead of asking Google again each time the cart is shown.', 'Calls request only the three fields the app needs (distance, duration and the route line), which keeps them in Google’s cheapest billing tier.'])]],
+      ['Security and performance', [ul(['Token-based authentication with separate roles for customers, drivers, restaurants and admins.', 'Frequent look-ups such as users are cached, so busy hours don’t hit the database for every request.'])]],
+      ['Delivery pipeline', ['The Android app is built automatically on every push, and the backend deploys itself to the development server, so testers always have the latest version.']],
+    ],
+  },
+  {
+    id: 'galaxytest', title: 'GalaxyTest', summary: 'A complete hiring flow for developers, from the “apply” button on the company’s website to the job offer, with a coding-game test in the middle.',
+    facts: [['Role', 'Full-stack developer'], ['Company', 'CBX Conseil (IT consulting)'], ['Stack', 'Java, Spring Boot, Angular, PostgreSQL, Redis, Jenkins'], ['Users', 'Recruiters, candidates, company admins']],
+    sections: [
+      ['The problem', ['Hiring developers on CVs alone is slow and unreliable. The company wanted to see what candidates can actually do, without recruiters running tests by hand.']],
+      ['The full flow', [ul(['A candidate applies from the company’s website and gets an account, with single sign-on shared with the company’s job platform.', 'Recruiters run test campaigns per technology and invite candidates by email, with reminders and re-sends.', 'The candidate takes a timed test in the browser: multiple choice, written answers and code, at three difficulty levels.', 'Answers are scored automatically, and results land in dashboards per campaign and per technology.', 'Shortlisted candidates move on to the job offer, all in the same system.'])]],
+      ['Good tests, not just quizzes', ['Questions are tagged by what they measure (design, language knowledge, modelling, problem solving and reliability), so a score says more than “right or wrong”. Candidates can take practice runs before the real test.']],
+      ['Keeping it clean', ['Scheduled jobs close abandoned and expired tests automatically, so campaigns never fill up with half-finished attempts, and builds and deployments run through Jenkins.']],
+    ],
+  },
+  {
+    id: 'timesheet', title: 'Timesheet', summary: 'Time tracking and billing built around how a French IT consulting firm actually works, where global tools like Clockify fall short.',
+    facts: [['Role', 'Full-stack developer'], ['Company', 'CBX Conseil (IT consulting)'], ['Stack', 'Java 17, Spring Boot 3, Angular, PostgreSQL, Keycloak, OpenAPI'], ['Users', 'Consultants, managers, finance']],
+    sections: [
+      ['The problem', ['Generic time trackers count hours. A French consulting firm (ESN) runs on the monthly activity report, the CRA: days, not hours, validated per mission, with public holidays, leave and on-call duty, and invoicing that follows from it. Off-the-shelf tools leave all of that to spreadsheets.']],
+      ['What we built', [ul(['<strong>Monthly CRA</strong> per consultant and mission, with each country’s public holidays, leave and on-call duty counted correctly.', '<strong>Invoices</strong> generated as PDF from validated reports, plus supplier invoices for subcontractors, and reminders for invoices paid late.', '<strong>People as the firm sees them:</strong> employees and freelancers, internal and external missions, clients, suppliers and business finders.', '<strong>Less typing:</strong> bank details read straight from PDF files and validated, and bulk import from CSV.'])]],
+      ['Security and integration', [ul(['Single sign-on with Keycloak and roles for consultants, managers and finance.', 'The API is described with OpenAPI and its code generated from that description, so frontend and backend stay in sync.', 'Scheduled jobs prepare each month’s reports and invoices and notify people by email.'])]],
     ],
   },
 ];
@@ -220,7 +245,18 @@ const howIWork = {
 };
 
 // Testimonials stay anonymous: { quote, who: 'Operations manager, transport company' }. Hidden while empty.
-const testimonials = { en: [], fr: [] };
+const testimonials = {
+  en: [
+    { who: 'Founder, food delivery app', text: 'Backend work far beyond what was agreed, and a lower Google Maps bill.' },
+    { who: 'Manager, fleet ERP', text: 'Every change they asked for, delivered.' },
+    { who: 'Manager, fleet ERP', text: 'Professionalism and attention to detail.' },
+  ],
+  fr: [
+    { who: 'Fondateur, application de livraison', text: 'Un travail backend bien au-delà de ce qui était prévu, et une facture Google Maps réduite.' },
+    { who: 'Responsable, ERP de flotte', text: 'Chaque changement demandé, livré.' },
+    { who: 'Responsable, ERP de flotte', text: 'Le professionnalisme et le souci du détail.' },
+  ],
+};
 
 export const content = {
   en: {
@@ -233,7 +269,7 @@ export const content = {
     cta: { talk: 'Start a conversation', cv: 'Download CV', cvBusy: 'Preparing…', cvFallback: 'Hi, could you send me your CV?' },
     ask: 'Ask about this project', askMsg: 'Hi, I’d like to know more about: ',
     projects: projects.en,
-    services: services.en, howIWork: howIWork.en, testimonials: testimonials.en, testimonialsTitle: 'What clients say', caseLabel: 'Read the case study',
+    services: services.en, howIWork: howIWork.en, testimonials: testimonials.en, testimonialsTitle: 'What clients valued', caseLabel: 'Read the case study',
     moreTitle: 'More work', more: more.en, labels: { problem: 'Problem', did: 'What I did', result: 'Result' },
     expTitle: 'Experience', experience: experience.en,
     skillsTitle: 'Skills', tierNames: { core: 'Core', comfortable: 'Comfortable', also: 'Also used' }, skillsHint: 'Hover or tap a skill to see where I used it.',
@@ -251,7 +287,7 @@ export const content = {
     cta: { talk: 'Discutons', cv: 'Télécharger le CV', cvBusy: 'Préparation…', cvFallback: 'Bonjour, pourriez-vous m’envoyer votre CV ?' },
     ask: 'Poser une question sur ce projet', askMsg: 'Bonjour, j’aimerais en savoir plus sur : ',
     projects: projects.fr,
-    services: services.fr, howIWork: howIWork.fr, testimonials: testimonials.fr, testimonialsTitle: 'Ce qu’en disent les clients', caseLabel: 'Lire l’étude de cas (en anglais)',
+    services: services.fr, howIWork: howIWork.fr, testimonials: testimonials.fr, testimonialsTitle: 'Ce que les clients ont apprécié', caseLabel: 'Lire l’étude de cas (en anglais)',
     moreTitle: 'Autres réalisations', more: more.fr, labels: { problem: 'Problème', did: 'Ce que j’ai fait', result: 'Résultat' },
     expTitle: 'Expérience', experience: experience.fr,
     skillsTitle: 'Compétences', tierNames: { core: 'Cœur', comfortable: 'À l’aise', also: 'Aussi utilisé' }, skillsHint: 'Survolez ou touchez une compétence pour voir où je l’ai utilisée.',

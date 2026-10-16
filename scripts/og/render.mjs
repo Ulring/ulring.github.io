@@ -6,5 +6,5 @@ const b = await chromium.launch({ channel: 'chromium' });
 const p = await b.newPage({ viewport: { width: 1200, height: 630 } });
 await p.goto('file://' + fileURLToPath(new URL('./card.html', import.meta.url)));
 await p.waitForTimeout(500);
-await p.screenshot({ path: 'public/og.png' });
+await p.screenshot({ path: 'public/og.png' });  // then: magick public/og.png -strip -quality 82 public/og.jpg
 await b.close();

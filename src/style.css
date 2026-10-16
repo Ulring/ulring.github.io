@@ -141,8 +141,9 @@ button.skill:hover, button.skill.on { border-color: var(--ice); background: rgba
 .needs { margin: 28px 0 0; color: var(--soft); font-size: 15.5px; max-width: 46rem; }
 .chapter-actions { display: flex; gap: 10px; flex-wrap: wrap; margin: 0; }
 .quotes-big { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr)); gap: 32px; }
-.quotes-big blockquote { margin: 0 0 10px; font: 500 clamp(19px, 1.7vw, 23px)/1.4 var(--display); }
-.quotes-big p { margin: 0; color: var(--dim); font-size: 14px; }
+.quotes-big li { border-top: 1px solid var(--line); padding-top: 16px; }
+.quotes-big .said { margin: 0 0 10px; font: 500 clamp(18px, 1.6vw, 22px)/1.4 var(--display); }
+.quotes-big .who { margin: 0; color: var(--dim); font-size: 14px; }
 
 /* writing */
 .posts { list-style: none; margin: 0; padding: 0; }

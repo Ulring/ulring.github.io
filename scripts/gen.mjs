@@ -2,13 +2,13 @@
 import fs from 'fs';
 import { content, person, skillTiers, caseStudies } from '../src/content.js';
 
-// case studies are drafts until Anass has reviewed them: only built with DRAFTS=1 (local preview)
+// a case study marked draft: true is only built with DRAFTS=1 (local preview)
 const DRAFTS = process.env.DRAFTS === '1';
 // GoatCounter: cookie-free visit counts (dashboard at ulring.goatcounter.com)
 const ANALYTICS = '<script data-goatcounter="https://ulring.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>';
-const cases = DRAFTS ? caseStudies : [];
-const OG = `${person.site}/og.png`;
-const ogTags = `<meta property="og:image" content="${OG}">\n<meta property="og:image:width" content="1200">\n<meta property="og:image:height" content="630">\n<meta name="twitter:card" content="summary_large_image">`;
+const cases = caseStudies.filter(k => DRAFTS || !k.draft);
+const OG = `${person.site}/og.jpg`;
+const ogTags = `<meta property="og:image" content="${OG}">\n<meta property="og:image:width" content="1200">\n<meta property="og:image:height" content="630">\n<meta property="og:image:type" content="image/jpeg">\n<meta property="og:image:alt" content="Anass Soulimani, full-stack engineer">\n<meta property="og:site_name" content="Anass Soulimani">\n<meta name="twitter:card" content="summary_large_image">`;
 
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const write = (path, html) => { const dir = path.replace(/[^/]+$/, ''); if (dir) fs.mkdirSync(dir, { recursive: true }); fs.writeFileSync(path, html); };
@@ -125,7 +125,7 @@ ${ANALYTICS}
 ${c.testimonials.length ? `
     <section class="block" id="testimonials">
       <header class="block-head"><h2 class="kinetic">${esc(c.testimonialsTitle)}</h2></header>
-      <ul class="quotes-big">${c.testimonials.map(t => `<li><blockquote>“${esc(t.quote)}”</blockquote><p>${esc(t.who)}</p></li>`).join('')}</ul>
+      <ul class="quotes-big">${c.testimonials.map(t => `<li><p class="said">${esc(t.text)}</p><p class="who">${esc(t.who)}</p></li>`).join('')}</ul>
     </section>
 ` : ''}
 
@@ -293,4 +293,4 @@ for (const p of content.en.posts) write(`blog/${p.slug}/index.html`, postPage(co
 write('links/index.html', linksPage(content.en));
 fs.rmSync('work', { recursive: true, force: true });
 for (const k of cases) write(`work/${k.id}/index.html`, casePage(content.en, k));
-console.log(`generated /, /fr/, /links/, ${content.en.posts.length} posts${cases.length ? `, ${cases.length} case studies (drafts)` : ''}`);
+console.log(`generated /, /fr/, /links/, ${content.en.posts.length} posts, ${cases.length} case studies`);
