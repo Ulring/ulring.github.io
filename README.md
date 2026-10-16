@@ -23,3 +23,5 @@ npm run cv         # compile the private LaTeX CVs (~/Documents/cv, never commit
 ```
 
 The contact form opens the visitor's mail app. To receive messages directly, set `WEB3FORMS_KEY` in `src/main.js` (free key from web3forms.com).
+
+# GitHub profile README images (scripts/readme): build output goes to the Ulring/Ulring repo
