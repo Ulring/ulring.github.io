@@ -78,7 +78,7 @@ ${ogTags}
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='5' fill='%23a8ecff'/%3E%3C/svg%3E">
 <link rel="preload" href="/fonts/ClashGrotesk-Variable.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-Variable.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/src/style.css">
+${c.lang === 'en' ? `<script>try{if(!localStorage.getItem('lang')&&/^fr\\b/i.test(navigator.language||'')&&!document.referrer.startsWith(location.origin))location.replace('/fr/'+location.hash)}catch(e){}</script>\n` : ''}<link rel="stylesheet" href="/src/style.css">
 <script type="module" src="/src/main.js"></script>
 ${ANALYTICS}
 </head>
@@ -90,7 +90,7 @@ ${ANALYTICS}
     <a href="#work">${c.nav.work}</a>
     <a href="#services">${c.nav.services}</a>${hasPosts ? `\n    <a href="#writing">${c.nav.writing}</a>` : ''}
   </nav>
-  <a class="lang" href="${c.otherHome}" hreflang="${c.other}" lang="${c.other}">${c.other.toUpperCase()}</a>
+  <a class="lang" href="${c.otherHome}" hreflang="${c.other}" lang="${c.other}" onclick="try{localStorage.setItem('lang','${c.other}')}catch(e){}">${c.other.toUpperCase()}</a>
   <a class="btn small solid" href="#contact">${c.nav.contact}</a>
 </header>
 
@@ -125,7 +125,7 @@ ${ANALYTICS}
 ${c.testimonials.length ? `
     <section class="block" id="testimonials">
       <header class="block-head"><h2 class="kinetic">${esc(c.testimonialsTitle)}</h2></header>
-      <ul class="quotes-big">${c.testimonials.map(t => `<li><p class="said">${esc(t.text)}</p><p class="who">${esc(t.who)}</p></li>`).join('')}</ul>
+      <ul class="quotes-big">${c.testimonials.map(t => `<li><p class="said">“${esc(t.quote)}”</p><p class="who">${esc(t.who)}</p></li>`).join('')}</ul>
     </section>
 ` : ''}
 
@@ -180,7 +180,6 @@ ${hasPosts ? `
 <footer>
   <span>© 2026 ${esc(person.name)}</span>
   <a href="/links/">${esc(c.linksLabel)}</a>
-  <span class="credits">${esc(c.credits)}</span>
 </footer>
 </body>
 </html>

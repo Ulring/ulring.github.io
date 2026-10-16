@@ -120,14 +120,14 @@ const projects = {
 // More work: an index of rows that expand to problem → what I did → result
 const more = {
   en: [
-    { id: 'inventory', title: 'inventory', what: 'Inventory & sales', year: 'In progress', problem: 'Small shops lose track of what each product really costs and who still owes them money.', did: 'A desktop app for products, sales, installments and customer debts, computing the real cost and margin of every product.', result: 'Core data model and inventory screens built; sales and payment tracking next.', stack: ['.NET 8', 'WPF', 'PostgreSQL'] },
+    { id: 'inventory', title: 'Inventory & sales app', what: 'Desktop app', year: 'In progress', problem: 'Small shops lose track of what each product really costs and who still owes them money.', did: 'A desktop app for products, sales, installments and customer debts, computing the real cost and margin of every product.', result: 'Core data model and inventory screens built; sales and payment tracking next.', stack: ['.NET 8', 'WPF', 'PostgreSQL'] },
     { id: 'discovery', title: 'Discovery & hosting for clients', what: 'Client consulting', year: '2025–2026', problem: 'Clients paid for software they barely used and did by hand work that a system could do.', did: 'Mapped how each business actually runs, found what could be automated and where fees were hiding, then set up and hosted the replacements.', result: 'Lower monthly costs, less manual work, and one place to see everything running.', stack: ['Linux', 'Docker', 'Traefik', 'GitHub Actions'] },
     { id: 'cbxacademy', title: 'CBX Academy', what: 'Front-end support', year: '2024', problem: 'The training website needed its new versions connected to the company’s backend.', did: 'Helped the front-end developer on v1 and v2, mostly wiring the frontend to the backend.', result: 'Both versions shipped.', stack: ['Next.js', 'Spring Boot'] },
     { id: 'drone', title: 'Drone solar inspection', what: 'Computer vision', year: '2022', problem: 'Dirty solar panels lose output, and checking a solar field by hand is slow.', did: 'Trained an instance-segmentation model on drone images to find the panels that need cleaning.', result: 'About 95% accuracy on panel detection.', stack: ['Python', 'Detectron2', 'AWS'] },
     { id: 'hybrid', title: 'Hybrid energy control', what: 'Micro-grid simulation', year: '2022', problem: 'Demand changes between day and night, wind can drop or exceed what a turbine can take, and solar gives nothing at night.', did: 'Simulated a solar, wind and diesel micro-grid and the control logic that decides when the generator must start and how the grid absorbs it.', result: 'The generator runs as little as possible while the grid stays stable.', stack: ['Simulink', 'MATLAB'] },
   ],
   fr: [
-    { id: 'inventory', title: 'inventory', what: 'Stock & ventes', year: 'En cours', problem: 'Les petits commerces perdent de vue le coût réel de chaque produit et qui leur doit encore de l’argent.', did: 'Une application de bureau pour les produits, les ventes, les paiements échelonnés et les dettes clients, qui calcule le coût réel et la marge de chaque produit.', result: 'Modèle de données et écrans de stock en place ; suivi des ventes et des paiements à venir.', stack: ['.NET 8', 'WPF', 'PostgreSQL'] },
+    { id: 'inventory', title: 'Application stock & ventes', what: 'Application de bureau', year: 'En cours', problem: 'Les petits commerces perdent de vue le coût réel de chaque produit et qui leur doit encore de l’argent.', did: 'Une application de bureau pour les produits, les ventes, les paiements échelonnés et les dettes clients, qui calcule le coût réel et la marge de chaque produit.', result: 'Modèle de données et écrans de stock en place ; suivi des ventes et des paiements à venir.', stack: ['.NET 8', 'WPF', 'PostgreSQL'] },
     { id: 'discovery', title: 'Audit & hébergement pour les clients', what: 'Conseil', year: '2025–2026', problem: 'Les clients payaient des logiciels à peine utilisés et faisaient à la main un travail qu’un système peut faire.', did: 'Analysé le fonctionnement réel de chaque entreprise, repéré ce qui pouvait être automatisé et les frais cachés, puis mis en place et hébergé les remplacements.', result: 'Moins de frais mensuels, moins de travail manuel, et une vue unique sur tout ce qui tourne.', stack: ['Linux', 'Docker', 'Traefik', 'GitHub Actions'] },
     { id: 'cbxacademy', title: 'CBX Academy', what: 'Appui front-end', year: '2024', problem: 'Les nouvelles versions du site de formation devaient être reliées au backend de l’entreprise.', did: 'Aidé le développeur front-end sur la v1 et la v2, surtout pour relier le frontend au backend.', result: 'Les deux versions ont été livrées.', stack: ['Next.js', 'Spring Boot'] },
     { id: 'drone', title: 'Inspection de panneaux solaires par drone', what: 'Vision par ordinateur', year: '2022', problem: 'Les panneaux sales produisent moins, et inspecter un champ solaire à la main prend du temps.', did: 'Entraîné un modèle de segmentation d’instances sur des images de drone pour repérer les panneaux à nettoyer.', result: 'Environ 95 % de précision sur la détection des panneaux.', stack: ['Python', 'Detectron2', 'AWS'] },
@@ -246,18 +246,7 @@ const howIWork = {
 };
 
 // Testimonials stay anonymous: { quote, who: 'Operations manager, transport company' }. Hidden while empty.
-const testimonials = {
-  en: [
-    { who: 'Founder, food delivery app', text: 'Backend work far beyond what was agreed, and a lower Google Maps bill.' },
-    { who: 'Manager, fleet ERP', text: 'Every change they asked for, delivered.' },
-    { who: 'Manager, fleet ERP', text: 'Professionalism and attention to detail.' },
-  ],
-  fr: [
-    { who: 'Fondateur, application de livraison', text: 'Un travail backend bien au-delà de ce qui était prévu, et une facture Google Maps réduite.' },
-    { who: 'Responsable, ERP de flotte', text: 'Chaque changement demandé, livré.' },
-    { who: 'Responsable, ERP de flotte', text: 'Le professionnalisme et le souci du détail.' },
-  ],
-};
+const testimonials = { en: [], fr: [] };   // only real, approved quotes: { quote, who }
 
 export const content = {
   en: {
@@ -276,7 +265,6 @@ export const content = {
     skillsTitle: 'Skills', tierNames: { core: 'Core', comfortable: 'Comfortable', also: 'Also used' }, skillsHint: 'Hover or tap a skill to see where I used it.',
     writingTitle: 'Writing', posts: posts.en, readLabel: 'min read', allWriting: 'All writing', linksLabel: 'Links I’ve collected', linksPage: { title: 'Links I’ve collected', lede: 'Tools, courses, papers and references I keep coming back to.', search: 'Search links', types: 'Type', tags: 'Tags', shown: 'shown', clear: 'Clear filters' },
     contact: { title: 'Let’s work together.', copy: 'Copy', copied: 'Copied', available: 'Available now', local: 'in Morocco', reply: 'I reply within a day.', name: 'Name', email: 'Email', about: 'About', options: [['project', 'A project'], ['job', 'A job opportunity'], ['question', 'A question'], ['other', 'Something else']], message: 'Message', send: 'Send', sent: 'Thanks, message sent. I’ll get back to you soon.' },
-    credits: 'Scooter: “Vespa” by Jasmine Roberts (CC BY 3.0) · truck: Kenney Car Kit (CC0)',
   },
   fr: {
     lang: 'fr', other: 'en', home: '/fr/', otherHome: '/',
@@ -294,7 +282,6 @@ export const content = {
     skillsTitle: 'Compétences', tierNames: { core: 'Cœur', comfortable: 'À l’aise', also: 'Aussi utilisé' }, skillsHint: 'Survolez ou touchez une compétence pour voir où je l’ai utilisée.',
     writingTitle: 'Articles', posts: posts.fr, readLabel: 'min de lecture', allWriting: 'Tous les articles', linksLabel: 'Liens que j’ai rassemblés', linksPage: { title: 'Liens que j’ai rassemblés', lede: 'Outils, cours, articles et références auxquels je reviens souvent.', search: 'Rechercher', types: 'Type', tags: 'Tags', shown: 'affichés', clear: 'Effacer les filtres' },
     contact: { title: 'Travaillons ensemble.', copy: 'Copier', copied: 'Copié', available: 'Disponible maintenant', local: 'au Maroc', reply: 'Je réponds sous 24 h.', name: 'Nom', email: 'Email', about: 'Sujet', options: [['project', 'Un projet'], ['job', 'Une offre d’emploi'], ['question', 'Une question'], ['other', 'Autre chose']], message: 'Message', send: 'Envoyer', sent: 'Merci, message envoyé. Je reviens vers vous vite.' },
-    credits: 'Scooter : « Vespa » par Jasmine Roberts (CC BY 3.0) · camion : Car Kit de Kenney (CC0)',
   },
 };
 export { skillTiers };
