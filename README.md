@@ -22,6 +22,6 @@ npm run bake       # re-bake the sand figures after changing scripts/bake.mjs or
 npm run cv         # compile the private LaTeX CVs (~/Documents/cv, never committed) and scramble them into public/d/
 ```
 
-The contact form opens the visitor's mail app. To receive messages directly, set `WEB3FORMS_KEY` in `src/main.js` (free key from web3forms.com).
+`public/hi` is the terminal card behind `curl ulring.github.io/hi` (plain text with ANSI colours).
 
-# GitHub profile README images (scripts/readme): build output goes to the Ulring/Ulring repo
+The contact form opens the visitor's mail app. To receive messages directly, set `WEB3FORMS_KEY` in `src/main.js` (free key from web3forms.com).
